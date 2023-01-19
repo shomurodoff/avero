@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
   foodBanner,
   foodCloud,
@@ -16,15 +16,22 @@ import Card from "../../components/card";
 import { MainLayout } from "../../layouts";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
+import {isNil} from "lodash";
+import {isNull} from "lodash";
 
 const Index = () => {
-  const [isOpenModal, setOpenModal] = useState(false);
+  const [isOpenModal, setOpenModal] = useState<any>(null);
   const menuRef = useRef<any>(null);
   const scrollToMenu = () => menuRef.current.scrollIntoView();
 
   const closeModal = () => {
     setOpenModal(false);
   };
+  useEffect(()=>{
+    if(!isNull(isOpenModal)) {
+      scrollToMenu()
+    }
+  },[isOpenModal])
   return (
     <MainLayout>
       <div className="px-[60px] bg-[#F1F3F6] pb-8 pt-[50px]">
@@ -119,10 +126,11 @@ const Index = () => {
         </nav>
       </div>{" "}
       <Tab />
+      <div className={clsx(isOpenModal && 'hidden')}>
       <div
         className={clsx(
-          "py-10 px-[60px] grid grid-cols-12 gap-6",
-          isOpenModal && "hidden"
+          "py-10 px-[60px] grid grid-cols-12 gap-6 ",
+          // isOpenModal && "hidden"
         )}
       >
         <Card className="col-span-4 relative">
@@ -250,7 +258,7 @@ const Index = () => {
             />
           </Card>
         </div>
-      </section>
+      </section></div>
       <AnimatePresence
         initial={false}
         exitBeforeEnter={true}
@@ -259,7 +267,7 @@ const Index = () => {
         {" "}
         {isOpenModal && (
           <motion.div
-            className="backdrop w-full h-full absolute top-[18vh] left-0 z-[100] px-5"
+            className="backdrop w-full h-full absolute top-[18vh] left-0 z-[100] px-5 "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
