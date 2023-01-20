@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   tabCabin,
   tabCase,
@@ -16,8 +16,15 @@ const tabs = [
   { id: 4, title: "Aeroport xizmatlari", icon: tabPlane },
 ];
 
-const Index = () => {
-  const [activeTab, setActiveTab] = useState(0);
+interface Props {
+  setActive: (active: number) => void;
+}
+const Index: React.FC<Props> = ({ setActive }) => {
+  const [activeTab, setActiveTab] = useState<number>(0);
+
+  useEffect(() => {
+    setActive(activeTab);
+  }, [activeTab]);
 
   return (
     <nav className="bg-[#F1F3F6] px-[60px] relative before:absolute before:h-full before:w-[60px] before:content-[attr(before)] before:bg-[#F1F3F6]  before:bottom-0 before:left-0 before:z-[90]  before:rounded-br-2xl after:absolute after:h-full after:w-[60px] after:content-[attr(after)] after:bg-[#F1F3F6]  after:bottom-0 after:right-0 after:z-10 after:rounded-bl-2xl">

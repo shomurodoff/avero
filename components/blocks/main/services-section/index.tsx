@@ -19,9 +19,9 @@ import { coopiratives } from "../../../../mock/coopiratives";
 import Card from "../../../card";
 import Heading from "../../../heading";
 
-const ArrowButton = () => {
+const ArrowButton = ({ ...rest }) => {
   return (
-    <button className="py-2 px-5 border-2 border-black rounded-2xl">
+    <button className="py-2 px-5 border-2 border-black rounded-2xl" {...rest}>
       <svg
         width="24"
         height="24"
@@ -159,7 +159,7 @@ const Index = () => {
               the time tracker trusted by more than 10,000 organizations.
             </p>
             <Link
-              href={"/client"}
+              href={"/services"}
               className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter"
             >
               Izlash

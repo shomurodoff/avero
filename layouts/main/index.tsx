@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { Footer, Header } from "./components";
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode | JSX.Element;
   rest?: {};
   primary?: boolean;
 }

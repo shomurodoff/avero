@@ -1,3 +1,5 @@
 import Heading from "./heading";
 import Tab from "./tab";
-export { Heading, Tab };
+import Modal from "./modal";
+import PassengerFilter from "./passenger-filter";
+export { Heading, PassengerFilter, Tab, Modal };
