@@ -1,32 +1,44 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { PassengerFilter, Tab } from "../../components";
 import { MainLayout } from "../../layouts";
 import SeatServices from "./seat";
 import FoodServices from "./food";
-import { isEqual, map } from "lodash";
+import WeightServices from "./wieght";
+import {
+  tabCabin,
+  tabCase,
+  tabMeal,
+  tabPlane,
+} from "../../assets/images/icons";
 
-const services = [
-  { id: 1, content: <SeatServices /> },
-  { id: 2, content: <FoodServices /> },
-  { id: 3, content: <FoodServices /> },
-  { id: 4, content: <FoodServices /> },
+const tabs = [
+  {
+    id: 1,
+    title: "O’rindiq tanlash",
+    icon: tabCabin,
+    content: <SeatServices />,
+  },
+  { id: 2, title: "Ovqat buyurtma", icon: tabMeal, content: <FoodServices /> },
+  {
+    id: 3,
+    title: "Yuklarni joylashtirish",
+    icon: tabCase,
+    content: <WeightServices />,
+  },
+  {
+    id: 4,
+    title: "Aeroport xizmatlari",
+    icon: tabPlane,
+    content: <SeatServices />,
+  },
 ];
 
 const Index: React.FC = () => {
   const [activeServices, setActiveServices] = useState<number>(0);
-
-  console.log(activeServices, "activeServices");
-
   return (
     <MainLayout>
       <PassengerFilter />
-      <Tab setActive={setActiveServices} />
-      {map(services, (service, index) => {
-        return index === activeServices && service.content;
-        if (isEqual(index, activeServices)) {
-          return service.content;
-        }
-      })}
+      <Tab data={tabs} />
     </MainLayout>
   );
 };
