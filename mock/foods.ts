@@ -8,7 +8,7 @@ import {
   mealOption2,
   mealOption3,
   mealOption4,
-} from "../assets/images/food-services";
+} from "../assets/images/services/food-services";
 
 export const foodsMenu: {
   id: number;

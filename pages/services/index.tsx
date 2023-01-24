@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { Modal, PassengerFilter, Tab } from "../../components";
+import { Banner, Modal, PassengerFilter, Tab } from "../../components";
 import { MainLayout } from "../../layouts";
 import clsx from "clsx";
 import { isNull } from "lodash";
@@ -28,6 +28,7 @@ const Index = () => {
     //     <MealOption foodOptions={foodOptions} />
     //   </Modal>
     // </MainLayout>
+    // <div className="container mx-auto">
   );
 };
 

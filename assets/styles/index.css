@@ -4,12 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1,
+  h3,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply tracking-tight;
+  }
+}
+
 html {
   scroll-behavior: smooth;
+  letter-spacing: -2%;
 }
 .input-form {
   @apply bg-transparent text-white font-inter font-medium text-xl;
 }
 .food-serving-bg {
-  background-image: url("../images/food-services/food-serving-bg.png");
+  background-image: url("../images/services/food-services/food-serving-bg.png");
 }

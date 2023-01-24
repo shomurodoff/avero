@@ -1,7 +1,11 @@
 import clsx from "clsx";
 import { isNull } from "lodash";
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { Modal } from "../../../components";
+import {
+  bannerIcon,
+  foodBanner,
+} from "../../../assets/images/services/food-services";
+import { Banner, Modal } from "../../../components";
 import {
   HeroSection,
   MealOption,
@@ -22,15 +26,21 @@ const Index = () => {
 
   return (
     <Fragment>
-      <div className={clsx("relative", isOpenModal && "hidden")}>
-        <HeroSection scrollToMenu={scrollToMenu} />
+      <Banner
+        title="Ovqatingizga oldindan buyurtma bering"
+        subTitle="O'zingiz uchun eng yaxshi variantni tanlang!. Taomga ketishdan kamida 24 yoki 36 soat oldin buyurtma berishni unutmang*"
+        image={foodBanner}
+        icon={bannerIcon}
+      />
+      {/* <HeroSection scrollToMenu={scrollToMenu} /> */}
+      {/* <div className={clsx("relative", isOpenModal && "hidden")}>
         <section ref={menuRef} className="px-[60px] py-32">
           <MenuSection options={foodsMenu} setOpen={setOpenModal} />
         </section>
-      </div>
-      <Modal open={isOpenModal} setOpen={setOpenModal}>
+      </div> */}
+      {/* <Modal open={isOpenModal} setOpen={setOpenModal}>
         <MealOption foodOptions={foodOptions} />
-      </Modal>
+      </Modal> */}
     </Fragment>
   );
 };

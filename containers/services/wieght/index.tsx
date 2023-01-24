@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import {
   bannerIcon,
   weightBanner,
-} from "../../../assets/images/weight-services";
+} from "../../../assets/images/services/weight-services";
 import { Banner } from "../../../components";
 
 const Index = () => {

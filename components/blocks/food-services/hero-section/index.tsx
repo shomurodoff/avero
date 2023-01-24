@@ -1,12 +1,13 @@
 import { clsx } from "clsx";
 import Image from "next/image";
-import React from "react";
+import React, { Fragment } from "react";
 import {
   foodBanner,
   foodCloud,
   foodServing,
-} from "../../../../assets/images/food-services";
+} from "../../../../assets/images/services/food-services";
 import { tabMeal } from "../../../../assets/images/icons";
+import Banner from "../../../banner";
 import Card from "../../../card";
 
 interface Props {
@@ -16,30 +17,14 @@ interface Props {
 const Index = ({ scrollToMenu }: Props) => {
   return (
     <section>
-      <div className={clsx("py-10 px-[60px] grid grid-cols-12 gap-6 ")}>
-        <Card className="col-span-4 relative">
-          <div className="py-12 pl-11 pr-20 flex flex-col justify-between h-full">
-            <h3 className="text-[45px] leading-[60px] font-montserrat font-bold">
-              Ovqatingizga oldindan buyurtma bering
-            </h3>
-            <p className="text-[#90A18B] text-base">
-              O&apos zingiz uchun eng yaxshi variantni tanlang!. Taomga
-              ketishdan kamida 24 yoki 36 soat oldin buyurtma berishni unutmang*
-            </p>
-          </div>
-          <div className="absolute bg-primary-red p-16 rounded-full top-1/2 -translate-y-1/2 left-1/2 translate-x-2/4 z-10">
-            <Image src={tabMeal} width={75} height={75} alt="meal icon" />
-          </div>
-        </Card>
-        <Card className="col-span-8 relative">
-          <Image
-            src={foodBanner}
-            alt="Image"
-            height={500}
-            layout={"responsive"}
-          />
-        </Card>
-      </div>
+      <Fragment>
+        <Banner
+          title="Ovqatingizga oldindan buyurtma bering"
+          subTitle="O'zingiz uchun eng yaxshi variantni tanlang!. Taomga ketishdan kamida 24 yoki 36 soat oldin buyurtma berishni unutmang*"
+          image={foodBanner}
+          icon={tabMeal}
+        />
+      </Fragment>
       <div className="px-[60px]">
         <Card className=" !bg-primary-blue h-[400px] w-full !rounded-2xl p-11 pt-20 food-serving-bg">
           <div className="flex flex-col justify-between h-full">

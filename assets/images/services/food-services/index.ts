@@ -10,6 +10,7 @@ import mealOption1 from "./meal-option-1.png";
 import mealOption2 from "./meal-option-2.png";
 import mealOption3 from "./meal-option-3.png";
 import mealOption4 from "./meal-option-4.png";
+import bannerIcon from "./food-banner-icon.png";
 export {
   foodBanner,
   foodServing,
@@ -23,4 +24,5 @@ export {
   mealOption2,
   mealOption3,
   mealOption4,
+  bannerIcon,
 };
