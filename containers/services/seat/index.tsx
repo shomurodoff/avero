@@ -83,7 +83,7 @@ const Index = () => {
       </div>
       <section className="px-[15px] font-montserrat mb-40">
         <div className="bg-primary-blue rounded-[25px] py-8 px-5 text-white grid grid-cols-12 grid-rows-5">
-          <div className="col-span-12 row-span-3">
+          <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6">
             <p className="text-2xl mb-7">
               Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida 24
               soat oldin xizmatga buyurtma bering.
@@ -92,18 +92,18 @@ const Index = () => {
               O’rindiq tanlash
             </button>
           </div>
-          <div className="col-span-12 row-span-2">
+          <div className="col-span-12 md:col-span-5 row-span-2 md:row-span-6">
             <div className="relative w-full h-full mt-8">
               <Image
                 src={seatOrderImage}
                 alt="image Girl"
-                className="absolute -bottom-1/2 left-0 z-10"
+                className="absolute -bottom-1/2 md:-bottom-1/4 left-0 z-10 md:w-64 md:h-64"
               />
-              <div className="bg-primary-red w-[168px] h-[168px] rounded-full absolute -bottom-12 right-8"></div>
+              <div className="bg-primary-red w-[168px] md:w-60 h-[168px] md:h-60 rounded-full absolute -bottom-12 md:bottom-0 md:right-2 right-8"></div>
               <Image
                 src={seatOrderRingImage}
                 alt="image Girl"
-                className="absolute -bottom-2/3 right-11"
+                className="absolute -bottom-2/3 md:-bottom-1/5 right-11 "
               />
               <Image
                 src={seatOrderRingImage}
