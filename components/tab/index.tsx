@@ -18,7 +18,7 @@ const Index: React.FC<Props> = ({ data }) => {
   return (
     <Fragment>
       <div className="hidden md:block">
-        <nav className="bg-[#F1F3F6] px-[60px] relative before:absolute before:h-full before:w-[60px] before:content-[attr(before)] before:bg-[#F1F3F6]  before:bottom-0 before:left-0 before:z-[90]  before:rounded-br-2xl after:absolute after:h-full after:w-[60px] after:content-[attr(after)] after:bg-[#F1F3F6]  after:bottom-0 after:right-0 after:z-10 after:rounded-bl-2xl">
+        <nav className="bg-[#F1F3F6] px-[60px]  xl:pt-[30px] md:pt-5 relative before:absolute before:h-full before:w-[60px] before:content-[attr(before)] before:bg-[#F1F3F6]  before:bottom-0 before:left-0 before:z-[90]  before:rounded-br-2xl after:absolute after:h-full after:w-[60px] after:content-[attr(after)] after:bg-[#F1F3F6]  after:bottom-0 after:right-0 after:z-10 after:rounded-bl-2xl">
           <ul className={"flex justify-between"}>
             {map(data, (tab, index) => (
               <li
@@ -63,31 +63,62 @@ const Index: React.FC<Props> = ({ data }) => {
           </ul>
         </nav>
       </div>
-      <div className="block md:hidden">
-        <nav className=" bg-[#F1F3F6] px-5 pb-4">
-          <select className="w-full p-4  rounded-2xl bg-right-2">
-            {map(data, (option) => (
-              <option>{get(option, "title")}</option>
-            ))}
-          </select>
+      <div className="block md:hidden  bg-[#F1F3F6] pt-0.5">
+        <nav className="px-[15px] pb-4">
           <ReactSelect
-            options={map(data, (item) => {
-              return { value: get(item, "id"), label: get(item, "title") };
+            onChange={(value) => {
+              setActiveTab(get(value, "value", 0));
+            }}
+            options={map(data, (item, index) => {
+              return {
+                value: index,
+                label: get(item, "title"),
+                image: get(item, "icon"),
+              };
             })}
+            formatOptionLabel={(item) => (
+              <div className="flex items-center gap-3">
+                <span className="bg-primary-red p-2.5 rounded-full">
+                  <Image src={get(item, "image", "")} alt="country-image" />
+                </span>
+                <span>{get(item, "label")}</span>
+              </div>
+            )}
+            className="react-select-container"
+            classNamePrefix="react-select"
+            classNames={{
+              control: (state) => {
+                return state.isFocused
+                  ? "p-[15px] !rounded-[15px] !border-primary-red !shadow-none"
+                  : "p-[15px] !rounded-[15px] !border-[transparent] !shadow-none";
+              },
+              valueContainer: (state) => {
+                return "text-lg font-bold";
+              },
+              indicatorsContainer: (state) => {
+                return "text-lg font-bold text-black";
+              },
+              menu: (state) => {
+                return "!rounded-[15px]";
+              },
+              menuList: (state) => {
+                return "text-lg font-bold text-black !p-0 !rounded-[15px]";
+              },
+              option: (state) => {
+                return state.isSelected
+                  ? "!bg-primary-red"
+                  : state.isFocused
+                  ? "!bg-primary-red !bg-opacity-20"
+                  : "";
+              },
+            }}
             components={{
               IndicatorSeparator: () => null,
-              Option: (props) => (
-                <div className="flex items-center justify-between">
-                  {props.data.icon && (
-                    <img src={props.data.icon} className={"mr-2"} />
-                  )}
-                </div>
-              ),
             }}
           />
         </nav>
       </div>
-      <div>{data[activeTab].content}</div>
+      <div>{get(data[activeTab], "content")}</div>
     </Fragment>
   );
 };

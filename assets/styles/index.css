@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +16,9 @@
     @apply tracking-tight;
   }
 }
-
+.css-1xc3v61-indicatorContainer {
+  color: #000 !important;
+}
 html {
   scroll-behavior: smooth;
   letter-spacing: -2%;
@@ -25,4 +28,7 @@ html {
 }
 .food-serving-bg {
   background-image: url("../images/services/food-services/food-serving-bg.png");
+}
+.circle{
+  @apply h-96
 }

@@ -37,7 +37,7 @@ const Index: React.FC = () => {
   const [activeServices, setActiveServices] = useState<number>(0);
   return (
     <MainLayout>
-      {/* <PassengerFilter /> */}
+      <PassengerFilter />
       <Tab data={tabs} />
     </MainLayout>
   );
