@@ -12,6 +12,7 @@ module.exports = {
         inter: ["Inter", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        graphik: ["Graphik", "sans-serif"],
       },
       colors: {
         "primary-blue": "#043785",
