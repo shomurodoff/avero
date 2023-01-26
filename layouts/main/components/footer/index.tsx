@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import dayjs from "dayjs";
+import clsx from "clsx";
 import { PrimaryLogo } from "../../../../assets/images/logos";
 import { get, map } from "lodash";
 import { footer, footerLinks } from "../../../../mock/footer";
-import dayjs from "dayjs";
-import clsx from "clsx";
+
 const Index: React.FC = () => {
   const currentYear = dayjs().year();
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <footer className="grid grid-cols-12 gap-4 lg:gap-6 pb-8 px-[15px] md:px-10 lg:px-[60px] ">
+    <footer className="grid grid-cols-12 gap-4 lg:gap-6 pb-8 px-[15px] md:px-8 xl:px-[60px]">
       <div className="col-span-12 lg:col-span-5 xl:col-span-4 bg-primary-gray xl:px-14 pt-14 pb-7 text-white rounded-2xl flex flex-col items-center">
         <div className="w-1/2 xl:w-full">
           <Image src={PrimaryLogo} alt={"logo"} />

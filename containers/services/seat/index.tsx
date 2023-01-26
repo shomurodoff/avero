@@ -18,11 +18,11 @@ const Index = () => {
         image={seatBannerImage}
         icon={seatBannerIcon}
       />
-      <div className="px-[15px] md:px-10 lg:px-[60px] font-graphik">
+      <div className="px-[15px] md:px-8 xl:px-[60px] font-graphik">
         <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">
           Sevimli o'rindiq
         </h2>
-        <p className="text-[32px] leading-[42px] font-normal font-inter">
+        <p className="text-[32px] md:text-[40px] xl:text-[65px] leading-[42px] md:leading-[50px] xl:leading-[77.5px] font-normal font-inter">
           Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz
         </p>
       </div>
@@ -81,10 +81,10 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <section className="px-[15px] font-montserrat mb-40">
-        <div className="bg-primary-blue rounded-[25px] py-8 px-5 text-white grid grid-cols-12 grid-rows-5">
+      <section className="px-[15px] md:px-8 xl:px-[60px] font-montserrat mb-40">
+        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5">
           <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6">
-            <p className="text-2xl mb-7">
+            <p className="text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
               Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida 24
               soat oldin xizmatga buyurtma bering.
             </p>
@@ -96,19 +96,22 @@ const Index = () => {
             <div className="relative w-full h-full mt-8">
               <Image
                 src={seatOrderImage}
+                quality={100}
                 alt="image Girl"
-                className="absolute -bottom-1/2 md:-bottom-1/4 left-0 z-10 md:w-64 md:h-64"
+                className="absolute -bottom-1/2 md:-bottom-1/4 lg:-bottom-1/3  left-0 lg:-left-12 xl:left-4  z-10 w-60 h-60  md:w-64 md:h-64 lg:w-[400px] lg:h-[400px]"
               />
-              <div className="bg-primary-red w-[168px] md:w-60 h-[168px] md:h-60 rounded-full absolute -bottom-12 md:bottom-0 md:right-2 right-8"></div>
+              <div className="bg-primary-red w-[168px] md:w-60 h-[168px] md:h-60 lg:w-[320px] lg:h-[320px] rounded-full absolute -bottom-12 md:bottom-0 md:right-2 right-8"></div>
               <Image
                 src={seatOrderRingImage}
+                quality={100}
                 alt="image Girl"
-                className="absolute -bottom-2/3 md:-bottom-1/5 right-11 "
+                className="absolute -bottom-2/3 md:-bottom-1/3 right-11 md:-right-4 lg:right-8 lg:h-[400px] lg:w-[150px] lg:rotate-12"
               />
               <Image
                 src={seatOrderRingImage}
+                quality={100}
                 alt="image Girl"
-                className="absolute -bottom-2/3 -right-3"
+                className="absolute -bottom-2/3 md:-bottom-1/3 -right-3 md:-right-10  lg:h-[400px] lg:w-[150px] lg:rotate-12"
               />
             </div>
           </div>

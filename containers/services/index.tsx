@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PassengerFilter, Tab } from "../../components";
 import { MainLayout } from "../../layouts";
 import SeatServices from "./seat";
@@ -25,16 +25,15 @@ const tabs = [
     icon: tabCase,
     content: <WeightServices />,
   },
-  // {
-  //   id: 4,
-  //   title: "Aeroport xizmatlari",
-  //   icon: tabPlane,
-  //   content: <SeatServices />,
-  // },
+  {
+    id: 4,
+    title: "Aeroport xizmatlari",
+    icon: tabPlane,
+    content: <SeatServices />,
+  },
 ];
 
 const Index: React.FC = () => {
-  const [activeServices, setActiveServices] = useState<number>(0);
   return (
     <MainLayout>
       <PassengerFilter />

@@ -10,7 +10,7 @@ interface Props {
 
 const Index: React.FC<Props> = ({ title, subTitle, image, icon }) => {
   return (
-    <div className="grid grid-cols-12 gap-4 lg:gap-6 px-4 py-4 md:py-11 md:px-10 lg:px-[60px]">
+    <div className="grid grid-cols-12 gap-4 lg:gap-6 px-[15px] md:px-8 xl:px-[60px] py-4 md:py-11">
       <div className="col-span-12 md:col-span-5  xl:col-span-4 bg-[#F9EFF1] relative flex flex-col justify-between order-2 md:order-none rounded-[25px] px-[20px] pt-16 pb-9 md:px-10 md:pt-12 md:pb-10">
         <div className="w-32 h-32 lg:w-36 lg:h-36 bg-primary-red rounded-full flex items-center justify-center z-10 absolute -top-[72px] right-6 md:top-1/2 md:-translate-y-1/2 md:-right-[72px] lg:-right-[84px] shadow-[0_38px_38px_rgba(184, 196, 147, 0.3)]">
           <Image src={icon} alt="Icon Image" />

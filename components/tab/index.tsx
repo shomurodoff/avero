@@ -18,7 +18,7 @@ const Index: React.FC<Props> = ({ data }) => {
   return (
     <Fragment>
       <div className="hidden md:block">
-        <nav className="bg-[#F1F3F6] px-[60px]  xl:pt-[30px] md:pt-5 relative before:absolute before:h-full before:w-[60px] before:content-[attr(before)] before:bg-[#F1F3F6]  before:bottom-0 before:left-0 before:z-[90]  before:rounded-br-2xl after:absolute after:h-full after:w-[60px] after:content-[attr(after)] after:bg-[#F1F3F6]  after:bottom-0 after:right-0 after:z-10 after:rounded-bl-2xl">
+        <nav className="bg-[#F1F3F6] px-[15px] md:px-8 xl:px-[60px] xl:pt-[30px] md:pt-5 relative before:absolute before:h-full before:w-[15px] md:before:w-[32px] xl:before:w-[60px] before:content-[attr(before)] before:bg-[#F1F3F6]  before:bottom-0 before:left-0 before:z-[90]  before:rounded-br-2xl after:absolute after:h-full  after:w-[15px] md:after:w-[32px] xl:after:w-[60px] after:content-[attr(after)] after:bg-[#F1F3F6]  after:bottom-0 after:right-0 after:z-10 after:rounded-bl-2xl">
           <ul className={"flex justify-between"}>
             {map(data, (tab, index) => (
               <li
@@ -32,7 +32,7 @@ const Index: React.FC<Props> = ({ data }) => {
                     activeTab - index !== -1
                     ? ""
                     : " ",
-                  "w-full flex justify-center py-6 cursor-pointer items-center gap-2"
+                  "w-full flex justify-center py-2 md:py-3 xl:py-6 cursor-pointer items-center gap-1 lg:gap-2"
                 )}
                 onClick={() => setActiveTab(index)}
               >
@@ -41,7 +41,7 @@ const Index: React.FC<Props> = ({ data }) => {
                     isEqual(index, activeTab)
                       ? "bg-primary-red"
                       : "bg-gray-300",
-                    "lg:h-8 h-6 lg:w-8 w-6 flex justify-center items-center rounded-full"
+                    "lg:h-8 h-6 lg:w-8 w-6 flex justify-center items-center rounded-full p-0.5"
                   )}
                 >
                   <Image
@@ -53,7 +53,7 @@ const Index: React.FC<Props> = ({ data }) => {
                 <p
                   className={clsx(
                     isEqual(index, activeTab) ? " " : "text-black opacity-40",
-                    "font-semibold text-base lg:text-lg font-inter"
+                    "font-semibold  text-xs  lg:text-base xl:text-lg font-inter"
                   )}
                 >
                   {get(tab, "title")}
