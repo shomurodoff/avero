@@ -169,43 +169,55 @@ const Index = () => {
             </div>
           </Card>
         </div>
-        <div className="min-h-[350px] md:min-h-[400px] xl:min-h-[620px] bg-our-services mx-[-15px] md:-mx-8 xl:-mx-[60px] my-28  flex items-center text-white font-montserrat">
-          <div className="grid grid-cols-12 px-[15px] md:px-8 xl:px-[60px]">
-            <div className="col-span-12 md:col-span-6 xl:col-span-6">
-              <h2 className="max-w-2xl text-[45px] font-bold leading-[60px] mb-2 hidden lg:block">
-                Aviachipta sotib olgandan keyingi xizmatlar
-              </h2>
-              <h3 className="lg:hidden text-[32px] leading-[45px] font-bold">
-                Bizning xizmatlar
-              </h3>
-              <p className="text-base font-inter font-normal hidden lg:block max-w-2xl xl:mb-8">
-                Effortless time tracking and reporting. Save time and money with
-                the time tracker trusted by more than 10,000 organizations.
-              </p>
-              <p className="lg:hidden">
-                Engage active clients at the right time and save time chasing
-                unqualified leads
-              </p>
-              <button className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter mt-2.5">
-                Izlash
-              </button>
-            </div>
-            <div className="hidden xl:block xl:col-span-1 "></div>
-            <div className="col-span-12 md:col-span-6 xl:col-span-5 relative mt-8 md:mt-16">
-              <div className="absolute bg-[#F9EFF1] p-8 rounded-[25px] w-full text-black lg:-bottom-full xl:translate-y-1/3">
-                <h6 className="text-sm md:text-base lg:text-xl font-inter font-semibold leading-5 max-w-[150px] md:max-w-[200px]">
-                  Biz bilan hamkor avia kompaniyalar
-                </h6>
-                <div className="grid grid-cols-12 gap-2 lg:gap-8 align-middle">
-                  {map(coopiratives, (cooperative) => (
-                    <div className="col-span-4 flex items-center">
-                      <Image
-                        src={get(cooperative, "image")}
-                        alt="Logo"
-                        layout="responsive"
-                      />
-                    </div>
-                  ))}
+        <div className="relative  px-[15px] md:px-8 xl:px-[60px]">
+          <div className="min-h-[350px] md:min-h-[400px] xl:min-h-[620px] mx-[-15px] md:-mx-8 xl:-mx-[60px] my-28  flex items-center text-white font-montserrat">
+            <Image
+              src={bgServices}
+              fill
+              alt="Background Image"
+              className="-z-50"
+            />
+            <div className="grid grid-cols-12  px-[15px] md:px-8 xl:px-[60px]">
+              <div className="col-span-12 md:col-span-6 xl:col-span-6">
+                <h2 className="max-w-2xl text-[45px] font-bold leading-[60px] mb-2 hidden lg:block">
+                  Aviachipta sotib olgandan keyingi xizmatlar
+                </h2>
+                <h3 className="lg:hidden text-[32px] leading-[45px] font-bold">
+                  Bizning xizmatlar
+                </h3>
+                <p className="text-base font-inter font-normal hidden lg:block max-w-2xl xl:mb-8">
+                  Effortless time tracking and reporting. Save time and money
+                  with the time tracker trusted by more than 10,000
+                  organizations.
+                </p>
+                <p className="lg:hidden">
+                  Engage active clients at the right time and save time chasing
+                  unqualified leads
+                </p>
+                <Link
+                  href={"/services"}
+                  className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter mt-2.5"
+                >
+                  Izlash
+                </Link>
+              </div>
+              <div className="hidden xl:block xl:col-span-1 "></div>
+              <div className="col-span-12 md:col-span-6 xl:col-span-5 relative mt-8 md:mt-16">
+                <div className="absolute bg-[#F9EFF1] p-8 rounded-[25px] w-full text-black lg:-bottom-full xl:translate-y-1/3">
+                  <h6 className="text-sm md:text-base lg:text-xl font-inter font-semibold leading-5 max-w-[150px] md:max-w-[200px]">
+                    Biz bilan hamkor avia kompaniyalar
+                  </h6>
+                  <div className="grid grid-cols-12 gap-2 lg:gap-8 align-middle">
+                    {map(coopiratives, (cooperative) => (
+                      <div className="col-span-4 flex items-center">
+                        <Image
+                          src={get(cooperative, "image")}
+                          alt="Logo"
+                          layout="responsive"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
