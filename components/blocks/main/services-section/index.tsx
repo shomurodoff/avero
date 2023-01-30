@@ -169,7 +169,7 @@ const Index = () => {
             </div>
           </Card>
         </div>
-        <div className="min-h-[350px] md:min-h-[400px] xl:min-h-[620px] bg-our-services mx-[-15px] md:-mx-8 xl:-mx-[60px]  flex items-center text-white font-montserrat">
+        <div className="min-h-[350px] md:min-h-[400px] xl:min-h-[620px] bg-our-services mx-[-15px] md:-mx-8 xl:-mx-[60px] my-28  flex items-center text-white font-montserrat">
           <div className="grid grid-cols-12 px-[15px] md:px-8 xl:px-[60px]">
             <div className="col-span-12 md:col-span-6 xl:col-span-6">
               <h2 className="max-w-2xl text-[45px] font-bold leading-[60px] mb-2 hidden lg:block">
@@ -192,7 +192,7 @@ const Index = () => {
             </div>
             <div className="hidden xl:block xl:col-span-1 "></div>
             <div className="col-span-12 md:col-span-6 xl:col-span-5 relative mt-8 md:mt-16">
-              <div className="absolute bg-[#F9EFF1] p-8 rounded-[25px] w-full text-black lg:-bottom-full xl:-translate-y-1/3">
+              <div className="absolute bg-[#F9EFF1] p-8 rounded-[25px] w-full text-black lg:-bottom-full xl:translate-y-1/3">
                 <h6 className="text-sm md:text-base lg:text-xl font-inter font-semibold leading-5 max-w-[150px] md:max-w-[200px]">
                   Biz bilan hamkor avia kompaniyalar
                 </h6>
