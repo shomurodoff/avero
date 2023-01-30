@@ -8,14 +8,8 @@ import {
   foodBanner,
   foodCloud,
   foodServing,
-  foodServingBg,
 } from "../../../assets/images/services/food-services";
 import { Banner, Heading, Modal } from "../../../components";
-import {
-  HeroSection,
-  MealOption,
-  MenuSection,
-} from "../../../components/blocks/food-services";
 import { foodOptions, foodsMenu } from "../../../mock/foods";
 
 const Index = () => {
