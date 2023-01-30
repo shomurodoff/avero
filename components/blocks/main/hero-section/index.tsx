@@ -80,6 +80,7 @@ const Index: React.FC = () => {
           <ReactSelect
             placeholder={"Chipta"}
             menuIsOpen={isOpenTypeOption}
+            menuPortalTarget={document.body}
             options={map(options, (item, index) => {
               return {
                 value: index,
@@ -88,7 +89,7 @@ const Index: React.FC = () => {
               };
             })}
             formatOptionLabel={(item) => (
-              <div className="flex items-center gap-2 cursor-pointer">
+              <div className="flex items-center gap-2 cursor-pointer z-[1000]">
                 <span className="rounded-full">
                   <Image src={get(item, "image", "")} alt="country-image" />
                 </span>
@@ -119,11 +120,14 @@ const Index: React.FC = () => {
               indicatorsContainer: (state) => {
                 return "text-lg font-bold text-black";
               },
+              menuPortal: (state) => {
+                return "!z-[9999]";
+              },
               menu: (state) => {
-                return "!rounded-[15px] !w-[200px] !mt-5 z-[99999]";
+                return "!rounded-[15px] !w-[200px] !mt-5";
               },
               menuList: (state) => {
-                return "text-lg  text-black !p-0 !rounded-[15px] ";
+                return "text-lg  text-black !p-0 !rounded-[15px]";
               },
               option: (state) => {
                 return state.isSelected
@@ -232,6 +236,9 @@ const Index: React.FC = () => {
               },
               indicatorsContainer: (state) => {
                 return "text-lg font-bold text-black";
+              },
+              menuPortal: (state) => {
+                return "!z-[9999]";
               },
               menu: (state) => {
                 return "!rounded-[15px] !w-[200px] !mt-5 z-[99999]";
