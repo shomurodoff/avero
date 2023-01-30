@@ -5,7 +5,7 @@ import uzAirway from "./uz-airways.png";
 import turkishAirway from "./turkish-airline.png";
 import azerAirway from "./azer-airline.png";
 import astanaAirway from "./astana-airlines.png";
-import chinaAirway from "./chine-airways.png";
+import chinaAirway from "./china-airways.png";
 export {
   PrimaryLogo,
   SecondaryLogo,

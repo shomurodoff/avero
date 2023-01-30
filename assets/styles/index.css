@@ -34,3 +34,11 @@ html {
 .circle {
   @apply h-96;
 }
+.bg-food-bg-line {
+  background-image: url("../images/services/food-services/food-serving-bg.png");
+}
+.bg-our-services {
+  background-image: url("../images/services/bg-services.png");
+  background-position: center;
+  background-size: cover;
+}

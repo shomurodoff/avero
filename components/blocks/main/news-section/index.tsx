@@ -6,18 +6,18 @@ import Heading from "../../../heading";
 
 const Index: React.FC = () => {
   return (
-    <section className="pb-28 px-[60px]">
+    <section className="pb-28 px-[15px] md:px-8 xl:px-[60px]">
       <Heading
         title="Yangiliklar"
         subTitle="Engage active clients at the right time and save time chasing unqualified leads"
       />
       <div className="grid grid-cols-12 gap-6">
-        <Card className="col-span-4 !bg-transparent">
+        <div className="col-span-12 md:col-span-4">
           <Image
             src={newsOne}
             alt={"new Image"}
             layout={"responsive"}
-            className="mb-6"
+            className="mb-6 rounded-[25px]"
           />
           <Heading
             title="Yangi havo sayohati - yangi imkoniyatlar"
@@ -25,13 +25,13 @@ const Index: React.FC = () => {
             subTitle="12 Sen, 2022"
             subTitleClass="text-sm text-black"
           />
-        </Card>
-        <Card className="col-span-4 !bg-transparent">
+        </div>
+        <div className="col-span-12 md:col-span-4">
           <Image
             src={newsTwo}
             alt={"new Image"}
             layout={"responsive"}
-            className="mb-6"
+            className="mb-6 rounded-[25px]"
           />
           <Heading
             title="Visit Dubai kompaniyasi bilan hamkorlikda tanlovi"
@@ -39,13 +39,13 @@ const Index: React.FC = () => {
             subTitle="12 Sen, 2022"
             subTitleClass="text-sm text-black"
           />
-        </Card>
-        <Card className="col-span-4 !bg-transparent">
+        </div>
+        <div className="col-span-12 md:col-span-4">
           <Image
             src={newsThree}
             alt={"new Image"}
             layout={"responsive"}
-            className="mb-6"
+            className="mb-6 rounded-[25px]"
           />
           <Heading
             title="Yangi xizmatlarimizdan foydalanib ko’ring"
@@ -53,7 +53,7 @@ const Index: React.FC = () => {
             subTitle="12 Sen, 2022"
             subTitleClass="text-sm text-black"
           />
-        </Card>
+        </div>
       </div>
     </section>
   );

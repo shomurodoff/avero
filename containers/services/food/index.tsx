@@ -22,13 +22,6 @@ const Index = () => {
   const [isOpenModal, setOpenModal] = useState<boolean>(false);
   const menuRef = useRef<any>(null);
   const scrollToMenu = () => menuRef.current.scrollIntoView();
-
-  useEffect(() => {
-    if (!isNull(isOpenModal)) {
-      scrollToMenu();
-    }
-  }, [isOpenModal]);
-
   return (
     <div className="overflow-hidden ">
       <Banner
@@ -38,9 +31,11 @@ const Index = () => {
         icon={bannerIcon}
       />
       <section
-        className={clsx("px-[15px] md:px-8 xl:px-[60px] font-montserrat my-16")}
+        className={clsx(
+          "px-[15px] md:px-8 xl:px-[60px] font-montserrat my-16 "
+        )}
       >
-        <div className=" bg-primary-blue rounded-2xl py-8 md:py-10 px-5 md:px-8 text-white font-montserrat relative grid grid-cols-12">
+        <div className=" bg-primary-blue rounded-2xl py-8 md:py-10 px-5 md:px-8 text-white font-montserrat relative grid grid-cols-12 bg-food-bg-line">
           <div className="col-span-12 md:col-span-6">
             <h2 className="text-[70px] md:text-[80px] leading-[80px] font-bold">
               32
@@ -48,16 +43,15 @@ const Index = () => {
             <p className="text-[28px] md:text-[32px] leading-10 mb-5 max-w-xs">
               dan ortiq taom va ichimliklar
             </p>
-            <button className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
+            <button
+              className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]"
+              onClick={scrollToMenu}
+            >
               Menyu tanlash
             </button>
           </div>
-          <Image
-            src={foodServingBg}
-            alt="background image "
-            className="absolute top-0 right-0"
-          />
-          <div className="relative md:static h-56 md:h-auto col-span-12 md:col-span-6 flex justify-end mt-5 md:mt-0">
+
+          <div className="relative md:static h-56 md:h-auto col-span-12 md:col-span-6 flex justify-end mt-5 md:mt-0 ">
             <Image
               src={foodServing}
               alt="Image customer"
@@ -107,58 +101,105 @@ const Index = () => {
         </div>
       </section>
       <Modal open={isOpenModal} setOpen={setOpenModal}>
-        <div className="grid grid-cols-12 gap-6">
-          {map(foodOptions, (option) => (
-            <div className="col-span-12 lg:col-span-3">
-              <div className="relative">
-                <Image
-                  src={get(option, "image", "")}
-                  alt={"new Image"}
-                  layout={"responsive"}
-                  className="mb-5"
-                />
-              </div>
-              <Heading
-                title={get(option, "title", "")}
-                titleClass="text-lg !font-bold leading-snug mb-2.5"
-                subTitle={get(option, "description", "")}
-                subTitleClass="text-sm !text-black"
-              />
-              <div className="flex gap-5 items-center">
-                <button className="flex items-center gap-3 border-2 border-black font-inter font-bold rounded-[10px]  py-3 px-[22px] text-sm leading-4">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clip-path="url(#clip0_429_1457)">
-                      <path
-                        d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"
-                        fill="black"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_429_1457">
-                        <rect width="24" height="24" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  Tanlash
-                </button>
-                <NumericFormat
-                  value={get(option, "price", 0)}
-                  decimalSeparator="."
-                  displayType="text"
-                  thousandSeparator=" "
-                  suffix=" so’m"
-                  className="text-lg leading-6 font-inter font-medium"
-                  type="text"
-                />
-              </div>
+        <div className="container mx-auto bg-white grid grid-cols-12 md:p-10 rounded-t-[20px] md:rounded-[20px]">
+          <div className="col-span-12 md:col-span-6 px-[15px] pt-7 md:px-0 md:mb-10">
+            <Heading
+              title="Sendvich va salatlar"
+              titleClass="text-[32px] !font-semibold"
+              subTitle="Engage active clients at the right time and save time chasing
+              unqualified leads"
+              subTitleClass="font-normal leading-[30px]"
+            />
+          </div>
+          <div className="bg-[rgba(255, 255, 255, 0.9)] md:bg-none shadow-modal md:shadow-none bg-opacity-90 col-span-12 md:col-span-6 md:mb-10 order-3 md:order-none px-[15px] py-5">
+            <div className="flex md:justify-end gap-2.5 text-white text-sm font-semibold ">
+              <button className="bg-primary-blue py-4 w-full lg:px-8 rounded-[10px]">
+                Saqlash
+              </button>
+              <button className="bg-primary-red  py-4 w-full lg:px-8 rounded-[10px]">
+                Hoziroq to’lash
+              </button>
+              <button
+                className="bg-[#ECEEF2] px-4 hidden md:flex justify-center items-center rounded-[10px]"
+                onClick={() => {
+                  setOpenModal(false);
+                }}
+              >
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_577_4881)">
+                    <path
+                      d="M14.9999 13.2324L21.1874 7.04492L22.9549 8.81242L16.7674 14.9999L22.9549 21.1874L21.1874 22.9549L14.9999 16.7674L8.81242 22.9549L7.04492 21.1874L13.2324 14.9999L7.04492 8.81242L8.81242 7.04492L14.9999 13.2324Z"
+                      fill="black"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_577_4881">
+                      <rect width="30" height="30" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </button>
             </div>
-          ))}
+          </div>
+          <div className="grid grid-cols-12 gap-6 col-span-12 px-[15px] order-2 h-[50vh] overflow-auto">
+            {map(foodOptions, (option) => (
+              <div className="col-span-6 lg:col-span-3">
+                <div className="relative">
+                  <Image
+                    src={get(option, "image", "")}
+                    alt={"new Image"}
+                    className="mb-5"
+                  />
+                </div>
+                <Heading
+                  title={get(option, "title", "")}
+                  titleClass="text-sm md:text-lg !font-bold leading-snug mb-2 md:mb-2.5"
+                  subTitle={get(option, "description", "")}
+                  subTitleClass="text-xs md:text-sm !text-black line-clamp-3 md:line-clamp-5"
+                  className="mb-5 md:mb-10"
+                />
+                <div className="flex flex-col-reverse md:flex-row gap-4 md:gap-5 md:items-center">
+                  <button className="flex items-center gap-3 border-2 border-black font-inter font-bold rounded-[10px]  py-3 px-[22px] text-sm leading-4">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_429_1457)">
+                        <path
+                          d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"
+                          fill="black"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_429_1457">
+                          <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    Tanlash
+                  </button>
+                  <NumericFormat
+                    value={get(option, "price", 0)}
+                    decimalSeparator="."
+                    displayType="text"
+                    thousandSeparator=" "
+                    suffix=" so’m"
+                    className="text-lg leading-6 font-inter font-medium"
+                    type="text"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Modal>
     </div>
