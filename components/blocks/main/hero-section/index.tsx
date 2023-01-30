@@ -80,6 +80,7 @@ const Index: React.FC = () => {
           <ReactSelect
             placeholder={"Chipta"}
             menuIsOpen={isOpenTypeOption}
+            onChange={()=>{setOpenTypeOption(false)}}
             menuPortalTarget={document.body}
             options={map(options, (item, index) => {
               return {
@@ -198,6 +199,7 @@ const Index: React.FC = () => {
           <ReactSelect
             placeholder={"UzAirways"}
             menuIsOpen={isOpenOption}
+            onChange={()=>{setOpenOption(false)}}
             options={map(options, (item, index) => {
               return {
                 value: index,
