@@ -18,7 +18,7 @@ const Index: React.FC<Props> = ({
 }) => {
   return (
     <div className={clsx(className)}>
-      <h3 className={clsx("font-semibold font-montserrat", titleClass)}>
+      <h3 className={clsx("font-bold font-montserrat", titleClass)}>
         {title}
       </h3>
       <p className={clsx("text-[#7C7C7C] font-inter", subTitleClass)}>

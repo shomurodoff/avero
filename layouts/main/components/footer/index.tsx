@@ -36,7 +36,7 @@ const Index: React.FC = () => {
           &copy; aviahelp.uz, {currentYear}
         </a>
       </div>
-      <div className="col-span-12  lg:col-span-7 bg-[#F9F9F9] rounded-2xl px-5 md:px-14 pt-8 md:pt-14 pb-7 text-[#202020] flex flex-col h-full justify-between">
+      <div className="col-span-12  lg:col-span-7 xl:col-span-8 bg-[#F9F9F9] rounded-2xl px-5 md:px-14 pt-8 md:pt-14 pb-7 text-[#202020] flex flex-col h-full justify-between">
         <div className="flex flex-col md:flex-row md:justify-between flex-wrap gap-4">
           {map(footer, (item, index) => (
             <div key={get(item, "title")} className="w-full lg:w-auto">

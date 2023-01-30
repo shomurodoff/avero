@@ -11,7 +11,7 @@ import { Banner } from "../../../components";
 
 const Index = () => {
   return (
-    <div>
+    <Fragment>
       <Banner
         title="O’zingiz uchun qulay o‘rindiq tanlang"
         subTitle="Engage active clients at the right time and save time chasing unqualified leads. clients at the right time and save time"
@@ -48,11 +48,7 @@ const Index = () => {
             <p className={"font-montserrat text-xl"}>1-bosqich</p>
           </div>
         </div>
-        <div
-          className={
-            "border-2 border-black h-[350px] w-[350px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10"
-          }
-        >
+        <div className="border-2 border-black h-[350px] w-[350px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10">
           <div className={"p-12 text-center"}>
             <h3
               className={
@@ -117,7 +113,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>
+    </Fragment>
   );
 };
 
