@@ -120,7 +120,7 @@ const Index: React.FC = () => {
                 return "text-lg font-bold text-black";
               },
               menu: (state) => {
-                return "!rounded-[15px] !w-[200px] !mt-5";
+                return "!rounded-[15px] !w-[200px] !mt-5 z-[99999]";
               },
               menuList: (state) => {
                 return "text-lg  text-black !p-0 !rounded-[15px] ";
@@ -192,7 +192,7 @@ const Index: React.FC = () => {
             </svg>
           </label>
           <ReactSelect
-            placeholder={"Chipta"}
+            placeholder={"UzAirways"}
             menuIsOpen={isOpenOption}
             options={map(options, (item, index) => {
               return {
@@ -234,7 +234,7 @@ const Index: React.FC = () => {
                 return "text-lg font-bold text-black";
               },
               menu: (state) => {
-                return "!rounded-[15px] !w-[200px] !mt-5";
+                return "!rounded-[15px] !w-[200px] !mt-5 z-[99999]";
               },
               menuList: (state) => {
                 return "text-lg  text-black !p-0 !rounded-[15px] ";
