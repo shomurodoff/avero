@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import dayjs from "dayjs";
 import clsx from "clsx";
 import { PrimaryLogo } from "../../../../assets/images/logos";
@@ -13,9 +14,9 @@ const Index: React.FC = () => {
   return (
     <footer className="grid grid-cols-12 gap-4 lg:gap-6 pb-8 px-[15px] md:px-8 xl:px-[60px]">
       <div className="col-span-12 lg:col-span-5 xl:col-span-4 bg-primary-gray xl:px-14 pt-14 pb-7 text-white rounded-2xl flex flex-col items-center">
-        <div className="w-1/2 xl:w-full">
+        <Link href={"/"} className="w-1/2 xl:w-2/3">
           <Image src={PrimaryLogo} alt={"logo"} />
-        </div>
+        </Link>
         <p className="mb-3 mt-6 md:mt-14 text-center">
           Mijozlarga xizmat ko‘rsatish bo‘limi
         </p>
@@ -94,7 +95,7 @@ const Index: React.FC = () => {
             </div>
           ))}
         </div>
-        <ul className="flex justify-between  text-[#979797] text-sm leading-4 font-inter font-normal mt-5 lg:mt-0">
+        <ul className="flex justify-between md:justify-start md:gap-[30px]  text-[#979797] text-sm leading-4 font-inter font-normal mt-5 lg:mt-0">
           <li>
             <a href="#">Maxfiylik siyosati</a>
           </li>

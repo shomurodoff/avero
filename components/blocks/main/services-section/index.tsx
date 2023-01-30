@@ -48,7 +48,7 @@ const ArrowButton = ({ ...rest }) => {
 const Index = () => {
   return (
     <Fragment>
-      <section className="pt-28 pb-44 px-[15px] md:px-8 xl:px-[60px]">
+      <section className="mt-[100px] pb-44 px-[15px] md:px-8 xl:px-[60px]">
         <Heading
           title="Bizning xizmatlar"
           subTitle="Engage active clients at the right time and save time chasing unqualified leads"
@@ -163,7 +163,7 @@ const Index = () => {
                   className="z-[10000] rounded-bl-[20px]"
                 />
               </div>
-              <div className="-z-10 absolute top-1/2 -translate-y-1/2">
+              <div className="-z-10 absolute top-1/3 -translate-y-1/2">
                 <Image src={bgCar} alt="sofa image" />
               </div>
             </div>
@@ -194,11 +194,10 @@ const Index = () => {
                   Engage active clients at the right time and save time chasing
                   unqualified leads
                 </p>
-                <Link
-                  href={"/services"}
-                  className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter mt-2.5"
-                >
-                  Izlash
+                <Link href={"/services"}>
+                  <button className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter mt-2.5">
+                    Izlash
+                  </button>
                 </Link>
               </div>
               <div className="hidden xl:block xl:col-span-1 "></div>
