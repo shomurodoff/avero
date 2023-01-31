@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cabinCareIcon } from "../../../../assets/images/icons";
 import { borderBottom, bgRight, bgLeft } from "../../../../assets/images/hero";
 import ReactSelect, { components } from "react-select";
@@ -10,7 +10,6 @@ import clsx from "clsx";
 const Index: React.FC = () => {
   const [isOpenOption, setOpenOption] = useState<boolean>(false);
   const [isOpenTypeOption, setOpenTypeOption] = useState<boolean>(false);
-
   return (
     <section className="pb-24 pt-28 bg-primary-blue relative px-[15px]">
       <div className="flex justify-center mb-20 z-20">
@@ -80,8 +79,10 @@ const Index: React.FC = () => {
           <ReactSelect
             placeholder={"Chipta"}
             menuIsOpen={isOpenTypeOption}
-            onChange={()=>{setOpenTypeOption(false)}}
-            menuPortalTarget={document.body}
+            onChange={() => {
+              setOpenTypeOption(false);
+            }}
+            menuPortalTarget={document.querySelector("body")}
             options={map(options, (item, index) => {
               return {
                 value: index,
@@ -199,7 +200,10 @@ const Index: React.FC = () => {
           <ReactSelect
             placeholder={"UzAirways"}
             menuIsOpen={isOpenOption}
-            onChange={()=>{setOpenOption(false)}}
+            menuPortalTarget={document.querySelector("body")}
+            onChange={() => {
+              setOpenOption(false);
+            }}
             options={map(options, (item, index) => {
               return {
                 value: index,
@@ -261,7 +265,6 @@ const Index: React.FC = () => {
               DropdownIndicator: () => null,
               SingleValue: (props, context) => (
                 <components.SingleValue className={"text-white"} {...props}>
-                  {" "}
                   {get(props, "data.label")}
                 </components.SingleValue>
               ),
