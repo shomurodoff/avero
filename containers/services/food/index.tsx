@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { get, isNull, map } from "lodash";
 import Image from "next/image";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import {
   bannerIcon,

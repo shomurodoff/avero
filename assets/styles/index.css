@@ -15,15 +15,18 @@
   h5,
   h6,
   p {
-    @apply tracking-tight;
+    @apply -tracking-[.02em];
   }
 }
+.wider-tracking {
+  @apply -tracking-[.04em];
+}
+
 .css-1xc3v61-indicatorContainer {
   color: #000 !important;
 }
 html {
   scroll-behavior: smooth;
-  letter-spacing: -2%;
 }
 .input-form {
   @apply bg-transparent text-white font-inter font-medium text-xl;
@@ -44,4 +47,7 @@ html {
 }
 .css-t3ipsp-control {
   border: none !important;
+}
+.react-select__menu {
+  @apply !z-[9999];
 }

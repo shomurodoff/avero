@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import { Footer, Header } from "./components";
 
 interface Props {
@@ -9,11 +9,11 @@ interface Props {
 
 const Index: React.FC<Props> = ({ children, primary }) => {
   return (
-    <div className="container mx-auto">
+    <Fragment>
       <Header primary={primary} />
       <main className="relative">{children}</main>
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 

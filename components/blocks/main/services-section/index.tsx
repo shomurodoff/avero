@@ -2,6 +2,9 @@ import { get, map } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment } from "react";
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+import { ArrowButton } from "../../..";
 import {
   bgCar,
   bgCase,
@@ -16,57 +19,68 @@ import {
   sofaImage,
 } from "../../../../assets/images/services";
 import { coopiratives } from "../../../../mock/coopiratives";
+import { Container } from "../../../../UI";
 import Card from "../../../card";
 import Heading from "../../../heading";
-
-const ArrowButton = ({ ...rest }) => {
-  return (
-    <button className="py-2 px-5 border-2 border-black rounded-2xl" {...rest}>
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g clip-path="url(#clip0_429_107)">
-          <path
-            d="M16.172 10.9997L10.808 5.63568L12.222 4.22168L20 11.9997L12.222 19.7777L10.808 18.3637L16.172 12.9997H4V10.9997H16.172Z"
-            fill="black"
-          />
-        </g>
-        <defs>
-          <clipPath id="clip0_429_107">
-            <rect width="24" height="24" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-    </button>
-  );
-};
 
 const Index = () => {
   return (
     <Fragment>
-      <section className="mt-[100px] pb-44 px-[15px] md:px-8 xl:px-[60px]">
+      <Container className={"my-[120px]"}>
         <Heading
           title="Bizning xizmatlar"
           subTitle="Engage active clients at the right time and save time chasing unqualified leads"
           titleClass="text-[32px] leading-[45px] md:text-[45px] mb-2"
         />
-        <div className="grid grid-cols-12 gap-6 mb-28">
-          <Card className="col-span-12 md:col-span-6 lg:col-span-5 flex flex-col justify-between -z-20">
+        <div className="grid grid-cols-12">
+          <Card className="col-span-12 md:col-span-6 lg:col-span-5 flex flex-col justify-between p-9 bg-[#F9EFF1] relative group">
             <Heading
               title="O‘rindiqni tanlash"
               subTitle="Engage active clients at the right time and save time chasing"
               titleClass="text-[20px] lg:text-[32px]"
-              subTitleClass="text-sm md:text-base"
+              subTitleClass="text-sm md:text-base max-w-sm"
+              className="mb-2.5 lg:mb-5"
+            />
+            <div>
+              <ArrowButton
+                onClick={() => {
+                  console.log("Working");
+                }}
+              />
+            </div>
+            <div className="relative h-64 lg:h-96 xl:h-[26rem]">
+              <div className="absolute -bottom-9 z-10">
+                <Image
+                  src={sofaImage}
+                  alt="sofa image"
+                  className="z-[10000] "
+                />
+              </div>
+              <div className="absolute top-24 lg:top-28 right-1/4 w-[170px] xl:w-52 ">
+                <Image src={bgSofa} alt="sofa image" />
+              </div>
+            </div>
+            <div className="absolute hidden group-hover:block w-[250px] right-9">
+              <div className="relative">
+                {/* <video
+                  width={250}
+                  loop
+                  height={250}
+                  className="react-player border absolute overflow-hidden top-0 left-0 rounded-full"
+                /> */}
+              </div>
+            </div>
+            {/* <Heading
+              title="O‘rindiqni tanlash"
+              subTitle="Engage active clients at the right time and save time chasing"
+              titleClass="text-[20px] lg:text-[32px]"
+              subTitleClass="text-sm md:text-base max-w-sm"
               className="mb-2.5 lg:mb-5 px-9 pt-9"
             />
             <div className="px-9">
               <ArrowButton />
-            </div>
-            <div className="relative h-64 lg:h-96">
+            </div> */}
+            {/* <div className="relative h-64 lg:h-96 xl:h-[26rem]">
               <div className="z-50 absolute bottom-0">
                 <Image
                   src={sofaImage}
@@ -74,23 +88,27 @@ const Index = () => {
                   className="z-[10000] "
                 />
               </div>
-              <div className="-z-10 absolute top-20 lg:top-28 right-1/4 w-[155px]">
+              <div className="-z-10 absolute top-20 lg:top-28 right-1/4 w-[155px] xl:w-52">
                 <Image src={bgSofa} alt="sofa image" />
               </div>
-            </div>
+            </div> */}
           </Card>
+        </div>
+      </Container>
+      <section className="mt-[120px] container mx-auto">
+        <div className="container mx-auto grid grid-cols-12 gap-6 mb-28">
           <Card className="col-span-12 md:col-span-6 lg:col-span-7 flex flex-col justify-between -z-20">
             <Heading
               title="Mazzali taomnoma"
               subTitle="Engage active clients at the right time and save time chasing unqualified leads"
               titleClass="text-[20px] lg:text-[32px]"
-              subTitleClass="text-sm md:text-base"
+              subTitleClass="text-sm md:text-base max-w-sm"
               className="mb-2.5 lg:mb-5 px-9 pt-9"
             />
             <div className="px-9">
               <ArrowButton />
             </div>
-            <div className="grid grid-cols-12 h-64 lg:h-96 relative">
+            <div className="grid grid-cols-12 h-64 lg:h-96 xl:h-[26rem] relative">
               <Image
                 src={bgMeal}
                 alt="sofa image"
@@ -125,13 +143,13 @@ const Index = () => {
               title="Yuklaringiz xavfsizligi"
               subTitle="Engage active clients at the right time and save time chasing unqualified leads"
               titleClass="text-[20px] lg:text-[32px]"
-              subTitleClass="text-sm md:text-base"
+              subTitleClass="text-sm md:text-base max-w-sm"
               className="mb-2.5 lg:mb-5 px-9 pt-9"
             />
             <div className="px-9">
               <ArrowButton />
             </div>
-            <div className="relative h-64 lg:h-96">
+            <div className="relative h-64 lg:h-96 xl:h-[26rem]">
               <div className="z-50 absolute bottom-0">
                 <Image
                   src={caseImage}
@@ -149,13 +167,13 @@ const Index = () => {
               title="Fast treck, CIP, VIP"
               subTitle="Engage active clients at the right time and save time chasing unqualified leads"
               titleClass="text-[20px] md:text-[32px]"
-              subTitleClass="text-sm md:text-base"
+              subTitleClass="text-sm md:text-base max-w-sm"
               className="mb-2.5 md:mb-5 px-9 pt-9"
             />
             <div className="px-9">
               <ArrowButton />
             </div>
-            <div className="relative h-64 lg:h-96">
+            <div className="relative h-64 lg:h-96 xl:h-[26rem]">
               <div className="z-50 absolute bottom-0">
                 <Image
                   src={carImage}
@@ -169,7 +187,7 @@ const Index = () => {
             </div>
           </Card>
         </div>
-        <div className="relative mx-[-15px] md:mx-0  px-[15px] md:px-8 xl:px-[60px]">
+        <div className="relative md:mx-0  px-[15px] md:px-8 xl:px-[60px] ">
           <div className="min-h-[350px] md:min-h-[400px] xl:min-h-[620px] mx-[-15px] md:-mx-8 xl:-mx-[60px] my-28  flex items-center text-white font-montserrat">
             <Image
               src={bgServices}
@@ -177,7 +195,7 @@ const Index = () => {
               alt="Background Image"
               className="-z-50"
             />
-            <div className="grid grid-cols-12  px-[15px] md:px-8 xl:px-[60px]">
+            <div className="container mx-auto grid grid-cols-12  px-[15px] md:px-8 xl:px-[60px]">
               <div className="col-span-12 md:col-span-6 xl:col-span-6">
                 <h2 className="max-w-2xl text-[45px] font-bold leading-[60px] mb-2 hidden lg:block">
                   Aviachipta sotib olgandan keyingi xizmatlar

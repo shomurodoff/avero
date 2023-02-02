@@ -9,7 +9,7 @@ interface CartProps {
 
 const Index = ({ children, className, ...rest }: CartProps) => {
   return (
-    <div className={clsx(className, "rounded-[25px] bg-[#F9EFF1]")} {...rest}>
+    <div className={clsx(className, "rounded-[25px]")} {...rest}>
       {children}
     </div>
   );
