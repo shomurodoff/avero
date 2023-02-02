@@ -22,6 +22,7 @@ import { coopiratives } from "../../../../mock/coopiratives";
 import { Container } from "../../../../UI";
 import Card from "../../../card";
 import Heading from "../../../heading";
+import { SeatVideo } from "../../../../assets/videos";
 
 const Index = () => {
   return (
@@ -60,14 +61,22 @@ const Index = () => {
                 <Image src={bgSofa} alt="sofa image" />
               </div>
             </div>
-            <div className="absolute hidden group-hover:block w-[250px] right-9">
+            <div className="absolute hidden group-hover:block w-[250px] h-[250px] right-9  overflow-hidden">
               <div className="relative">
-                {/* <video
+                {/* <ReactPlayer
+                  url={"https://www.youtube.com/watch?v=CTmKrwFu7wg"}
                   width={250}
+                  playing
                   loop
+                  muted={true}
                   height={250}
                   className="react-player border absolute overflow-hidden top-0 left-0 rounded-full"
                 /> */}
+                <video
+                  controls
+                  className="video"
+                  src={"../../../../assets/videos/seat-video.mp4"}
+                ></video>
               </div>
             </div>
             {/* <Heading
