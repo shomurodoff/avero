@@ -130,7 +130,7 @@ const Index = () => {
                 loop
                 autoPlay
                 muted={true}
-                className="video-circle bg-slate-500"
+                className="video-circle bg-slate-500 absolute left-1/2"
               />
             </div>
           </Card>
@@ -235,11 +235,14 @@ const Index = () => {
                 Effortless time tracking and reporting. Save time and money with
                 the time tracker trusted by more than 10,000 organizations.
               </p>
-              <Link href={"/services"}>
-                <button className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter mt-2.5">
-                  Izlash
-                </button>
-              </Link>
+              <button
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+                className="bg-primary-red px-16 py-4 rounded-[10px] text-[22px] font-medium text-white font-inter mt-2.5"
+              >
+                Izlash
+              </button>
             </div>
             <div className="w-full lg:max-w-xl relative  mt-7 xl:mt-20">
               <div className="bg-[#F9EFF1] w-full lg:max-w-[530px] absolute top-0 p-8 xl:p-[50px]  rounded-[30px]">

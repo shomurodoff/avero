@@ -5,18 +5,13 @@ import ReactSelect, { components } from "react-select";
 import { get, map } from "lodash";
 import { options } from "../../../../mock/ioptions";
 import clsx from "clsx";
-import {
-  CloudBottomMd,
-  CloudCenterLeftTopLg,
-  CloudCenterRightBottomLg,
-  CloudLeftBottomLg,
-  CloudRightTopLg,
-  CloudTopMd,
-} from "../../../../assets/images/main";
+import { CloudBottomMd, CloudTopMd } from "../../../../assets/images/main";
+import { useRouter } from "next/router";
 
 const Index: React.FC = () => {
   const [isOpenOption, setOpenOption] = useState<boolean>(false);
   const [isOpenTypeOption, setOpenTypeOption] = useState<boolean>(false);
+  const router = useRouter();
 
   return (
     <Fragment>
@@ -334,9 +329,9 @@ const Index: React.FC = () => {
               </div>
               <div className="col-span-12 lg:col-span-2 z-10">
                 <button
-                  type="submit"
+                  type="button"
                   className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50"
-                  onClick={() => console.log("Working")}
+                  onClick={() => router.push("/services")}
                 >
                   Izlash
                 </button>
