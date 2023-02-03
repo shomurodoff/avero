@@ -26,7 +26,11 @@ import Heading from "../../../heading";
 const Index = () => {
   return (
     <Fragment>
-      <Container className={"mt-[120px] px-[15px] md:px-8 lg:px-[60px]"}>
+      <Container
+        className={
+          "mt-[120px] px-[15px] md:px-8 lg:px-[60px] overflow-x-hidden"
+        }
+      >
         <Heading
           title="Bizning xizmatlar"
           subTitle="Engage active clients at the right time and save time chasing unqualified leads"
