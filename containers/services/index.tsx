@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { PassengerFilter, Tab } from "../../components";
+import React, { Fragment, useState } from "react";
+import { PassengerFilter, Tab, VideoLoader } from "../../components";
 import SeatServices from "./seat";
 import FoodServices from "./food";
 import WeightServices from "./wieght";
@@ -33,6 +33,15 @@ const tabs = [
 ];
 
 const Index: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
+  if (loading) {
+    return <VideoLoader />;
+  }
   return (
     <Fragment>
       <PassengerFilter />
