@@ -37,11 +37,12 @@ const Index: React.FC = () => {
 
   setTimeout(() => {
     setLoading(false);
-  }, 2000);
+  }, 10000);
 
   if (loading) {
     return <VideoLoader />;
   }
+
   return (
     <Fragment>
       <PassengerFilter />
