@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { PassengerFilter, Tab } from "../../components";
-import { MainLayout } from "../../layouts";
 import SeatServices from "./seat";
 import FoodServices from "./food";
 import WeightServices from "./wieght";
@@ -35,10 +34,10 @@ const tabs = [
 
 const Index: React.FC = () => {
   return (
-    <MainLayout>
+    <Fragment>
       <PassengerFilter />
       <Tab data={tabs} />
-    </MainLayout>
+    </Fragment>
   );
 };
 

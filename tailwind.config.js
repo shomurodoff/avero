@@ -21,6 +21,11 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
         graphik: ["Graphik", "sans-serif"],
       },
+      borderRadius: {
+        large: "25px",
+        medium: "15px",
+        default: "10px",
+      },
       colors: {
         "primary-blue": "#043785",
         "primary-red": "#FF354D",
