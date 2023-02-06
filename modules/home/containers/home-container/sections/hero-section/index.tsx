@@ -43,7 +43,7 @@ const Index: React.FC = () => {
       <Image
         src={BgTop}
         alt="Background Image"
-        className="absolute  -top-20 left-0 -z-10  w-56 md:w-72 lg:w-96"
+        className="absolute  -top-20 left-0 -z-0  w-56 md:w-72 lg:w-96"
       />
     </header>
   );

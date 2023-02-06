@@ -55,7 +55,7 @@ const Index = () => {
               />
               <Heading
                 title={get(news, "title", "")}
-                titleClass="text-[18px] md:text-[25px] !font-bold leading-snug mb-2.5 md:mb-6"
+                titleClass="!text-[18px] md:!text-[25px] !font-semibold !leading-snug mb-2.5 md:mb-6"
                 subTitle={get(news, "releaseTime", "")}
                 subTitleClass="text-sm text-black"
               />

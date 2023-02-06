@@ -12,7 +12,6 @@ const Index = () => {
           titleClass="text-[32px] leading-[45px] md:text-[45px] mb-2"
         />
       </Container>
-      dasdas
     </section>
   );
 };
