@@ -10,8 +10,8 @@ const Index: React.FC<Props> = ({ children, className }) => {
   return (
     <div
       className={clsx(
-        className,
-        "container px-[15px] md:px-8 lg:px-10 xl:px-12 2xl:px-15"
+        "container px-[15px] md:px-8 lg:px-10 xl:px-12 2xl:px-15",
+        className
       )}
     >
       {children}

@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import { HomePage } from "../modules/home/pages";
+import { HomeContainer } from "../../containers";
 
-const Index: React.FC = () => {
+const Index = () => {
   return (
     <Fragment>
-      <HomePage />
+      <HomeContainer />
     </Fragment>
   );
 };

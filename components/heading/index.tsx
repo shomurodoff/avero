@@ -10,18 +10,23 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({
-  title = "",
-  subTitle = "",
-  className = "max-w-md mb-10  tracking-[-2%]",
-  titleClass = "text-[45px]  leading-[45px] mb-2.5",
-  subTitleClass = "text-base",
+  title,
+  subTitle,
+  className,
+  titleClass,
+  subTitleClass,
 }) => {
   return (
-    <div className={clsx(className)}>
-      <h3 className={clsx("font-bold font-montserrat", titleClass)}>
+    <div className={clsx(className, "max-w-md mb-10")}>
+      <h3
+        className={clsx(
+          titleClass,
+          "font-bold font-montserrat text-[45px]  leading-[45px] mb-2.5"
+        )}
+      >
         {title}
       </h3>
-      <p className={clsx("text-[#7C7C7C] font-inter", subTitleClass)}>
+      <p className={clsx(subTitleClass, "text-[#7C7C7C] font-inter text-base")}>
         {subTitle}
       </p>
     </div>
