@@ -121,7 +121,7 @@ const Index = () => {
                 />
               </div>
             </div>
-            <div className="video-player  w-[150px]  lg:w-[200px] xl:w-[250px] h-[150px] lg:h-[200px]  xl:h-[250px] absolute right-9 z-10 top-20 md:top-32 hidden group-hover:block">
+            <div className="video-player  w-[150px]  lg:w-[200px] xl:w-[250px] h-[150px] lg:h-[200px]  xl:h-[250px] absolute right-9 z-30 top-20 md:top-32 hidden group-hover:block">
               <ReactPlayer
                 url={
                   "https://www.youtube.com/watch?v=41H5xEI5QmE?controls=0&loop=1?autoplay=1"
@@ -130,7 +130,7 @@ const Index = () => {
                 loop
                 autoPlay
                 muted={true}
-                className="video-circle bg-slate-500 absolute left-1/2"
+                className="video-circle bg-slate-500"
               />
             </div>
           </Card>

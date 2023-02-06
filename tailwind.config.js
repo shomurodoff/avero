@@ -3,11 +3,18 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./layouts/**/*.{js,ts,jsx,tsx}",
+    "./layout/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./containers/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      screens: {
+        "2xl": "1440px",
+      },
+      container: {
+        center: true,
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
@@ -22,13 +29,6 @@ module.exports = {
       },
       boxShadow: {
         modal: "0px -2px 4px rgba(121, 121, 121, 0.17);",
-      },
-  
-    },
-
-    container: {
-      screens: {
-        "2xl": "1440px",
       },
     },
   },

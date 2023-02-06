@@ -1,11 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import { newsOne, newsThree, newsTwo } from "../../../../assets/images/news";
+import { Container } from "../../../../UI";
 import Heading from "../../../heading";
 
 const Index: React.FC = () => {
   return (
-    <section className="mb-[68px] lg:mb-[120px] px-[15px] md:px-8 xl:px-[60px]">
+    <Container className="mb-[68px] lg:mb-[120px]">
       <Heading
         title="Yangiliklar"
         subTitle="Engage active clients at the right time and save time chasing unqualified leads"
@@ -57,7 +58,7 @@ const Index: React.FC = () => {
           />
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 
