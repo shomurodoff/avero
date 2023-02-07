@@ -11,6 +11,7 @@ interface Props {
 const Index: React.FC<Props> = ({ children }) => {
   const { pathname } = useRouter();
 
+  console.log(pathname);
   if (isEqual(getLayoutName(pathname), "main")) {
     return (
       <Fragment>
