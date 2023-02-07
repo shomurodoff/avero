@@ -14,7 +14,7 @@ const Index = () => {
   const router = useRouter();
 
   return (
-    <form className="grid grid-cols-12 px-[15px] gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-4xl mx-auto z-10">
+    <form className="grid grid-cols-12 px-[15px] gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-4xl mx-auto z-10" onSubmit={()=>{}}>
       <div className="col-span-12  lg:col-span-10 grid grid-cols-12 gap-0.5">
         <div className="col-span-5 lg:col-span-2 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-tl-[15px] lg:rounded-l-[15px]">
           <div className="flex flex-col">
@@ -184,7 +184,7 @@ const Index = () => {
               placeholder={"UzAirways"}
               menuIsOpen={isOpenOption}
               onChange={(value) => {
-                setAirways(toLower(get(value, "label")));
+setAirways(toLower(get(value,'label')))
                 setOpenOption(false);
               }}
               options={map(options, (item, index) => {
