@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { map, get } from "lodash";
+import { map, get, toLower } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -9,6 +9,8 @@ import { options } from "../../mock/ioptions";
 const Index = () => {
   const [isOpenOption, setOpenOption] = useState<boolean>(false);
   const [isOpenTypeOption, setOpenTypeOption] = useState<boolean>(false);
+  const [airways, setAirways] = useState<string>("uzairways");
+
   const router = useRouter();
 
   return (
@@ -181,7 +183,8 @@ const Index = () => {
             <ReactSelect
               placeholder={"UzAirways"}
               menuIsOpen={isOpenOption}
-              onChange={() => {
+              onChange={(value) => {
+                setAirways(toLower(get(value, "label")));
                 setOpenOption(false);
               }}
               options={map(options, (item, index) => {
@@ -257,7 +260,12 @@ const Index = () => {
         <button
           type="button"
           className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50"
-          onClick={() => router.push("/services")}
+          onClick={() =>
+            router.push({
+              pathname: "/services",
+              query: { airways: airways },
+            })
+          }
         >
           Izlash
         </button>

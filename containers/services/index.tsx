@@ -9,6 +9,9 @@ import {
   tabMeal,
   tabPlane,
 } from "../../assets/images/icons";
+import Loader from "../../components/loader/loader";
+import { useRouter } from "next/router";
+import { get } from "lodash";
 
 const tabs = [
   {
@@ -34,13 +37,13 @@ const tabs = [
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-
+  const router = useRouter();
   setTimeout(() => {
     setLoading(false);
-  }, 10000);
+  }, 8000);
 
   if (loading) {
-    return <VideoLoader />;
+    return <Loader airway={get(router, "query.airways")} />;
   }
 
   return (

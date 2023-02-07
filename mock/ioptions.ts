@@ -15,7 +15,7 @@ export const options: { id: number; title: string; icon: StaticImageData }[] = [
   },
   {
     id: 2,
-    title: "AirAsia",
+    title: "Qatarairways",
     icon: asiaAirwayOption,
   },
   {
