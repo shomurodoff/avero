@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import dayjs from "dayjs";
 import clsx from "clsx";
-import { PrimaryLogo } from "../../../assets/images/logos";
+import { MainPageLogo } from "../../images";
 import { get, map } from "lodash";
 import { footer, footerLinks } from "../../../mock/footer";
 import { Container } from "../../../UI";
@@ -17,7 +17,7 @@ const Index: React.FC = () => {
       <footer className="grid grid-cols-12 gap-4 lg:gap-6 ">
         <div className="col-span-12 lg:col-span-5 xl:col-span-4 bg-primary-gray xl:px-14 pt-14 pb-7 text-white rounded-2xl flex flex-col items-center">
           <Link href={"/"} className="w-1/2 xl:w-2/3">
-            <Image src={PrimaryLogo} alt={"logo"} />
+            <Image src={MainPageLogo} alt={"logo"} />
           </Link>
           <p className="mb-3 mt-6 md:mt-14 text-center">
             Mijozlarga xizmat ko‘rsatish bo‘limi

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CabinIcon = () => {
+const Index = () => {
   return (
     <svg
       className="w-5 h-5 md:w-9 md:h-9"
@@ -32,4 +32,4 @@ const CabinIcon = () => {
   );
 };
 
-export default CabinIcon;
+export default Index;
