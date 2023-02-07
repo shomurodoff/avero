@@ -35,18 +35,14 @@ const Loader: React.FC<Props> = ({ airway }) => {
   const upTo = percentage < 100;
   useEffect(() => {
     const intervalId: any =
-      upTo && setInterval(() => setPercentage((t) => t + 1), 50);
+      upTo && setInterval(() => setPercentage((t) => t + 1), 80);
     return () => clearInterval(intervalId);
   }, [upTo]);
-
-  if (percentage === 100) {
-    return <VideoLoader />;
-  }
 
   return (
     <div className="fixed inset-0 bg-primary-blue">
       <div className="flex flex-col justify-between h-full">
-        <div className="col-span-12">
+        <div>
           <div className="py-10 w-full flex justify-center">
             <Image src={MainPageLogo} alt="Logo Image" />
           </div>
