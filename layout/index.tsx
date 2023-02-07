@@ -9,9 +9,9 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({ children }) => {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
 
-  if (isEqual(getLayoutName(asPath), "main")) {
+  if (isEqual(getLayoutName(pathname), "main")) {
     return (
       <Fragment>
         <Header main />
@@ -19,7 +19,7 @@ const Index: React.FC<Props> = ({ children }) => {
         <Footer />
       </Fragment>
     );
-  } else if (isEqual(getLayoutName(asPath), "services")) {
+  } else if (isEqual(getLayoutName(pathname), "services")) {
     return (
       <Fragment>
         <Header />
