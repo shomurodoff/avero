@@ -1,2 +1,5 @@
+import HomeContainer from "./home";
 import ServicesContainer from "./services";
-export { ServicesContainer };
+import PaymentContainer from "./payment";
+
+export { HomeContainer, ServicesContainer, PaymentContainer };

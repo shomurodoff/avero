@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import { HomeContainer } from "../../containers";
+import { ServicesContainer } from "../../containers";
 
 const Index = () => {
   return (
     <Fragment>
-      <HomeContainer />
+      <ServicesContainer />
     </Fragment>
   );
 };

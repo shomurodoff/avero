@@ -6,6 +6,7 @@ import Banner from "./banner";
 import ArrowButton from "./arrow-button";
 import VideoLoader from "./loader/video-loader";
 import SearchForm from "./search-form";
+import Card from "./card";
 export {
   Heading,
   PassengerFilter,
@@ -15,4 +16,5 @@ export {
   ArrowButton,
   VideoLoader,
   SearchForm,
+  Card,
 };
