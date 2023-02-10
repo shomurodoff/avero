@@ -21,6 +21,7 @@ module.exports = {
         montserrat: ["Montserrat", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
         graphik: ["Graphik", "sans-serif"],
+        prodis: ["SF Pro Display", "sans-serif"],
       },
       borderRadius: {
         large: "25px",

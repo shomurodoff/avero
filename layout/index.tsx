@@ -28,6 +28,13 @@ const Index: React.FC<Props> = ({ children }) => {
         <Footer />
       </Fragment>
     );
+  } else if (isEqual(getLayoutName(pathname), "payment")) {
+    return (
+      <Fragment>
+        <Header payment />
+        <div className={"bg-[#F1F3F6]"}>{children}</div>
+      </Fragment>
+    );
   } else {
     return (
       <div>

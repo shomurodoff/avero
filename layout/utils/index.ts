@@ -7,4 +7,7 @@ export const getLayoutName = (pathname: string) => {
   if (/^\/services(?=\/|$)/i.test(pathname)) {
     return "services";
   }
+  if (/^\/payment(?=\/|$)/i.test(pathname)) {
+    return "payment";
+  }
 };
