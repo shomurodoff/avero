@@ -54,7 +54,7 @@ const Loader: React.FC<Props> = ({ airway }) => {
           ></div>
         </div>
         <div className="grid grid-cols-12">
-          <div className=" col-span-6 relative">
+          <div className="col-span-12 lg:col-span-6 relative">
             <Image
               src={get(
                 find(planes, (plane) => {
@@ -83,7 +83,7 @@ const Loader: React.FC<Props> = ({ airway }) => {
               <Image src={CloudBottomSm} alt="Image Cloud" fill />
             </div>
           </div>
-          <div className=" col-span-6 text-right">
+          <div className="col-span-12 lg:col-span-6 text-right">
             <h1 className="font-inter font-normal text-[130px] leading-[158px] xl:text-[300px] xl:leading-[363px] text-white">
               {percentage} %
             </h1>
