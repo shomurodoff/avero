@@ -8,14 +8,14 @@ const Index: React.FC = () => {
   const initialLoadingFalse = useStore((state) => state.initialLoadingFalse);
   const [loading, setLoading] = useState<boolean>(initialLoad);
 
-  // setTimeout(() => {
-  //   setLoading(false);
-  //   initialLoadingFalse(initialLoad);
-  // }, 10000);
-  //
-  // if (loading && initialLoad) {
-  //   return <MainLoader />;
-  // }
+  setTimeout(() => {
+    setLoading(false);
+    initialLoadingFalse(initialLoad);
+  }, 10000);
+
+  if (loading && initialLoad) {
+    return <MainLoader />;
+  }
 
   return (
     <Fragment>
