@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "../../UI";
 import { Card } from "../../components";
-import { get, map } from "lodash";
+import { get, isEqual, map } from "lodash";
 import {
   CabinIcon,
   MealIcon,
@@ -13,8 +13,10 @@ import {
   ClickLogo,
 } from "../../assets/images/payment";
 import Image, { StaticImageData } from "next/image";
+import clsx from "clsx";
 
 const Index = () => {
+  const [activePayment, setActivePayment] = useState<number | null>(null);
   const buyList: {
     id: number;
     icon: StaticImageData;
@@ -64,79 +66,6 @@ const Index = () => {
       ],
       totalSum: "560 000",
       description: "Qo’shimcha yuk uchun narx",
-    },
-  ];
-
-  const paymentMethod = [
-    {
-      id: 1,
-      content: (
-        <div
-          className={
-            "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5"
-          }
-        >
-          <div className={"flex items-start justify-between mb-7"}>
-            <h5
-              className={
-                "font-inter font-medium text-[14px] leading-[18px]  max-w-[90px]"
-              }
-            >
-              Payme orqali to’lang
-            </h5>
-            <input type={"radio"} />
-          </div>
-          <Image src={PaymeLogo} alt={"Visa Logo"} />
-        </div>
-      ),
-    },
-    {
-      id: 2,
-      content: (
-        <div
-          className={
-            "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5"
-          }
-        >
-          <div className={"flex items-start justify-between mb-7"}>
-            <h5
-              className={
-                "font-inter font-medium text-[14px] leading-[18px]  max-w-[80px]"
-              }
-            >
-              Click orqali to’lang
-            </h5>
-            <input type={"radio"} />
-          </div>
-          <Image src={ClickLogo} alt={"Visa Logo"} />
-        </div>
-      ),
-    },
-    {
-      id: 3,
-      content: (
-        <div
-          className={
-            "col-span-12 md:col-span-4 border rounded-medium p-[18px] px-5"
-          }
-        >
-          <div className={"flex items-start justify-between"}>
-            <h5
-              className={
-                "font-inter font-medium text-[14px] leading-[18px] mb-7 max-w-[60px]"
-              }
-            >
-              Chet-el kartalari
-            </h5>
-            <input type={"radio"} />
-          </div>
-          <div className={"flex items-center gap-4"}>
-            <Image src={VisaLogo} alt={"Visa Logo"} />
-            <Image src={MasterCardLogo} alt={"Mir Logo"} />
-            <Image src={MirLogo} alt={"Visa Logo"} />
-          </div>
-        </div>
-      ),
     },
   ];
 
@@ -253,9 +182,106 @@ const Index = () => {
             </h4>
             <h2 className={"text-[32px] font-medium mb-[30px]"}>639 000 UZS</h2>
             <div className={"grid grid-cols-12 gap-1"}>
-              {map(paymentMethod, (value) => (
-                <>{get(value, "content")}</>
-              ))}
+              <div
+                className={clsx(
+                  "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5 cursor-pointer",
+                  isEqual(activePayment, 1) && "border-[#043785] !border-2"
+                )}
+                onClick={() => setActivePayment(1)}
+              >
+                <div className={"flex items-start justify-between mb-7"}>
+                  <h5
+                    className={
+                      "font-inter font-medium text-[14px] leading-[18px]  max-w-[90px]"
+                    }
+                  >
+                    Payme orqali to’lang
+                  </h5>
+                  {isEqual(activePayment, 1) && (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 18C4.0293 18 0 13.9707 0 9C0 4.0293 4.0293 0 9 0C13.9707 0 18 4.0293 18 9C18 13.9707 13.9707 18 9 18ZM8.1027 12.6L14.4657 6.2361L13.1931 4.9635L8.1027 10.0548L5.5566 7.5087L4.284 8.7813L8.1027 12.6Z"
+                        fill="#043785"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <Image src={PaymeLogo} alt={"Visa Logo"} />
+              </div>
+              <div
+                className={clsx(
+                  "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5 cursor-pointer",
+                  isEqual(activePayment, 2) && "border-[#043785] !border-2"
+                )}
+                onClick={() => setActivePayment(2)}
+              >
+                <div className={"flex items-start justify-between mb-7"}>
+                  <h5
+                    className={
+                      "font-inter font-medium text-[14px] leading-[18px]  max-w-[90px]"
+                    }
+                  >
+                    Click orqali to’lang
+                  </h5>
+                  {isEqual(activePayment, 2) && (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 18C4.0293 18 0 13.9707 0 9C0 4.0293 4.0293 0 9 0C13.9707 0 18 4.0293 18 9C18 13.9707 13.9707 18 9 18ZM8.1027 12.6L14.4657 6.2361L13.1931 4.9635L8.1027 10.0548L5.5566 7.5087L4.284 8.7813L8.1027 12.6Z"
+                        fill="#043785"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <Image src={ClickLogo} alt={"Visa Logo"} />
+              </div>
+              <div
+                className={clsx(
+                  "col-span-6 md:col-span-4 border rounded-medium p-[18px] px-5 cursor-pointer",
+                  isEqual(activePayment, 3) && "border-[#043785] !border-2"
+                )}
+                onClick={() => setActivePayment(3)}
+              >
+                <div className={"flex items-start justify-between"}>
+                  <h5
+                    className={
+                      "font-inter font-medium text-[14px] leading-[18px] mb-7 max-w-[60px]"
+                    }
+                  >
+                    Chet-el kartalari
+                  </h5>
+                  {isEqual(activePayment, 3) && (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 18C4.0293 18 0 13.9707 0 9C0 4.0293 4.0293 0 9 0C13.9707 0 18 4.0293 18 9C18 13.9707 13.9707 18 9 18ZM8.1027 12.6L14.4657 6.2361L13.1931 4.9635L8.1027 10.0548L5.5566 7.5087L4.284 8.7813L8.1027 12.6Z"
+                        fill="#043785"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <div className={"flex items-center gap-4"}>
+                  <Image src={VisaLogo} alt={"Visa Logo"} />
+                  <Image src={MasterCardLogo} alt={"Mir Logo"} />
+                  <Image src={MirLogo} alt={"Visa Logo"} />
+                </div>
+              </div>
             </div>
           </Card>
         </div>
