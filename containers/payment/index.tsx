@@ -67,6 +67,79 @@ const Index = () => {
     },
   ];
 
+  const paymentMethod = [
+    {
+      id: 1,
+      content: (
+        <div
+          className={
+            "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5"
+          }
+        >
+          <div className={"flex items-start justify-between mb-7"}>
+            <h5
+              className={
+                "font-inter font-medium text-[14px] leading-[18px]  max-w-[90px]"
+              }
+            >
+              Payme orqali to’lang
+            </h5>
+            <input type={"radio"} />
+          </div>
+          <Image src={PaymeLogo} alt={"Visa Logo"} />
+        </div>
+      ),
+    },
+    {
+      id: 2,
+      content: (
+        <div
+          className={
+            "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5"
+          }
+        >
+          <div className={"flex items-start justify-between mb-7"}>
+            <h5
+              className={
+                "font-inter font-medium text-[14px] leading-[18px]  max-w-[80px]"
+              }
+            >
+              Click orqali to’lang
+            </h5>
+            <input type={"radio"} />
+          </div>
+          <Image src={ClickLogo} alt={"Visa Logo"} />
+        </div>
+      ),
+    },
+    {
+      id: 3,
+      content: (
+        <div
+          className={
+            "col-span-12 md:col-span-4 border rounded-medium p-[18px] px-5"
+          }
+        >
+          <div className={"flex items-start justify-between"}>
+            <h5
+              className={
+                "font-inter font-medium text-[14px] leading-[18px] mb-7 max-w-[60px]"
+              }
+            >
+              Chet-el kartalari
+            </h5>
+            <input type={"radio"} />
+          </div>
+          <div className={"flex items-center gap-4"}>
+            <Image src={VisaLogo} alt={"Visa Logo"} />
+            <Image src={MasterCardLogo} alt={"Mir Logo"} />
+            <Image src={MirLogo} alt={"Visa Logo"} />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <Container className={"py-[60px] font-graphik"}>
       <h1 className={"text-[35px] leading-none font-semibold mb-[25px]"}>
@@ -180,61 +253,9 @@ const Index = () => {
             </h4>
             <h2 className={"text-[32px] font-medium mb-[30px]"}>639 000 UZS</h2>
             <div className={"grid grid-cols-12 gap-1"}>
-              <div
-                className={
-                  "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5"
-                }
-              >
-                <div className={"flex items-start justify-between mb-7"}>
-                  <h5
-                    className={
-                      "font-inter font-medium text-[14px] leading-[18px]  max-w-[90px]"
-                    }
-                  >
-                    Payme orqali to’lang
-                  </h5>
-                  <input type={"radio"} />
-                </div>
-                <Image src={PaymeLogo} alt={"Visa Logo"} />
-              </div>
-              <div
-                className={
-                  "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5"
-                }
-              >
-                <div className={"flex items-start justify-between mb-7"}>
-                  <h5
-                    className={
-                      "font-inter font-medium text-[14px] leading-[18px]  max-w-[80px]"
-                    }
-                  >
-                    Click orqali to’lang
-                  </h5>
-                  <input type={"radio"} />
-                </div>
-                <Image src={ClickLogo} alt={"Visa Logo"} />
-              </div>
-              <div
-                className={
-                  "col-span-12 md:col-span-4 border rounded-medium p-[18px] px-5"
-                }
-              >
-                <div className={"flex items-start justify-between"}>
-                  <h5
-                    className={
-                      "font-inter font-medium text-[14px] leading-[18px] mb-7 max-w-[60px]"
-                    }
-                  >
-                    Chet-el kartalari
-                  </h5>
-                  <input type={"radio"} />
-                </div>
-                <div className={"flex items-center gap-4"}>
-                  <Image src={VisaLogo} alt={"Visa Logo"} />
-                  <Image src={MasterCardLogo} alt={"Mir Logo"} />
-                  <Image src={MirLogo} alt={"Visa Logo"} />
-                </div>
-              </div>
+              {map(paymentMethod, (value) => (
+                <>{get(value, "content")}</>
+              ))}
             </div>
           </Card>
         </div>
