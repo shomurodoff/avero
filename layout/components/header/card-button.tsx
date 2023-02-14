@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Link from "next/link";
 import React from "react";
 
 interface Props {
@@ -7,7 +8,8 @@ interface Props {
 
 const CardButton: React.FC<Props> = ({ main }) => {
   return (
-    <button
+    <Link
+      href={"/payment"}
       className={clsx(
         "md:bg-white flex items-center gap-2.5 md:px-5 py-[11px] rounded-[100px] font-inter font-medium text-[18px] leading-[18px]",
         main ? "md:bg-opacity-25  text-white" : "md:bg-white text-black"
@@ -33,7 +35,7 @@ const CardButton: React.FC<Props> = ({ main }) => {
         </defs>
       </svg>
       <span className="hidden md:block">450 000 UZS</span>
-    </button>
+    </Link>
   );
 };
 

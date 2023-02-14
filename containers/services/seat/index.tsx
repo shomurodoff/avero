@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { Fragment } from "react";
 import {
   seatBannerIcon,
@@ -55,7 +56,7 @@ const Index = () => {
             className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
           />
         </div>
-        <div className="border-2 border-black h-[350px] w-[350px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
+        <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
           <div className="p-12 text-center  group-hover:text-white">
             <h3
               className={
@@ -75,7 +76,7 @@ const Index = () => {
         </div>
       </div>
       <section className="font-montserrat mb-40">
-        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5">
+        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40">
           <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6">
             <p className="text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
               Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida 24
@@ -107,6 +108,29 @@ const Index = () => {
                 className="absolute -bottom-2/3 md:-bottom-1/3 -right-3 md:-right-10  lg:h-[400px] lg:w-[150px] lg:rotate-12"
               />
             </div>
+          </div>
+        </div>
+        <div className="bg-[#F9F9F9] py-5 px-6 rounded-medium flex flex-col gap-y-4 md:flex-row justify-between items-center">
+          <div>
+            <h2 className="font-graphik text-[32px] leading-[44px]">
+              14D — 75 000{" "}
+              <span className="text-[#00000066] font-medium">UZS</span>
+            </h2>
+            <p className="font-inter text-xs leading-5">
+              Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24
+              soatdan so‘ng bekor qilinadi.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <button className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
+              Bekor qilish
+            </button>
+            <Link
+              href={"/payment"}
+              className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+            >
+              To’lash
+            </Link>
           </div>
         </div>
       </section>

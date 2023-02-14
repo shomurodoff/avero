@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { get, isNull, map } from "lodash";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import {
@@ -92,6 +93,28 @@ const Index = () => {
               />
             </div>
           ))}
+        </div>
+        <div className="bg-[#F9F9F9] py-5 px-6 rounded-medium flex flex-col gap-y-4 md:flex-row justify-between items-center">
+          <div>
+            <h2 className="font-graphik text-[32px] leading-[44px]">
+              Sendvich va salatlar{" "}
+            </h2>
+            <p className="font-inter text-xs leading-5">
+              Sut mahsulotlaridan cheklangan miqdorda foydalanish bilan, osiyo
+              ziravorlari qo‘shilgan go‘sht va baliqsiz taom.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <button className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
+              Bekor qilish
+            </button>
+            <Link
+              href={"/payment"}
+              className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+            >
+              To’lash
+            </Link>
+          </div>
         </div>
       </section>
       <Modal open={isOpenModal} setOpen={setOpenModal}>

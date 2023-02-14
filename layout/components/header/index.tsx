@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import CardButton from "./card-button";
 import { Container } from "../../../UI";
+import { useRouter } from "next/router";
 
 interface Props {
   main?: boolean;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({ main, payment }) => {
+  const router = useRouter();
   return (
     <div
       className={clsx(
@@ -27,6 +29,7 @@ const Index: React.FC<Props> = ({ main, payment }) => {
                   className={
                     "flex gap-2.5 items-center font-poppins font-medium text-[16px] leading-[24px]"
                   }
+                  onClick={() => router.back()}
                 >
                   <svg
                     width="24"
@@ -52,7 +55,7 @@ const Index: React.FC<Props> = ({ main, payment }) => {
               </div>
               <h2
                 className={
-                  "font-graphik text-[32px] leading-[32px] font-semibold mt-4"
+                  "font-graphik text-[32px] leading-[32px] font-semibold mt-4 md:hidden"
                 }
               >
                 To'lash uchun
@@ -62,7 +65,7 @@ const Index: React.FC<Props> = ({ main, payment }) => {
           <nav
             className={clsx(
               "flex justify-start md:justify-center",
-              payment && "hidden md:block"
+              payment && "hidden md:flex justify-center"
             )}
           >
             <Link href={"/"}>
