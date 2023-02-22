@@ -23,11 +23,7 @@ const Index = () => {
         subTitle="O'zingiz uchun eng yaxshi variantni tanlang!. Taomga ketishdan kamida 24 yoki 36 soat oldin buyurtma berishni unutmang"
         image={foodBanner}
       />
-      <section
-        className={clsx(
-          "px-[15px] md:px-8 xl:px-[60px] font-montserrat my-16 "
-        )}
-      >
+      <section className={"font-montserrat my-16 "}>
         <div className=" bg-primary-blue rounded-2xl py-8 md:py-10 px-5 md:px-8 text-white font-montserrat relative grid grid-cols-12 bg-food-bg-line">
           <div className="col-span-12 md:col-span-6">
             <h2 className="text-[70px] md:text-[80px] leading-[80px] font-bold">

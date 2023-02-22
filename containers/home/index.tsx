@@ -303,10 +303,10 @@ const Index = () => {
                   <Image
                     src={carImage}
                     alt="sofa image"
-                    className="rounded-bl-[20px] w-3/4 md:w-full"
+                    className="rounded-bl-[20px] w-3/4 lg:w-full"
                   />
                 </div>
-                <div className="absolute top-1/3 -translate-y-1/2 w-1/3 md:w-full">
+                <div className="absolute top-1/3 -translate-y-1/2 w-1/3 lg:w-full">
                   <Image src={bgCar} alt="sofa image" />
                 </div>
               </div>
@@ -399,7 +399,7 @@ const Index = () => {
                 />
                 <Heading
                   title={get(news, "title", "")}
-                  titleClass="!text-[18px] md:!text-[25px] !font-semibold !leading-snug mb-2.5 md:mb-6"
+                  titleClass="!text-[18px] lg:!text-[25px] !font-semibold !leading-snug mb-2.5 lg:mb-6"
                   subTitle={get(news, "releaseTime", "")}
                   subTitleClass="text-sm text-black"
                 />

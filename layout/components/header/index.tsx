@@ -68,14 +68,15 @@ const Index: React.FC<Props> = ({ main, payment }) => {
               payment && "hidden md:flex justify-center"
             )}
           >
-            <Link href={"/"}>
-              <Image
-                src={main ? MainPageLogo : ServicesPageLogo}
-                alt="Logo Image"
-                className="z-[9999]"
-                quality={100}
-              />
-            </Link>
+            <div className="z-10">
+              <Link href={"/"}>
+                <Image
+                  src={main ? MainPageLogo : ServicesPageLogo}
+                  alt="Logo Image"
+                  quality={100}
+                />
+              </Link>
+            </div>
           </nav>
           {!payment && (
             <div className="h-full items-center flex absolute right-0 bottom-0">

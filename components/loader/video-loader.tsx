@@ -6,7 +6,7 @@ interface Props {
 
 const VideoLoader: React.FC<Props> = ({ play }) => {
   return (
-    <div className="absolute top-0 left-0 w-full h-full overflow-y-hidden bg-slate-400">
+    <div className="absolute inset-0 w-full h-screen overflow-y-hidden bg-slate-400 z-30">
       <video
         autoPlay={play}
         muted

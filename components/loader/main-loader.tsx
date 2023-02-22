@@ -20,13 +20,15 @@ const MainLoader = () => {
     setPlay(true);
   }, []);
   return (
-    <div>
+    <div className="overflow-none">
       <div
         className={clsx(
-          !isEqual(percentage, 100) ? "fixed inset-0 bg-primary-blue" : "hidden"
+          !isEqual(percentage, 100)
+            ? "fixed inset-0 bg-primary-blue z-20"
+            : "hidden"
         )}
       >
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-screen">
           <div>
             <div className="py-10 w-full flex justify-center">
               <Image src={MainPageLogo} alt="Logo Image" />
@@ -45,7 +47,7 @@ const MainLoader = () => {
           </div>
         </div>
       </div>
-      <div className={clsx(isEqual(percentage, 100) ? "block" : "hidden")}>
+      <div className={clsx(isEqual(percentage, 100) ? "block z-20" : "hidden")}>
         <VideoLoader play={play} />
       </div>
     </div>

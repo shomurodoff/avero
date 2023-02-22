@@ -17,25 +17,21 @@ const Index: React.FC = () => {
 
   setTimeout(() => {
     setOpacity(false);
-  }, 11000);
+  }, 9000);
 
-  if (loading || initialLoad || isNotOpacity) {
-    return (
+  return (
+    <div className="over overflow-y-hidden">
       <div
         className={clsx(
-          "transition-opacity duration-1000",
-          isNotOpacity ? "opacity-100" : "opacity-0"
+          "transition-opacity duration-1000 overflow-hidden fixed inset-0 z-[99999]",
+          isNotOpacity ? "opacity-100" : "opacity-0",
+          !loading && "hidden"
         )}
       >
         <MainLoader />
       </div>
-    );
-  }
-
-  return (
-    <Fragment>
       <HomeContainer />
-    </Fragment>
+    </div>
   );
 };
 
