@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -34,7 +35,7 @@ const CardButton: React.FC<Props> = ({ main }) => {
           </clipPath>
         </defs>
       </svg>
-      <span className="hidden md:block">450 000 UZS</span>
+      <span className="hidden">450 000 UZS</span>
     </Link>
   );
 };

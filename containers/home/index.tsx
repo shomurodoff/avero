@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import { get, map } from "lodash";
 import { Container } from "../../UI";
@@ -16,6 +16,10 @@ import {
   borderBottom,
   carImage,
   caseImage,
+  changeIcon1,
+  changeIcon2,
+  changeIcon3,
+  changeIcon4,
   chinaAirway,
   mealImage1,
   mealImage2,
@@ -28,6 +32,7 @@ import {
   uzAirway,
 } from "../../assets/images/home";
 import { ArrowButton, Card, Heading, SearchForm } from "../../components";
+import { gsap } from "gsap";
 
 const newsData: {
   id: number;
@@ -63,39 +68,35 @@ const coopiratives: { id: number; image: StaticImageData }[] = [
   { id: 5, image: chinaAirway },
 ];
 
-const CabinIcon = () => {
+// useLayoutEffect(() => {
+//   return () => {};
+// }, []);\
+
+const CabinIcon: React.FC<any> = ({ image }) => {
   return (
-    <svg
+    <Image
+      src={image}
+      alt="Image"
       className="w-5 h-5 md:w-9 md:h-9"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g clipPath="url(#clip0_577_9554)">
-        <path
-          d="M16.7106 1.68751C16.4994 1.68752 16.2904 1.72987 16.0958 1.81206C15.9012 1.89425 15.7251 2.0146 15.5778 2.16601L15.3444 2.40666L15.1087 2.16601C14.9615 2.01459 14.7853 1.89423 14.5908 1.81204C14.3962 1.72985 14.1871 1.6875 13.9759 1.6875C13.7647 1.6875 13.5556 1.72985 13.361 1.81204C13.1665 1.89423 12.9903 2.01459 12.8431 2.16601C12.5426 2.47608 12.3745 2.89093 12.3745 3.32273C12.3745 3.75453 12.5426 4.16938 12.8431 4.47944L15.3444 7.03126L17.8434 4.47944C18.1439 4.16938 18.312 3.75453 18.312 3.32273C18.312 2.89093 18.1439 2.47608 17.8434 2.16601C17.6962 2.0146 17.52 1.89424 17.3255 1.81205C17.1309 1.72987 16.9219 1.68752 16.7106 1.68751Z"
-          fill="white"
-        />
-        <path
-          d="M14.6442 11.1873H9.45553L7.54443 4.04174C7.38144 3.4333 6.98343 2.91452 6.43795 2.59953C5.89247 2.28455 5.24421 2.19915 4.63577 2.36214C4.02732 2.52512 3.50855 2.92313 3.19356 3.46861C2.87858 4.01409 2.79318 4.66236 2.95617 5.2708L5.57383 15.0567C5.6414 15.3093 5.79047 15.5326 5.9979 15.6918C6.20533 15.851 6.45952 15.9373 6.72102 15.9373H11.7812V17.1248H2.875V18.3123H11.7812C12.0962 18.3123 12.3982 18.1872 12.6209 17.9645C12.8436 17.7418 12.9688 17.4398 12.9688 17.1248V15.9373H14.75C15.0818 15.9369 15.4098 15.8671 15.713 15.7323C16.0162 15.5975 16.2878 15.4007 16.5104 15.1547C16.733 14.9086 16.9016 14.6187 17.0054 14.3035C17.1092 13.9884 17.1459 13.655 17.1131 13.3248C17.037 12.7271 16.7429 12.1784 16.2874 11.784C15.8318 11.3896 15.2467 11.1771 14.6442 11.1873ZM14.75 14.7498H6.72108L4.10323 4.96371C4.02172 4.65949 4.06441 4.33535 4.22189 4.0626C4.37937 3.78985 4.63875 3.59083 4.94297 3.50932C5.24719 3.42781 5.57133 3.4705 5.84408 3.62798C6.11683 3.78546 6.31585 4.04484 6.39736 4.34906L8.54329 12.3748H14.75C15.0649 12.3748 15.367 12.5 15.5897 12.7227C15.8124 12.9454 15.9375 13.2474 15.9375 13.5623C15.9375 13.8773 15.8124 14.1793 15.5897 14.402C15.367 14.6247 15.0649 14.7498 14.75 14.7498Z"
-          fill="white"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_577_9554">
-          <rect
-            width="19"
-            height="19"
-            fill="white"
-            transform="translate(0.5 0.5)"
-          />
-        </clipPath>
-      </defs>
-    </svg>
+      quality={100}
+    />
   );
 };
 
 const Index = () => {
+  const [count, setCount] = useState<number>(0);
+  const images = [changeIcon1, changeIcon2, changeIcon3, changeIcon4];
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      if (count === images.length - 1) {
+        setCount(0);
+      } else {
+        setCount(count + 1);
+      }
+    }, 2000);
+    return () => clearInterval(timerId);
+  }, [count]);
+
   return (
     <Fragment>
       <Head>
@@ -112,7 +113,9 @@ const Index = () => {
               <span className="relative">
                 <span className="italic text-primary-red h-full  items-center inline-flex gap-2">
                   <span className="bg-primary-red p-[9.5px] md:p-[17.5px] rounded-full">
-                    <CabinIcon />
+                    <div className="">
+                      <CabinIcon image={images[count]} className="" />
+                    </div>
                   </span>
                   <span>avia</span>
                   <Image

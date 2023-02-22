@@ -73,6 +73,7 @@ const Index: React.FC<Props> = ({ main, payment }) => {
                 src={main ? MainPageLogo : ServicesPageLogo}
                 alt="Logo Image"
                 className="z-[9999]"
+                quality={100}
               />
             </Link>
           </nav>

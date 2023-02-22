@@ -13,6 +13,9 @@ module.exports = {
       screens: {
         "2xl": "1440px",
       },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
       container: {
         center: true,
       },

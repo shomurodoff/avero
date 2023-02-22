@@ -20,6 +20,10 @@ import turkishAirway from "./turkish-airline.png";
 import azerAirway from "./azer-airline.png";
 import astanaAirway from "./astana-airlines.png";
 import chinaAirway from "./china-airways.png";
+import changeIcon1 from "./baggage-claim.svg";
+import changeIcon2 from "./cabin-care.svg";
+import changeIcon3 from "./plane.svg";
+import changeIcon4 from "./flight--international.svg";
 
 export {
   BgTop,
@@ -44,4 +48,8 @@ export {
   azerAirway,
   astanaAirway,
   chinaAirway,
+  changeIcon1,
+  changeIcon2,
+  changeIcon3,
+  changeIcon4,
 };
