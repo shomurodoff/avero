@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import {
-  bannerIcon,
   foodBanner,
   foodCloud,
   foodServing,
