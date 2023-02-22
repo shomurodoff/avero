@@ -2,12 +2,20 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useStore } from "../../../store";
+import { get } from "lodash";
+import { NumericFormat } from "react-number-format";
 
 interface Props {
   main: boolean | undefined;
 }
 
 const CardButton: React.FC<Props> = ({ main }) => {
+  const totalSum = useStore((state) => get(state, "totalSum", 0));
+  const findTotal = useStore((state) => get(state, "findTotal", () => {}));
+
+  console.log(findTotal());
+
   return (
     <Link
       href={"/payment"}
@@ -35,7 +43,14 @@ const CardButton: React.FC<Props> = ({ main }) => {
           </clipPath>
         </defs>
       </svg>
-      <span className="hidden">450 000 UZS</span>
+      <NumericFormat
+        value={totalSum}
+        decimalSeparator="."
+        displayType="text"
+        thousandSeparator=" "
+        suffix=" UZS"
+        type="text"
+      />
     </Link>
   );
 };
