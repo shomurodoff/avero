@@ -206,32 +206,31 @@ const Index = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-12 h-64 lg:h-96 xl:h-[28rem] relative -mx-9 -mb-9">
+              <div className="grid grid-cols-12 h-64 lg:h-96 xl:h-[26rem] relative -mx-9 -mb-9">
                 <Image
                   src={bgMeal}
                   alt="sofa image"
-                  className="absolute top-1/2  left-1/2 -translate-y-1/2 -translate-x-1/2 w-48 lg:w-64"
+                  className="absolute top-1/2  left-1/2 -translate-y-1/2 -translate-x-1/2 w-48 lg:w-72"
                 />
                 <div className="col-span-12 justify-self-center z-10">
                   <Image
                     src={mealImage2}
                     alt="sofa image"
-                    className="w-20 lg:w-36 z-10"
+                    className="w-20 lg:w-36 xl:w-44 z-10"
                   />
                 </div>
-                <div className="col-span-6 align-self-end relative z-10">
+                <div className="col-span-6  relative z-10">
                   <Image
                     src={mealImage1}
                     alt="sofa image"
-                    layout="fill"
-                    className="rounded-bl-[25px] !w-9/12 z-10 "
+                    className="rounded-bl-[25px]  z-10 absolute bottom-0"
                   />
                 </div>
-                <div className="col-span-5 justify-self-center align-self-center z-10">
+                <div className="col-span-5 justify-self-end  z-10">
                   <Image
                     src={mealImage3}
                     alt="sofa image"
-                    className="w-28 lg:w-52 z-10"
+                    className="w-28 lg:w-52 xl:w-auto z-10"
                   />
                 </div>
               </div>
@@ -267,8 +266,8 @@ const Index = () => {
                 <div className="z-50 absolute bottom-0 w-4/5 md:w-full">
                   <Image src={caseImage} alt="sofa image" />
                 </div>
-                <div className="absolute top-1/2 -translate-y-1/2">
-                  <Image src={bgCase} alt="sofa image" />
+                <div className="absolute top-1/2 -translate-y-1/2 w-full">
+                  <Image src={bgCase} alt="sofa image" className="w-full" />
                 </div>
               </div>
               <div className="video-player   absolute right-9 z-10 top-32 md:top-36 hidden group-hover:block">
