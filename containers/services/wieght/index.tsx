@@ -12,7 +12,6 @@ const Index = () => {
         title="Qo’shimcha yuklaringiz xavfsizligi"
         subTitle="Engage active clients at the right time and save time chasing unqualified leads.  clients at the right time and save time chasingunqualified leads."
         image={weightBanner}
-        icon={bannerIcon}
       />
     </Fragment>
   );

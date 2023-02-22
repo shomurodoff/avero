@@ -9,6 +9,7 @@ import {
   seatOrderRingImage,
 } from "../../../assets/images/services/seat-services";
 import { Banner } from "../../../components";
+import { borderBottom } from "../../../assets/images/hero";
 
 const Index = () => {
   return (
@@ -17,18 +18,21 @@ const Index = () => {
         title="O’zingiz uchun qulay o‘rindiq tanlang"
         subTitle="Engage active clients at the right time and save time chasing unqualified leads. clients at the right time and save time"
         image={seatBannerImage}
-        icon={seatBannerIcon}
       />
-      <div className="font-graphik">
-        <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">
-          Sevimli o'rindiq
-        </h2>
-        <p className="text-[32px] md:text-[40px] xl:text-[65px] leading-[42px] md:leading-[50px] xl:leading-[77.5px] font-normal font-inter">
-          Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz
-        </p>
+      <div className="relative mt-10 lg:mt-40 lg:mb-24">
+        <div className="font-graphik">
+          <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">
+            Sevimli o'rindiq
+          </h2>
+          <p className="text-[32px] md:text-[40px] xl:text-[65px] leading-[42px] md:leading-[50px] xl:leading-[77.5px] font-normal font-inter max-w-5xl">
+            Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz
+          </p>
+          <div className="w-[190px]  lg:w-[450px]  h-[100px] lg:h-[300px] bg-[#FF354DBA] blur-[50px] lg:blur-[125px] absolute top-0 right-0 opacity-50 -z-10"></div>
+          <div className="w-[175px]  lg:w-[450px] h-[92px] lg:h-[300px] bg-[#2C7FFE] blur-[50px] lg:blur-[125px] absolute top-0 translate-x-full opacity-50 -z-10"></div>
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-center my-16  font-graphik">
-        <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px] rounded-full flex justify-center items-end  relative group cursor-pointer">
+        <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px]  lg:h-[460px] lg:w-[460px] rounded-full flex justify-center items-end  relative group cursor-pointer">
           <Image
             src={seatCircleImage}
             alt="image"
@@ -42,7 +46,7 @@ const Index = () => {
             <p className="font-montserrat text-xl">1-bosqich</p>
           </div>
         </div>
-        <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">
+        <div className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  lg:h-[460px] lg:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">
           <div className="p-12 text-center  group-hover:text-white">
             <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5">
               Old o'rindiq qismi
@@ -56,7 +60,7 @@ const Index = () => {
             className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
           />
         </div>
-        <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
+        <div className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  lg:h-[460px] lg:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
           <div className="p-12 text-center  group-hover:text-white">
             <h3
               className={
@@ -79,8 +83,16 @@ const Index = () => {
         <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40">
           <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6">
             <p className="text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
-              Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida 24
-              soat oldin xizmatga buyurtma bering.
+              Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida{" "}
+              <span className="inline-block relative">
+                24 soat{" "}
+                <Image
+                  src={borderBottom}
+                  alt="Image"
+                  className="w-full absolute"
+                />
+              </span>
+              oldin xizmatga buyurtma bering.
             </p>
             <button className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
               O’rindiq tanlash

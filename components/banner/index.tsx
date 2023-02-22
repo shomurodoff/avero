@@ -12,10 +12,9 @@ interface Props {
   title: string;
   subTitle: string;
   image: StaticImageData;
-  icon: StaticImageData;
 }
 
-const Index: React.FC<Props> = ({ title, subTitle, image, icon }) => {
+const Index: React.FC<Props> = ({ title, subTitle, image }) => {
   const [count, setCount] = useState<number>(0);
   const images = [BannerIcon1, BannerIcon2, BannerIcon3, BannerIcon4];
   useEffect(() => {

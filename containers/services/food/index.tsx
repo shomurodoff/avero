@@ -23,7 +23,6 @@ const Index = () => {
         title="Ovqatingizga oldindan buyurtma bering"
         subTitle="O'zingiz uchun eng yaxshi variantni tanlang!. Taomga ketishdan kamida 24 yoki 36 soat oldin buyurtma berishni unutmang*"
         image={foodBanner}
-        icon={bannerIcon}
       />
       <section
         className={clsx(
