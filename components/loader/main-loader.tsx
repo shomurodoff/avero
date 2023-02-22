@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { isEqual } from "lodash";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { MainPageLogo } from "../../layout/images";
 import VideoLoader from "./video-loader";
 
@@ -20,15 +20,15 @@ const MainLoader = () => {
     setPlay(true);
   }, []);
   return (
-    <div className="overflow-none">
+    <Fragment>
       <div
         className={clsx(
           !isEqual(percentage, 100)
-            ? "fixed inset-0 bg-primary-blue z-20"
+            ? "fixed inset-0 bg-primary-blue z-90"
             : "hidden"
         )}
       >
-        <div className="flex flex-col justify-between h-screen">
+        <div className="flex flex-col justify-between h-full">
           <div>
             <div className="py-10 w-full flex justify-center">
               <Image src={MainPageLogo} alt="Logo Image" />
@@ -50,7 +50,7 @@ const MainLoader = () => {
       <div className={clsx(isEqual(percentage, 100) ? "block z-20" : "hidden")}>
         <VideoLoader play={play} />
       </div>
-    </div>
+    </Fragment>
   );
 };
 

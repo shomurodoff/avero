@@ -1,11 +1,33 @@
 import React, { Fragment } from "react";
 import {
-  bannerIcon,
+  BgCasesMd,
+  BgCasesSm,
+  Cases,
   weightBanner,
 } from "../../../assets/images/services/weight-services";
 import { Banner } from "../../../components";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { useStore } from "../../../store";
+import { get, isEqual } from "lodash";
+import { NumericFormat } from "react-number-format";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const router = useRouter();
+  const { register, handleSubmit, watch } = useForm({
+    defaultValues: {
+      weight: 0,
+    },
+  });
+  const weight = useStore((state) => get(state, "weight", "0"));
+  const setWeigt = useStore((state) => get(state, "setWeigt", () => {}));
+  const resetWeigt = useStore((state) => get(state, "resetWeigt", () => {}));
+
+  const onSubmit = (data: any) => {
+    setWeigt(Number(get(data, "weight", 0)));
+  };
+
   return (
     <Fragment>
       <Banner
@@ -108,6 +130,93 @@ const Index = () => {
           </div>
         </div>
       </section>
+      <section className="mb-24 font-montserrat md:font-graphik">
+        <div className="px-5 md:px-11  pt-7 md:pt-[52px] bg-[#043785] rounded-large grid grid-cols-12 gap-y-20">
+          <div className="col-span-12 lg:col-span-6 mb-7  z-10">
+            <h3 className="text-white text-2xl lg:text-[35px] leading-[34px] lg:leading-[45px] max-w-xs lg:max-w-md mb-12">
+              Ortiqcha yuk qo’shish uchun yuk og’irligini kiriting
+            </h3>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex gap-[3px] font-inter mb-7 max-w-xs lg:max-w-md">
+                <div className="flex-grow bg-white bg-opacity-25 px-[25px] py-4 rounded-l-medium flex flex-col">
+                  <label className="text-sm leading-4 font-normal text-white mb-[5px]">
+                    Yuk og'irligi
+                  </label>
+                  <input
+                    className="focus:outline-0 bg-transparent text-[22px] leading-[26px] font-medium text-white"
+                    type="number"
+                    placeholder="34"
+                    {...register("weight")}
+                  />
+                </div>
+                <div className="bg-white bg-opacity-25 flex items-end px-[25px] pt-4 pb-5 rounded-r-medium">
+                  <h4 className=" text-[22px] leading-[26px] font-medium text-white">
+                    KG
+                  </h4>
+                </div>
+              </div>
+              <button
+                className="text-base md:text-lg  leading-4 md:leading-5 font-medium font-poppins text-white bg-primary-red py-4 md:py-[18px] px-6 rounded-default"
+                type="submit"
+              >
+                Yuk qo’shish
+              </button>
+            </form>
+          </div>
+          <div className="col-span-12 lg:col-span-6 relative -z-0s">
+            <div className="flex justify-end w-full h-full">
+              <Image src={Cases} className="" alt="Image" />
+            </div>
+            <Image
+              src={BgCasesSm}
+              className="absolute top-0 -right-5 lg:hidden"
+              alt="Image"
+            />
+            <Image
+              src={BgCasesMd}
+              alt="Image"
+              className="hidden lg:block absolute top-1/2 -translate-y-1/3 right-1/2 -z-0 max-w-[500px]"
+            />
+          </div>
+        </div>
+      </section>
+      {isEqual(weight, 0) ? (
+        ""
+      ) : (
+        <div className="fixed md:static bottom-0 inset-x-0 z-50 bg-white bg-opacity-90  md:bg-[#F9F9F9] py-5 px-6 md:rounded-medium flex flex-col gap-y-4 md:flex-row justify-between  md:mb-8 shadow-[0px_-2px_4px_rgba(121,121,121,0.35)] md:shadow-none">
+          <div>
+            <h2 className="font-graphik text-[32px] leading-[44px] font-medium flex items-center gap-2">
+              {weight} KG <span className="w-6 inline-block h-0.5 bg-black" />
+              <NumericFormat
+                value={Number(weight) * 13000}
+                decimalSeparator="."
+                displayType="text"
+                thousandSeparator=" "
+                type="text"
+              />
+              <span className=" opacity-40">UZS</span>
+            </h2>
+            <p className="font-inter text-xs leading-5">
+              Qo’shimcha yuk miqdori. Siz qo’shimcha yuk uchun qo’shimcha pul
+              to’laysiz.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <button
+              className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9"
+              onClick={() => resetWeigt()}
+            >
+              Bekor qilish
+            </button>
+            <button
+              onClick={() => router.push("/payment")}
+              className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+            >
+              To’lash
+            </button>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

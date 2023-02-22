@@ -40,7 +40,7 @@ const Loader: React.FC<Props> = ({ airway }) => {
   }, [upTo]);
 
   return (
-    <div className="fixed inset-0 bg-primary-blue">
+    <div className="fixed inset-0 bg-primary-blue z-50">
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="py-10 w-full flex justify-center">
