@@ -32,7 +32,6 @@ import {
   uzAirway,
 } from "../../assets/images/home";
 import { ArrowButton, Card, Heading, SearchForm } from "../../components";
-import { gsap } from "gsap";
 
 const newsData: {
   id: number;
@@ -67,10 +66,6 @@ const coopiratives: { id: number; image: StaticImageData }[] = [
   { id: 4, image: astanaAirway },
   { id: 5, image: chinaAirway },
 ];
-
-// useLayoutEffect(() => {
-//   return () => {};
-// }, []);\
 
 const CabinIcon: React.FC<any> = ({ image }) => {
   return (
@@ -211,7 +206,7 @@ const Index = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-12 h-64 lg:h-96 xl:h-[26rem] relative -mx-9 -mb-9">
+              <div className="grid grid-cols-12 h-64 lg:h-96 xl:h-[28rem] relative -mx-9 -mb-9">
                 <Image
                   src={bgMeal}
                   alt="sofa image"

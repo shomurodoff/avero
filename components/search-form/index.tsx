@@ -14,21 +14,15 @@ const Index = () => {
   const router = useRouter();
 
   return (
-    <form className="grid grid-cols-12 px-[15px] gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-4xl mx-auto z-10">
+    <form className="grid grid-cols-12 px-[15px] gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-5xl mx-auto z-10">
       <div className="col-span-12  lg:col-span-10 grid grid-cols-12 gap-0.5">
         <div className="col-span-5 lg:col-span-2 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-tl-[15px] lg:rounded-l-[15px]">
           <div className="flex flex-col">
-            <label
-              className="gap-2.5 text-sm  font-normal leading-4 mb-1 md:mb-[5px] cursor-pointer"
-              onClick={() => setOpenTypeOption(!isOpenTypeOption)}
-            >
+            <label className="gap-2.5 text-sm  font-normal leading-4 mb-1 md:mb-[5px] cursor-pointer">
               <span className="relative">
                 Turi{" "}
                 <svg
-                  className={clsx(
-                    "transition-all duration-150 absolute top-0 left-full",
-                    isOpenTypeOption && "rotate-180 "
-                  )}
+                  className={"absolute top-0 left-full"}
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
@@ -51,25 +45,19 @@ const Index = () => {
             </label>
             <ReactSelect
               placeholder={"Chipta"}
-              // menuIsOpen={isOpenTypeOption}
               isSearchable={false}
-              // onFocus={() => setOpenTypeOption(true)}
               openMenuOnFocus
-              onChange={() => {
-                setOpenTypeOption(false);
-              }}
-              options={map(options, (item, index) => {
-                return {
-                  value: index,
-                  label: get(item, "title"),
-                  image: get(item, "icon"),
-                };
-              })}
+              options={map(
+                [{ label: "Chipta" }, { label: "Tur" }],
+                (item, index) => {
+                  return {
+                    value: index,
+                    label: get(item, "label"),
+                  };
+                }
+              )}
               formatOptionLabel={(item) => (
                 <div className="flex items-center gap-2 cursor-pointer z-[1000]">
-                  <span className="rounded-full">
-                    <Image src={get(item, "image", "")} alt="country-image" />
-                  </span>
                   <span>{get(item, "label")}</span>
                 </div>
               )}
@@ -152,17 +140,11 @@ const Index = () => {
         </div>
         <div className="col-span-12 lg:col-span-3 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-b-[15px] lg:rounded-bl-none lg:rounded-r-[15px]">
           <div className="flex flex-col">
-            <label
-              className="gap-2.5 text-sm  font-normal leading-4 mb-1 md:mb-[5px] cursor-pointer"
-              onClick={() => setOpenOption(!isOpenOption)}
-            >
+            <label className="gap-2.5 text-sm  font-normal leading-4 mb-1 md:mb-[5px] cursor-pointer">
               <span className="relative">
                 Airport{" "}
                 <svg
-                  className={clsx(
-                    "transition-all duration-150 absolute top-0 left-full",
-                    isOpenOption && "rotate-180 "
-                  )}
+                  className={"absolute top-0 left-full"}
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
@@ -185,11 +167,8 @@ const Index = () => {
             </label>
             <ReactSelect
               placeholder={"UzAirways"}
-              menuIsOpen={isOpenOption}
-              onChange={(value) => {
-                setAirways(toLower(get(value, "label")));
-                setOpenOption(false);
-              }}
+              openMenuOnFocus
+              isSearchable={false}
               options={map(options, (item, index) => {
                 return {
                   value: index,
