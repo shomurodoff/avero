@@ -74,7 +74,7 @@ const Index = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="font-inter text-2xl font-bold bg-[#043785] relative -z-0 text-white">
+      <section className="font-inter text-2xl font-bold bg-[#043785] relative z-50 text-white">
         <Container className="py-28 md:py-[90px]">
           <div className="text-center  mb-10">
             <h1 className="text-[44px] leading-[60px] md:text-[80px] md:leading-[90px] lg:text-[110px] lg:leading-[120px] font-bold font-montserrat !wider-tracking mb-2.5 max-w-xs md:max-w-4xl  mx-auto">
@@ -102,15 +102,17 @@ const Index = () => {
           </div>
           <SearchForm />
         </Container>
-        <Image
-          src={BgBottom}
-          alt="Background Image"
-          className="absolute bottom-0 right-0 -z-0 w-56 md:w-72 lg:w-96"
-        />
+        <div className="absolute bottom-0 right-0">
+          <Image
+            src={BgBottom}
+            alt="Background Image"
+            className="w-56 md:w-72 lg:w-96"
+          />
+        </div>
         <Image
           src={BgTop}
           alt="Background Image"
-          className="absolute  -top-20 left-0 -z-0  w-56 md:w-72 lg:w-96"
+          className="absolute  -top-20 left-0 w-96 md:w-72 lg:w-96"
         />
       </section>
       <section>

@@ -20,7 +20,7 @@ const Index: React.FC = () => {
   }, 9000);
 
   return (
-    <div className="over overflow-y-hidden">
+    <Fragment>
       <div
         className={clsx(
           "transition-opacity duration-1000 overflow-hidden fixed inset-0 z-[99999]",
@@ -31,7 +31,7 @@ const Index: React.FC = () => {
         <MainLoader />
       </div>
       <HomeContainer />
-    </div>
+    </Fragment>
   );
 };
 
