@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import url("https://fonts.cdnfonts.com/css/graphik");
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display?styles=98774,98773,98770');
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display?styles=98774,98773,98770");
 
 @tailwind base;
 @tailwind components;
@@ -39,7 +39,7 @@ html {
   @apply h-96;
 }
 .bg-food-bg-line {
-  background-image: url("../images/services/food-services/food-serving-bg.png");
+  @apply bg-[url("../images/services/food-services/food-serving-bg-sm.png")] bg-no-repeat  bg-right-top;
 }
 .bg-our-services {
   background-image: url("../images/services/bg-services.png");

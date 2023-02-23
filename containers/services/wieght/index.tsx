@@ -130,9 +130,9 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <section className="mb-24 font-montserrat md:font-graphik">
-        <div className="px-5 md:px-11  pt-7 md:pt-[52px] bg-[#043785] rounded-large grid grid-cols-12 gap-y-20">
-          <div className="col-span-12 lg:col-span-6 mb-7  z-10">
+      <section className="mb-24 lg:mb-64 font-montserrat md:font-graphik">
+        <div className="px-5 md:px-11  pt-7 md:pt-[52px] bg-[#043785] rounded-large grid grid-cols-12 gap-y-16 md:g">
+          <div className="col-span-12 lg:col-span-6 mb-7 z-10">
             <h3 className="text-white text-2xl lg:text-[35px] leading-[34px] lg:leading-[45px] max-w-xs lg:max-w-md mb-12">
               Ortiqcha yuk qo’shish uchun yuk og’irligini kiriting
             </h3>
@@ -143,7 +143,7 @@ const Index = () => {
                     Yuk og'irligi
                   </label>
                   <input
-                    className="focus:outline-0 bg-transparent text-[22px] leading-[26px] font-medium text-white"
+                    className="focus:outline-0 bg-transparent text-[22px] leading-[26px] font-medium text-white w-full"
                     type="number"
                     placeholder="34"
                     {...register("weight")}
@@ -164,18 +164,32 @@ const Index = () => {
             </form>
           </div>
           <div className="col-span-12 lg:col-span-6 relative -z-0s">
-            <div className="flex justify-end w-full h-full">
-              <Image src={Cases} className="" alt="Image" />
+            <div className="video-player bg-red-600 absolute -top-24 md:-top-36 right-0 lg:left-0 xl:-left-8 lg:right-auto lg:top-full lg:-translate-y-2/3  rounded-full z-10">
+              <video
+                autoPlay
+                loop
+                muted
+                className="object-cover  h-40 w-40 md:w-72 md:h-72 xl:h-80 xl:w-80"
+              >
+                <source src="/case-video.mp4"></source>
+              </video>
+            </div>
+            <div className="flex  justify-center lg:justify-end items-end w-full h-full">
+              <Image
+                src={Cases}
+                alt="Image"
+                className="-mr-6 md:-mr-10 lg:-mr-10"
+              />
             </div>
             <Image
               src={BgCasesSm}
-              className="absolute top-0 -right-5 lg:hidden"
+              className="absolute top-0 -right-5 md:-right-11 lg:hidden"
               alt="Image"
             />
             <Image
               src={BgCasesMd}
               alt="Image"
-              className="hidden lg:block absolute top-1/2 -translate-y-1/3 right-1/2 -z-0 max-w-[500px]"
+              className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-1/2 -z-0 max-w-[500px]"
             />
           </div>
         </div>

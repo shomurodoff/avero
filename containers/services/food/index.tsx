@@ -1,7 +1,6 @@
 import clsx from "clsx";
-import { get, isNull, map } from "lodash";
+import { get, map } from "lodash";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import {
@@ -11,8 +10,10 @@ import {
 } from "../../../assets/images/services/food-services";
 import { Banner, Heading, Modal } from "../../../components";
 import { foodOptions, foodsMenu } from "../../../mock/foods";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const router = useRouter();
   const [isOpenModal, setOpenModal] = useState<boolean>(false);
   const menuRef = useRef<any>(null);
   const scrollToMenu = () => menuRef.current.scrollIntoView();
@@ -23,9 +24,9 @@ const Index = () => {
         subTitle="O'zingiz uchun eng yaxshi variantni tanlang!. Taomga ketishdan kamida 24 yoki 36 soat oldin buyurtma berishni unutmang"
         image={foodBanner}
       />
-      <section className={"font-montserrat my-16 "}>
+      <section className={"font-montserrat mt-16 mb-60"}>
         <div className=" bg-primary-blue rounded-2xl py-8 md:py-10 px-5 md:px-8 text-white font-montserrat relative grid grid-cols-12 bg-food-bg-line">
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-12 md:col-span-6 z-10">
             <h2 className="text-[70px] md:text-[80px] leading-[80px] font-bold">
               32
             </h2>
@@ -40,25 +41,18 @@ const Index = () => {
             </button>
           </div>
 
-          <div className="relative md:static h-56 md:h-auto col-span-12 md:col-span-6 flex justify-end mt-5 md:mt-0 ">
-            <Image
-              src={foodServing}
-              alt="Image customer"
-              className="absolute md:static w-80 -right-1/2 -translate-x-1/3 md:translate-x-0 md:translate-y-1/3 md:mr-5 z-10 md:z-0"
-            />
-            <Image
-              src={foodCloud}
-              alt="Image customer"
-              className="absolute md:-translate-x-1/2"
-            />
+          <div className="relative md:static h-56 md:h-auto col-span-12 md:col-span-6 flex justify-end mt-5 md:mt-0">
+            <div className="absolute md:static w-80 -right-2/3 -translate-x-1/3 md:translate-x-0 translate-y-1/4 md:translate-y-1/3 md:mr-5 z-10 md:z-0">
+              <Image src={foodServing} alt="Image customer" />
+            </div>
+            <div className="absolute md:-translate-x-1/3">
+              <Image src={foodCloud} alt="Image customer" className="" />
+            </div>
           </div>
         </div>
       </section>
       <section
-        className={clsx(
-          "relative px-[15px] md:px-8 xl:px-[60px] my-24",
-          isOpenModal && "hidden"
-        )}
+        className={clsx("relative mb-24", isOpenModal && "hidden")}
         ref={menuRef}
       >
         <Heading
@@ -70,7 +64,7 @@ const Index = () => {
         <div className="grid grid-cols-12 gap-6">
           {map(foodsMenu, (option) => (
             <div
-              className="col-span-12 md:col-span-6 lg:col-span-3"
+              className="col-span-12 sm:col-span-6 md:col-span-3"
               onClick={() => setOpenModal(true)}
             >
               <Image
@@ -84,45 +78,49 @@ const Index = () => {
                 titleClass="text-[20px] !font-bold leading-snug mb-1"
                 subTitle="7 ta taom mavjud"
                 subTitleClass="text-sm text-black"
+                className="!mb-[30px]"
               />
             </div>
           ))}
         </div>
-        <div className="bg-[#F9F9F9] py-5 px-6 rounded-medium flex flex-col gap-y-4 md:flex-row justify-between items-center">
-          <div>
-            <h2 className="font-graphik text-[32px] leading-[44px]">
-              Sendvich va salatlar{" "}
-            </h2>
-            <p className="font-inter text-xs leading-5">
-              Sut mahsulotlaridan cheklangan miqdorda foydalanish bilan, osiyo
-              ziravorlari qo‘shilgan go‘sht va baliqsiz taom.
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <button className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
-              Bekor qilish
-            </button>
-            <Link
-              href={"/payment"}
-              className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
-            >
-              To’lash
-            </Link>
-          </div>
-        </div>
       </section>
+      <div className="fixed md:static bottom-0 inset-x-0 z-50 bg-white bg-opacity-90  md:bg-[#F9F9F9] py-5 px-6 md:rounded-medium flex flex-col gap-y-4 md:flex-row justify-between  md:mb-8 shadow-[0px_-2px_4px_rgba(121,121,121,0.35)] md:shadow-none">
+        <div>
+          <h2 className="font-graphik text-[32px] leading-[44px] font-medium flex items-center gap-2">
+            Sendvich va salatlar
+          </h2>
+          <p className="font-inter text-xs leading-5">
+            Sut mahsulotlaridan cheklangan miqdorda foydalanish bilan, osiyo
+            ziravorlari qo‘shilgan go‘sht va baliqsiz taom.
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button
+            className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9"
+            // onClick={() => resetWeigt()}
+          >
+            Bekor qilish
+          </button>
+          <button
+            onClick={() => router.push("/payment")}
+            className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+          >
+            To’lash
+          </button>
+        </div>
+      </div>
       <Modal open={isOpenModal} setOpen={setOpenModal}>
-        <div className="container mx-auto bg-white grid grid-cols-12 md:p-10 rounded-t-[20px] md:rounded-[20px]">
-          <div className="col-span-12 md:col-span-6 px-[15px] pt-7 md:px-0 md:mb-10">
+        <div className="container mx-auto bg-white grid grid-cols-12 md:p-5 lg:p-10 rounded-t-[20px] lg:rounded-[20px]">
+          <div className="col-span-12 lg:col-span-6 px-[15px] pt-7 md:px-0 lg:mb-10">
             <Heading
               title="Sendvich va salatlar"
-              titleClass="text-[32px] !font-semibold"
+              titleClass="text-[20px] leading-5 md:text-[32px] !font-semibold"
               subTitle="Engage active clients at the right time and save time chasing
               unqualified leads"
               subTitleClass="font-normal leading-[30px]"
             />
           </div>
-          <div className="bg-[rgba(255, 255, 255, 0.9)] md:bg-none shadow-modal md:shadow-none bg-opacity-90 col-span-12 md:col-span-6 md:mb-10 order-3 md:order-none px-[15px] py-5">
+          <div className="bg-[rgba(255, 255, 255, 0.9)] md:bg-none shadow-modal md:shadow-none bg-opacity-90 col-span-12 lg:col-span-6 lg:mb-10 order-3 lg:order-none px-[15px] py-5">
             <div className="flex md:justify-end gap-2.5 text-white text-sm font-semibold ">
               <button className="bg-primary-blue py-4 w-full lg:px-8 rounded-[10px]">
                 Saqlash
@@ -131,7 +129,7 @@ const Index = () => {
                 Hoziroq to’lash
               </button>
               <button
-                className="bg-[#ECEEF2] px-4 hidden md:flex justify-center items-center rounded-[10px]"
+                className="bg-[#ECEEF2] px-4 hidden lg:flex justify-center items-center rounded-[10px]"
                 onClick={() => {
                   setOpenModal(false);
                 }}
@@ -170,7 +168,7 @@ const Index = () => {
                 </div>
                 <Heading
                   title={get(option, "title", "")}
-                  titleClass="text-sm md:text-lg !font-bold leading-snug mb-2 md:mb-2.5"
+                  titleClass="!text-sm md:text-lg !font-bold leading-snug mb-2 md:mb-2.5"
                   subTitle={get(option, "description", "")}
                   subTitleClass="text-xs md:text-sm !text-black line-clamp-3 md:line-clamp-5"
                   className="mb-5 md:mb-10"
