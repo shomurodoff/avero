@@ -59,14 +59,6 @@ const newsData: {
   },
 ];
 
-const coopiratives: { id: number; image: StaticImageData }[] = [
-  { id: 1, image: uzAirway },
-  { id: 2, image: turkishAirway },
-  { id: 3, image: azerAirway },
-  { id: 4, image: astanaAirway },
-  { id: 5, image: chinaAirway },
-];
-
 const CabinIcon: React.FC<any> = ({ image }) => {
   return (
     <Image
@@ -333,7 +325,7 @@ const Index = () => {
             quality={100}
           />
           <Container className="pt-[126px] lg:pt-[250px] pb-[70px] lg:pb-[86px] px-[15px] md:px-8 lg:px-[60px]">
-            <div className="flex flex-col md:flex-row justify-between text-white">
+            <div className="flex flex-col ;g:flex-row justify-between text-white">
               <div className="max max-w-2xl">
                 <h2 className="text-[32px] md:text-[45px] leading-[45px] md:leading-[60px] font-montserrat font-bold mb-[1px] md:mb-2 line-clamp-1 md:line-clamp-4">
                   Aviachipta sotib olgandan keyingi xizmatlar
@@ -352,24 +344,19 @@ const Index = () => {
                   Izlash
                 </button>
               </div>
-              <div className="w-full lg:max-w-xl relative  mt-7 xl:mt-20">
+              <div className="w-full lg:max-w-xl relative  mt-7 xl:mt-20 flex justify-end">
                 <div className="bg-[#F9EFF1] w-full lg:max-w-[530px] absolute top-0 p-8 xl:p-[50px]  rounded-[30px]">
-                  <h3 className="text-[20px] leading-[30px] font-semibold font-inter max-w-[200px] text-[#202020] mb-8 md:mb-14">
+                  <h3 className="text-[20px] leading-[30px] font-semibold font-inter max-w-[200px] text-[#202020] mb-8 lg:mb-14">
                     Biz bilan hamkor avia kompaniyalar
                   </h3>
-                  <div className="grid grid-cols-12 gap-2 lg:gap-8 align-middle mb-2 md:mb-10">
-                    {map(coopiratives, (cooperative) => (
-                      <div
-                        className="col-span-4 flex items-center"
-                        key={get(cooperative, "id")}
-                      >
-                        <Image
-                          src={get(cooperative, "image")}
-                          alt="Logo"
-                          layout="responsive"
-                        />
-                      </div>
-                    ))}
+                  <div className="flex flex-wrap items-center justify-between gap-y-10 mb-2 md:mb-10">
+                    <Image src={uzAirway} quality={100} alt="Logo" />
+                    <Image src={turkishAirway} quality={100} alt="Logo" />
+                    <Image src={azerAirway} quality={100} alt="Logo" />
+                    <div className="flex items-center gap-5">
+                      <Image src={astanaAirway} quality={100} alt="Logo" />
+                      <Image src={chinaAirway} quality={100} alt="Logo" />
+                    </div>
                   </div>
                 </div>
               </div>
