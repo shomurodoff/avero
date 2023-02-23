@@ -13,8 +13,15 @@ module.exports = {
       screens: {
         "2xl": "1440px",
       },
+      keyframes: {
+        movingclouds: {
+          "0%": { transform: "translateX(-10%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
       animation: {
         "spin-slow": "spin 3s linear infinite",
+        "moving-slow": "movingclouds 10s linear infinite",
       },
       container: {
         center: true,

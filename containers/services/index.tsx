@@ -12,13 +12,14 @@ import {
 import Loader from "../../components/loader/loader";
 import { useRouter } from "next/router";
 import { get } from "lodash";
+import { updateReturn } from "typescript";
+import clsx from "clsx";
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [opacity, setOpacity] = useState<boolean>(true);
   const [openForm, setOpenForm] = useState<boolean>(false);
   const router = useRouter();
-
-  console.log(router);
 
   const tabs = [
     {
@@ -52,15 +53,24 @@ const Index: React.FC = () => {
   ];
 
   setTimeout(() => {
-    setLoading(false);
-  }, 2000);
+    setOpacity(false);
+  }, 8000);
 
-  if (loading) {
-    return <Loader airway={get(router, "query.airways")} />;
-  }
+  setTimeout(() => {
+    setLoading(false);
+  }, 9000);
 
   return (
     <Fragment>
+      <div
+        className={clsx(
+          "transition-opacity duration-1000 opacity-100",
+          !loading && "hidden",
+          !opacity && "opacity-0"
+        )}
+      >
+        <Loader airway={get(router, "query.airways")} />
+      </div>
       <PassengerFilter setOpenForm={setOpenForm} />
       <Tab data={tabs} activeContent={Number(get(router, "query.services"))} />
       <Modal open={openForm} setOpen={setOpenForm}>

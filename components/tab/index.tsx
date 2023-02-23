@@ -1,5 +1,5 @@
 import React, { Fragment, ReactNode, useEffect, useState } from "react";
-import { get, isEqual, map } from "lodash";
+import { filter, find, get, isEqual, map } from "lodash";
 import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
 import ReactSelect from "react-select";
@@ -74,8 +74,14 @@ const Index: React.FC<Props> = ({ data, activeContent }) => {
       <div className="block md:hidden  bg-[#F1F3F6] pt-0.5">
         <nav className="px-[15px] pb-4">
           <ReactSelect
+            isSearchable={false}
             onChange={(value) => {
               setActiveTab(get(value, "value", 0));
+            }}
+            defaultValue={{
+              value: get(data[activeContent ? activeContent : 0], "id", 1) - 1,
+              label: get(data[activeContent ? activeContent : 0], "title", ""),
+              image: get(data[activeContent ? activeContent : 0], "icon", ""),
             }}
             options={map(data, (item, index) => {
               return {

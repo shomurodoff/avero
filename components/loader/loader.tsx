@@ -40,7 +40,7 @@ const Loader: React.FC<Props> = ({ airway }) => {
   }, [upTo]);
 
   return (
-    <div className="fixed inset-0 bg-primary-blue z-50">
+    <div className="fixed inset-0 bg-primary-blue z-[99999]">
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="py-10 w-full flex justify-center">
@@ -69,22 +69,22 @@ const Loader: React.FC<Props> = ({ airway }) => {
             <Image
               src={CloudTop}
               alt="Image Cloud"
-              className="absolute bottom-36 left-0 hidden md:block"
+              className="absolute bottom-36 left-0 hidden md:block animate-moving-slow"
             />
-            <div className="absolute right-0 bottom-20 w-full h-96 md:hidden">
+            <div className="absolute right-0 bottom-20 w-full h-96 md:hidden animate-moving-slow">
               <Image src={CloudTopSm} alt="Image Cloud" fill />
             </div>
             <Image
               src={CloudBottom}
               alt="Image Cloud"
-              className="absolute bottom-0 left-0 hidden md:block"
+              className="absolute bottom-0 left-0 hidden md:block animate-moving-slow"
             />
-            <div className="absolute right-0 -bottom-16 w-full h-96 md:hidden">
+            <div className="absolute right-0 -bottom-16 w-full h-96 md:hidden animate-moving-slow">
               <Image src={CloudBottomSm} alt="Image Cloud" fill />
             </div>
           </div>
           <div className="col-span-12 lg:col-span-6 text-right">
-            <h1 className="font-inter font-normal text-[130px] leading-[158px] xl:text-[300px] xl:leading-[363px] text-white">
+            <h1 className="font-inter font-normal text-[130px]  leading-[158px] xl:text-[200px] xl:leading-[200px]  2xl:text-[300px] 2xl:leading-[363px] text-white">
               {percentage} %
             </h1>
           </div>
