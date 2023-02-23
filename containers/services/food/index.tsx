@@ -25,12 +25,12 @@ const Index = () => {
         image={foodBanner}
       />
       <section className={"font-montserrat mt-16 mb-60"}>
-        <div className=" bg-primary-blue rounded-2xl py-8 md:py-10 px-5 md:px-8 text-white font-montserrat relative grid grid-cols-12 bg-food-bg-line">
+        <div className=" bg-primary-blue rounded-2xl py-8 md:py-10 xl:pt-16 xl:pb-11 px-5 md:px-8 text-white font-montserrat relative grid grid-cols-12 bg-food-bg-line gap-y-16">
           <div className="col-span-12 md:col-span-6 z-10">
-            <h2 className="text-[70px] md:text-[80px] leading-[80px] font-bold">
+            <h2 className="text-[70px] md:text-[80px] leading-[80px] font-bold lg:mb-4">
               32
             </h2>
-            <p className="text-[28px] md:text-[32px] leading-10 mb-5 max-w-xs">
+            <p className="text-[28px] md:text-[32px] leading-10 mb-5 lg:mb-9 max-w-xs">
               dan ortiq taom va ichimliklar
             </p>
             <button
@@ -40,13 +40,12 @@ const Index = () => {
               Menyu tanlash
             </button>
           </div>
-
-          <div className="relative md:static h-56 md:h-auto col-span-12 md:col-span-6 flex justify-end mt-5 md:mt-0">
-            <div className="absolute md:static w-80 -right-2/3 -translate-x-1/3 md:translate-x-0 translate-y-1/4 md:translate-y-1/3 md:mr-5 z-10 md:z-0">
-              <Image src={foodServing} alt="Image customer" />
+          <div className="relative col-span-12 md:col-span-6">
+            <div className="w-[350px] xl:w-[450px] md:absolute right-0 translate-x-1/3 md:translate-x-0">
+              <Image src={foodServing} alt="Image customer" quality={100} />
             </div>
-            <div className="absolute md:-translate-x-1/3">
-              <Image src={foodCloud} alt="Image customer" className="" />
+            <div className="absolute -top-10 md:-left-full  lg:-left-1/2 xl:left-auto  -z-0">
+              <Image src={foodCloud} alt="Image customer" quality={100} />
             </div>
           </div>
         </div>
@@ -95,10 +94,7 @@ const Index = () => {
           </p>
         </div>
         <div className="flex gap-3">
-          <button
-            className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9"
-            // onClick={() => resetWeigt()}
-          >
+          <button className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
             Bekor qilish
           </button>
           <button

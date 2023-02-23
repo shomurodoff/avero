@@ -39,7 +39,7 @@ html {
   @apply h-96;
 }
 .bg-food-bg-line {
-  @apply bg-[url("../images/services/food-services/food-serving-bg-sm.png")] bg-no-repeat  bg-right-top;
+  @apply bg-[url("../images/services/food-services/food-serving-bg-sm.png")] md:bg-[url("../images/services/food-services/food-serving-bg.png")]   bg-no-repeat  bg-right-top  md:bg-right;
 }
 .bg-our-services {
   background-image: url("../images/services/bg-services.png");

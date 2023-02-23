@@ -32,6 +32,7 @@ import {
   uzAirway,
 } from "../../assets/images/home";
 import { ArrowButton, Card, Heading, SearchForm } from "../../components";
+import { useRouter } from "next/router";
 
 const newsData: {
   id: number;
@@ -71,6 +72,7 @@ const CabinIcon: React.FC<any> = ({ image }) => {
 };
 
 const Index = () => {
+  const router = useRouter();
   const [count, setCount] = useState<number>(0);
   const images = [changeIcon1, changeIcon2, changeIcon3, changeIcon4];
   useEffect(() => {
@@ -83,6 +85,10 @@ const Index = () => {
     }, 2000);
     return () => clearInterval(timerId);
   }, [count]);
+
+  const handleGo = (param: number) => {
+    router.push({ pathname: "/services", query: { services: param } });
+  };
 
   return (
     <Fragment>
@@ -157,7 +163,7 @@ const Index = () => {
                 <div>
                   <ArrowButton
                     onClick={() => {
-                      console.log("Working");
+                      handleGo(0);
                     }}
                   />
                 </div>
@@ -184,8 +190,8 @@ const Index = () => {
             <Card className="col-span-12 md:col-span-6 lg:col-span-7 flex flex-col justify-between p-9 bg-[#F9EFF1] relative group cursor-pointer">
               <div>
                 <Heading
-                  title="O‘rindiqni tanlash"
-                  subTitle="Engage active clients at the right time and save time chasing"
+                  title="Mazzali taomnoma"
+                  subTitle="Engage active clients at the right time and save time chasing unqualified leads"
                   titleClass="text-[20px] lg:text-[32px]"
                   subTitleClass="text-sm md:text-base max-w-sm"
                   className="mb-2.5 lg:mb-5"
@@ -193,7 +199,7 @@ const Index = () => {
                 <div>
                   <ArrowButton
                     onClick={() => {
-                      console.log("Working");
+                      handleGo(1);
                     }}
                   />
                 </div>
@@ -208,7 +214,7 @@ const Index = () => {
                   <Image
                     src={mealImage2}
                     alt="sofa image"
-                    className="w-20 lg:w-36 xl:w-44 z-10"
+                    className="w-20 lg:w-36 z-10"
                   />
                 </div>
                 <div className="col-span-6  relative z-10">
@@ -249,7 +255,7 @@ const Index = () => {
                 <div>
                   <ArrowButton
                     onClick={() => {
-                      console.log("Working");
+                      handleGo(2);
                     }}
                   />
                 </div>
@@ -285,7 +291,7 @@ const Index = () => {
                 <div>
                   <ArrowButton
                     onClick={() => {
-                      console.log("Working");
+                      handleGo(3);
                     }}
                   />
                 </div>
