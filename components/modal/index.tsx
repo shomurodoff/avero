@@ -21,7 +21,7 @@ const Index = ({ open, setOpen, children }: Props) => {
           {contentElement}
         </div>
       )}
-      className="fixed container  bottom-0 lg:top-20 translate-x-1/2 right-1/2"
+      className="fixed container  bottom-0 lg:top-1/2 lg:-translate-y-1/2 translate-x-1/2 right-1/2"
       contentElement={(props) => <div {...props}>{children}</div>}
     />
   );

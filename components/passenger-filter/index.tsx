@@ -1,7 +1,11 @@
 import React from "react";
 import { Container } from "../../UI";
 
-const Index = () => {
+interface Props {
+  setOpenForm: (state: boolean) => void;
+}
+
+const Index: React.FC<Props> = ({ setOpenForm }) => {
   return (
     <div className="bg-[#F1F3F6] pt-7 xl:pt-12">
       <Container>
@@ -73,7 +77,10 @@ const Index = () => {
                 CHR — 250 2103163081
               </p>
             </div>
-            <button className="flex gap-2.5 items-center py-3 xl:py-4  bg-[#F1F3F7] rounded-[25px] px-7 w-full justify-center lg:w-auto lg:text-xs xl:text-sm font-medium">
+            <button
+              className="flex gap-2.5 items-center py-3 xl:py-4  bg-[#F1F3F7] rounded-[25px] px-7 w-full justify-center lg:w-auto lg:text-xs xl:text-sm font-medium"
+              onClick={() => setOpenForm(true)}
+            >
               <span>
                 <svg
                   width="24"

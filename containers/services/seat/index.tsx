@@ -1,8 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import React, { Fragment } from "react";
 import {
-  seatBannerIcon,
   seatBannerImage,
   seatCircleImage,
   seatOrderImage,
@@ -10,8 +8,10 @@ import {
 } from "../../../assets/images/services/seat-services";
 import { Banner } from "../../../components";
 import { borderBottom } from "../../../assets/images/hero";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const router = useRouter();
   return (
     <Fragment>
       <Banner
@@ -31,67 +31,69 @@ const Index = () => {
           <div className="w-[175px]  lg:w-[450px] h-[92px] lg:h-[300px] bg-[#2C7FFE] blur-[50px] lg:blur-[125px] absolute top-0 translate-x-full opacity-50 -z-10"></div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row items-center justify-center my-16  font-graphik">
-        <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px]  lg:h-[460px] lg:w-[460px] rounded-full flex justify-center items-end  relative group cursor-pointer">
-          <Image
-            src={seatCircleImage}
-            alt="image"
-            fill
-            className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
-          />
-          <div className="p-12 text-center  group-hover:text-white">
-            <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5 z-10">
-              Qo'shimcha o'rindiq
-            </h3>
-            <p className="font-montserrat text-xl">1-bosqich</p>
+      <div className="flex justify-center mb-24 lg:mb-36">
+        <div className="inline-flex  flex-col lg:flex-row items-center justify-center  font-graphik">
+          <div className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px]  rounded-full flex justify-center items-end  relative group cursor-pointer">
+            <Image
+              src={seatCircleImage}
+              alt="image"
+              fill
+              className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            />
+            <div className="p-12 text-center  group-hover:text-white">
+              <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5 z-10">
+                Qo'shimcha o'rindiq
+              </h3>
+              <p className="font-montserrat text-xl">1-bosqich</p>
+            </div>
           </div>
-        </div>
-        <div className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  lg:h-[460px] lg:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">
-          <div className="p-12 text-center  group-hover:text-white">
-            <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5">
-              Old o'rindiq qismi
-            </h3>
-            <p className={"font-montserrat text-xl"}>2-bosqich</p>
+          <div className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">
+            <div className="p-12 text-center  group-hover:text-white">
+              <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5">
+                Old o'rindiq qismi
+              </h3>
+              <p className={"font-montserrat text-xl"}>2-bosqich</p>
+            </div>
+            <Image
+              src={seatCircleImage}
+              alt="image"
+              fill
+              className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            />
           </div>
-          <Image
-            src={seatCircleImage}
-            alt="image"
-            fill
-            className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
-          />
-        </div>
-        <div className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  lg:h-[460px] lg:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
-          <div className="p-12 text-center  group-hover:text-white">
-            <h3
-              className={
-                "text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5"
-              }
-            >
-              Standart zona o'rindig'i
-            </h3>
-            <p className={"font-montserrat text-xl"}>3-bosqich</p>
+          <div className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px]  rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
+            <div className="p-12 text-center  group-hover:text-white">
+              <h3
+                className={
+                  "text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5"
+                }
+              >
+                Standart zona o'rindig'i
+              </h3>
+              <p className={"font-montserrat text-xl"}>3-bosqich</p>
+            </div>
+            <Image
+              src={seatCircleImage}
+              alt="image"
+              fill
+              className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            />
           </div>
-          <Image
-            src={seatCircleImage}
-            alt="image"
-            fill
-            className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
-          />
         </div>
       </div>
       <section className="font-montserrat mb-40">
-        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40">
-          <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6">
-            <p className="text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
+        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40 gap-y-24 md:gap-y-0">
+          <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6 ">
+            <p className="font-graphik font-medium text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
               Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida{" "}
-              <span className="inline-block relative">
-                24 soat{" "}
+              <span className="inline-block relative text-primary-red">
+                24 soat
                 <Image
                   src={borderBottom}
                   alt="Image"
                   className="w-full absolute"
                 />
-              </span>
+              </span>{" "}
               oldin xizmatga buyurtma bering.
             </p>
             <button className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
@@ -122,30 +124,31 @@ const Index = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[#F9F9F9] py-5 px-6 rounded-medium flex flex-col gap-y-4 md:flex-row justify-between items-center">
-          <div>
-            <h2 className="font-graphik text-[32px] leading-[44px]">
-              14D — 75 000{" "}
-              <span className="text-[#00000066] font-medium">UZS</span>
-            </h2>
-            <p className="font-inter text-xs leading-5">
-              Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24
-              soatdan so‘ng bekor qilinadi.
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <button className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
-              Bekor qilish
-            </button>
-            <Link
-              href={"/payment"}
-              className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
-            >
-              To’lash
-            </Link>
-          </div>
-        </div>
       </section>
+      <div className="fixed md:static bottom-0 inset-x-0 z-50 bg-white bg-opacity-90  md:bg-[#F9F9F9] py-5 px-6 md:rounded-medium flex flex-col gap-y-4 md:flex-row justify-between  md:mb-8 shadow-[0px_-2px_4px_rgba(121,121,121,0.35)] md:shadow-none">
+        <div>
+          <h2 className="font-graphik text-[32px] leading-[44px] font-medium flex items-center gap-2">
+            14D <span className="w-6 inline-block h-0.5 bg-black" />
+            75 000
+            <span className="opacity-40">UZS</span>
+          </h2>
+          <p className="font-inter text-xs leading-5">
+            Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24
+            soatdan so‘ng bekor qilinadi.
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
+            Bekor qilish
+          </button>
+          <button
+            onClick={() => router.push("/payment")}
+            className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+          >
+            To’lash
+          </button>
+        </div>
+      </div>
     </Fragment>
   );
 };

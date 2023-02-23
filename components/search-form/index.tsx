@@ -6,17 +6,31 @@ import React, { useState } from "react";
 import ReactSelect, { components } from "react-select";
 import { options } from "../../mock/ioptions";
 
-const Index = () => {
+interface Props {
+  modal?: boolean;
+}
+
+const Index: React.FC<Props> = ({ modal }) => {
   const [isOpenOption, setOpenOption] = useState<boolean>(false);
   const [isOpenTypeOption, setOpenTypeOption] = useState<boolean>(false);
   const [airways, setAirways] = useState<string>("uzairways");
-
   const router = useRouter();
 
   return (
-    <form className="grid grid-cols-12 px-[15px] gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-5xl mx-auto z-10">
-      <div className="col-span-12  lg:col-span-10 grid grid-cols-12 gap-0.5">
-        <div className="col-span-5 lg:col-span-2 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-tl-[15px] lg:rounded-l-[15px]">
+    <form className="grid grid-cols-12 gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-5xl mx-auto z-10">
+      <div
+        className={clsx(
+          "col-span-12  lg:col-span-10 grid grid-cols-12 gap-0.5",
+          modal &&
+            "md:border-2 border-[#CECECE] md:rounded-l-medium md:rounded-r-medium md:bg-[#CECECE]"
+        )}
+      >
+        <div
+          className={clsx(
+            "col-span-5 lg:col-span-2 py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-tl-[15px] lg:rounded-l-[15px]",
+            modal ? "bg-[#ECECEC]" : "bg-[#fff] bg-opacity-[.25]"
+          )}
+        >
           <div className="flex flex-col">
             <label className="gap-2.5 text-sm  font-normal leading-4 mb-1 md:mb-[5px] cursor-pointer">
               <span className="relative">
@@ -32,7 +46,7 @@ const Index = () => {
                   <g clip-path="url(#clip0_577_9570)">
                     <path
                       d="M10.0001 10.9766L14.1251 6.85156L15.3034 8.0299L10.0001 13.3332L4.69678 8.0299L5.87511 6.85156L10.0001 10.9766Z"
-                      fill="white"
+                      fill={modal ? "black" : "white"}
                     />
                   </g>
                   <defs>
@@ -47,11 +61,15 @@ const Index = () => {
               placeholder={"Chipta"}
               isSearchable={false}
               openMenuOnFocus
+              defaultValue={{ value: 1, label: "Chipta" }}
               options={map(
-                [{ label: "Chipta" }, { label: "Tur" }],
-                (item, index) => {
+                [
+                  { id: 1, label: "Chipta" },
+                  { id: 2, label: "Tur" },
+                ],
+                (item) => {
                   return {
-                    value: index,
+                    value: get(item, "id"),
                     label: get(item, "label"),
                   };
                 }
@@ -106,7 +124,10 @@ const Index = () => {
                 IndicatorSeparator: () => null,
                 DropdownIndicator: () => null,
                 SingleValue: (props, context) => (
-                  <components.SingleValue className={"text-white"} {...props}>
+                  <components.SingleValue
+                    className={modal ? "!text-black" : "text-white"}
+                    {...props}
+                  >
                     {get(props, "data.label")}
                   </components.SingleValue>
                 ),
@@ -114,31 +135,52 @@ const Index = () => {
             />
           </div>
         </div>
-        <div className="col-span-7 lg:col-span-4 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-tr-[15px] lg:rounded-none">
+        <div
+          className={clsx(
+            "col-span-7 lg:col-span-4  py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-tr-[15px] lg:rounded-none",
+            modal ? "bg-[#ECECEC]" : "bg-[#fff] bg-opacity-[.25]"
+          )}
+        >
           <div className="flex flex-col">
             <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
               Chipta raqami
             </label>
             <input
               type="text"
-              className="bg-transparent focus:outline-none placeholder:text-white text-lg md:text-[22px] md:leading-[27px]  font-inter font-normal z-50"
+              className={clsx(
+                "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
+                modal ? "placeholder:text-black" : "placeholder:text-white"
+              )}
               placeholder={"Kurbanov"}
             />
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-3 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px]">
+        <div
+          className={clsx(
+            "col-span-12 lg:col-span-3 py-[14px] md:py-4 px-[15px] md:px-[25px]",
+            modal ? "bg-[#ECECEC]" : "bg-[#fff] bg-opacity-[.25]"
+          )}
+        >
           <div className="flex flex-col">
             <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
               Familya
             </label>
             <input
               type="text"
-              className="bg-transparent focus:outline-none placeholder:text-white text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50"
+              className={clsx(
+                "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
+                modal ? "placeholder:text-black" : "placeholder:text-white"
+              )}
               placeholder={"Kurbanov"}
             />
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-3 bg-[#fff] bg-opacity-[.25] py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-b-[15px] lg:rounded-bl-none lg:rounded-r-[15px]">
+        <div
+          className={clsx(
+            "col-span-12 lg:col-span-3 py-[14px] md:py-4 px-[15px] md:px-[25px] rounded-b-[15px] lg:rounded-bl-none lg:rounded-r-[15px]",
+            modal ? "bg-[#ECECEC]" : "bg-[#fff] bg-opacity-[.25]"
+          )}
+        >
           <div className="flex flex-col">
             <label className="gap-2.5 text-sm  font-normal leading-4 mb-1 md:mb-[5px] cursor-pointer">
               <span className="relative">
@@ -154,7 +196,7 @@ const Index = () => {
                   <g clip-path="url(#clip0_577_9570)">
                     <path
                       d="M10.0001 10.9766L14.1251 6.85156L15.3034 8.0299L10.0001 13.3332L4.69678 8.0299L5.87511 6.85156L10.0001 10.9766Z"
-                      fill="white"
+                      fill={modal ? "black" : "white"}
                     />
                   </g>
                   <defs>
@@ -169,6 +211,7 @@ const Index = () => {
               placeholder={"UzAirways"}
               openMenuOnFocus
               isSearchable={false}
+              defaultValue={{ value: 0, label: "Uzairways" }}
               options={map(options, (item, index) => {
                 return {
                   value: index,
@@ -197,7 +240,7 @@ const Index = () => {
                   return "text-lg font-medium !p-0 ";
                 },
                 singleValue: (state) => {
-                  return "!text-white mx-0 text-lg md:text-[22px] md:leading-[27px] !font-normal font-inter";
+                  return "!text-white tex mx-0 text-lg md:text-[22px] md:leading-[27px] !font-normal font-inter";
                 },
                 placeholder: (state) => {
                   return "!text-white !mx-0 text-lg md:text-[22px] md:leading-[27px] !font-normal font-inter";
@@ -229,7 +272,10 @@ const Index = () => {
                 IndicatorSeparator: () => null,
                 DropdownIndicator: () => null,
                 SingleValue: (props, context) => (
-                  <components.SingleValue className={"text-white"} {...props}>
+                  <components.SingleValue
+                    className={modal ? "!text-black" : "text-white"}
+                    {...props}
+                  >
                     {get(props, "data.label")}
                   </components.SingleValue>
                 ),
@@ -241,7 +287,7 @@ const Index = () => {
       <div className="col-span-12 lg:col-span-2 z-10">
         <button
           type="button"
-          className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50"
+          className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50 text-white"
           onClick={() =>
             router.push({
               pathname: "/services",
