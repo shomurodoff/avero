@@ -43,6 +43,7 @@ const Index: React.FC<Props> = ({ title, subTitle, image }) => {
         <Image
           src={image}
           alt="Image"
+          quality={100}
           fill
           objectFit="cover"
           className="rounded-[25px]"

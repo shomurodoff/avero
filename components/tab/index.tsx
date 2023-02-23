@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode, useState } from "react";
+import React, { Fragment, ReactNode, useEffect, useState } from "react";
 import { get, isEqual, map } from "lodash";
 import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
@@ -12,9 +12,14 @@ interface Props {
     icon: StaticImageData;
     content: ReactNode;
   }[];
+  activeContent?: number;
 }
-const Index: React.FC<Props> = ({ data }) => {
+const Index: React.FC<Props> = ({ data, activeContent }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
+
+  useEffect(() => {
+    setActiveTab(activeContent ? activeContent : 0);
+  }, []);
 
   return (
     <Fragment>

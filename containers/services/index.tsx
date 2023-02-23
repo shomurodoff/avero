@@ -18,6 +18,8 @@ const Index: React.FC = () => {
   const [openForm, setOpenForm] = useState<boolean>(false);
   const router = useRouter();
 
+  console.log(router);
+
   const tabs = [
     {
       id: 1,
@@ -60,7 +62,7 @@ const Index: React.FC = () => {
   return (
     <Fragment>
       <PassengerFilter setOpenForm={setOpenForm} />
-      <Tab data={tabs} />
+      <Tab data={tabs} activeContent={Number(get(router, "query.services"))} />
       <Modal open={openForm} setOpen={setOpenForm}>
         <div className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px] pb-7 pt-5  p-[15px] md:p-[25px] md:pb-28">
           <div className="hidden md:flex justify-end mb-10">

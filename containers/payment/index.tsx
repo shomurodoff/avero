@@ -14,9 +14,11 @@ import {
 } from "../../assets/images/payment";
 import Image, { StaticImageData } from "next/image";
 import clsx from "clsx";
+import { useRouter } from "next/router";
 
 const Index = () => {
   const [activePayment, setActivePayment] = useState<number | null>(null);
+  const router = useRouter();
   const buyList: {
     id: number;
     icon: StaticImageData;
@@ -26,7 +28,7 @@ const Index = () => {
     description: string;
   }[] = [
     {
-      id: 1,
+      id: 0,
       icon: CabinIcon,
       title: "Samolyot o’rindig’i",
       content: [{ id: 1.1, title: "14A", description: "Sizning joyingiz" }],
@@ -34,7 +36,7 @@ const Index = () => {
       description: "O’rindiq narxi",
     },
     {
-      id: 2,
+      id: 1,
       icon: MealIcon,
       title: "Taomnoma",
       content: [
@@ -54,7 +56,7 @@ const Index = () => {
       description: "Ovqatlar narxi",
     },
     {
-      id: 3,
+      id: 2,
       icon: WieghtIcon,
       title: "Qo’shimcha yuk",
       content: [
@@ -69,13 +71,20 @@ const Index = () => {
     },
   ];
 
+  const handleChange = (param: number) =>
+    router.push({ pathname: `/services/`, query: { services: param } });
+
   return (
     <Container className={"py-[60px] font-graphik"}>
-      <h1 className={"text-[35px] leading-none font-semibold mb-[25px]"}>
+      <h1
+        className={
+          "text-[35px] leading-none font-semibold mb-[25px] hidden md:block"
+        }
+      >
         To'lash uchun
       </h1>
       <div className={"grid grid-cols-12 gap-6"}>
-        <div className={"col-span-12 md:col-span-5"}>
+        <div className={"col-span-12 lg:col-span-5"}>
           {map(buyList, (item) => (
             <Card
               className={
@@ -89,11 +98,7 @@ const Index = () => {
               >
                 <div className={"flex items-center gap-5"}>
                   <Image src={get(item, "icon", "")} alt={"Icon Image"} />
-                  <h4
-                    className={
-                      "text-[18px] leading-none  text-[18px] leading-none font-semibold"
-                    }
-                  >
+                  <h4 className={"text-[18px] leading-none  font-semibold"}>
                     {get(item, "title", "")}
                   </h4>
                 </div>
@@ -102,10 +107,18 @@ const Index = () => {
                     className={
                       "py-2 px-4 border-2 border-black rounded-large font-inter text-[13px] leading-[16px] font-medium hidden md:block"
                     }
+                    onClick={() => {
+                      handleChange(get(item, "id"));
+                    }}
                   >
                     O’zgartirish
                   </button>
-                  <button>
+                  <button
+                    className="md:hidden"
+                    onClick={() => {
+                      handleChange(get(item, "id"));
+                    }}
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -158,7 +171,7 @@ const Index = () => {
                     >
                       {get(item, "title")}
                     </h3>
-                    <p className={"text-[14px] leading-[18px] leading-[18px]"}>
+                    <p className={"text-[14px] leading-[18px]"}>
                       {get(item, "description")}
                     </p>
                   </li>
@@ -167,7 +180,7 @@ const Index = () => {
                   <h3 className={"text-[20px] leading-[18px] font-normal mb-2"}>
                     {get(item, "totalSum", "")} UZS
                   </h3>
-                  <p className={"text-[14px] leading-[18px] leading-[18px]"}>
+                  <p className={"text-[14px] leading-[18px]"}>
                     {get(item, "description", "")}
                   </p>
                 </li>
@@ -175,17 +188,20 @@ const Index = () => {
             </Card>
           ))}
         </div>
-        <div className={"col-span-12 md:col-span-7"}>
-          <Card className={"bg-white p-4 pt-5 rounded-medium"}>
+        <div className={"col-span-12 lg:col-span-7 font-graphik"}>
+          <Card className={"bg-white p-4 lg:p-7 lg:py-8 pt-5 rounded-medium"}>
             <h4 className={"text-sm leading-[18px] font-normal"}>
               Jami to’lanadigan summa
             </h4>
-            <h2 className={"text-[32px] font-medium mb-[30px]"}>639 000 UZS</h2>
-            <div className={"grid grid-cols-12 gap-1"}>
+            <h2 className={"text-[32px] font-medium mb-[30px] "}>
+              639 000 UZS
+            </h2>
+            <div className={"grid grid-cols-12 gap-1 mb-10"}>
               <div
                 className={clsx(
-                  "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5 cursor-pointer",
-                  isEqual(activePayment, 1) && "border-[#043785] !border-2"
+                  "col-span-6 xl:col-span-3 border rounded-medium p-[18px] px-5 cursor-pointer",
+                  isEqual(activePayment, 1) &&
+                    "border-[#043785] !border-2 outline-2 p-[17px] px-[19px]"
                 )}
                 onClick={() => setActivePayment(1)}
               >
@@ -216,8 +232,9 @@ const Index = () => {
               </div>
               <div
                 className={clsx(
-                  "col-span-6 md:col-span-3 border rounded-medium p-[18px] px-5 cursor-pointer",
-                  isEqual(activePayment, 2) && "border-[#043785] !border-2"
+                  "col-span-6 xl:col-span-3 border rounded-medium p-[18px] px-5 cursor-pointer",
+                  isEqual(activePayment, 2) &&
+                    "border-[#043785] !border-2 outline-2 p-[17px] px-[19px]"
                 )}
                 onClick={() => setActivePayment(2)}
               >
@@ -248,8 +265,9 @@ const Index = () => {
               </div>
               <div
                 className={clsx(
-                  "col-span-6 md:col-span-4 border rounded-medium p-[18px] px-5 cursor-pointer",
-                  isEqual(activePayment, 3) && "border-[#043785] !border-2"
+                  "col-span-12 xl:col-span-4 border rounded-medium p-[18px] px-5 cursor-pointer",
+                  isEqual(activePayment, 3) &&
+                    "border-[#043785] !border-2 outline-2 p-[17px] px-[19px]"
                 )}
                 onClick={() => setActivePayment(3)}
               >
@@ -283,6 +301,9 @@ const Index = () => {
                 </div>
               </div>
             </div>
+            <button className="text-sm text-white font-semibold font-inter bg-primary-red rounded-default px-9 py-4 w-full md:w-auto">
+              To’lash
+            </button>
           </Card>
         </div>
       </div>
