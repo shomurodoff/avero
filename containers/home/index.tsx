@@ -331,7 +331,7 @@ const Index = () => {
             quality={100}
           />
           <Container className="pt-[126px] lg:pt-[250px] pb-[70px] lg:pb-[86px] px-[15px] md:px-8 lg:px-[60px]">
-            <div className="flex flex-col ;g:flex-row justify-between text-white">
+            <div className="flex flex-col lg:flex-row justify-between text-white">
               <div className="max max-w-2xl">
                 <h2 className="text-[32px] md:text-[45px] leading-[45px] md:leading-[60px] font-montserrat font-bold mb-[1px] md:mb-2 line-clamp-1 md:line-clamp-4">
                   Aviachipta sotib olgandan keyingi xizmatlar
