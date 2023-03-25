@@ -6,6 +6,7 @@ import React from "react";
 import CardButton from "./card-button";
 import { Container } from "../../../UI";
 import { useRouter } from "next/router";
+import Language from "./language";
 
 interface Props {
   main?: boolean;
@@ -79,11 +80,14 @@ const Index: React.FC<Props> = ({ main, payment }) => {
               </Link>
             </div>
           </nav>
-          {!payment && (
-            <div className="h-full items-center flex absolute right-0 bottom-0">
-              <CardButton main={main} />
-            </div>
-          )}
+          <div className="h-full items-center flex absolute right-0 bottom-0">
+            <Language />
+          </div>
+          {/*{!payment && (*/}
+          {/*  <div className="h-full items-center flex absolute right-0 bottom-0">*/}
+          {/*    <CardButton main={main} />*/}
+          {/*  </div>*/}
+          {/*)}*/}
         </div>
       </Container>
     </div>

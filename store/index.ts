@@ -9,6 +9,7 @@ interface storeState {
   setWeigt: any;
   resetWeigt: () => void;
   findTotal: any;
+  lang: string;
 }
 
 export const useStore = create<storeState>()((set) => ({
@@ -22,5 +23,7 @@ export const useStore = create<storeState>()((set) => ({
     set((state) => ({ weight: state.weight + newState })),
   setSeat: (newState: number) => set((state) => ({ seat: newState })),
   resetWeigt: () => set((state) => ({ weight: 0 })),
+  lang: "uz",
   findTotal: () => set((state) => ({ totalSum: state.weight * 13000 })),
+  setLang: (lang: string) => set((state) => ({ ...state, lang })),
 }));
