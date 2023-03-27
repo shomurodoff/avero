@@ -81,7 +81,7 @@ const Index: React.FC<Props> = ({ main, payment }) => {
             </div>
           </nav>
           <div className="h-full items-center flex absolute right-0 bottom-0">
-            <Language />
+            <Language main={main} />
           </div>
           {/*{!payment && (*/}
           {/*  <div className="h-full items-center flex absolute right-0 bottom-0">*/}
