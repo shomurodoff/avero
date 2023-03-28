@@ -81,7 +81,18 @@ const Index: React.FC<Props> = ({ main, payment }) => {
             </div>
           </nav>
           <div className="h-full items-center flex absolute right-0 bottom-0">
-            <Language main={main} />
+            <div className={"flex items-center gap-4"}>
+              <a
+                href={`tel:+998781000000`}
+                className={clsx(
+                  "md:text-xl font-montserrat font-semibold tracking-tighter",
+                  main && "text-white "
+                )}
+              >
+                +998 (78)-100-00-00
+              </a>
+              <Language main={main} />
+            </div>
           </div>
           {/*{!payment && (*/}
           {/*  <div className="h-full items-center flex absolute right-0 bottom-0">*/}

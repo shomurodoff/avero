@@ -35,6 +35,70 @@ const Index = () => {
         subTitle="Engage active clients at the right time and save time chasing unqualified leads.  clients at the right time and save time chasingunqualified leads."
         image={weightBanner}
       />
+      <section className="mb-24 lg:mb-32 font-montserrat md:font-graphik">
+        <div className="px-5 md:px-11  pt-7 md:pt-[52px] bg-[#043785] rounded-large grid grid-cols-12 gap-y-16 md:g">
+          <div className="col-span-12 lg:col-span-6 mb-7 z-10">
+            <h3 className="text-white text-2xl lg:text-[35px] leading-[34px] lg:leading-[45px] max-w-xs lg:max-w-md mb-12">
+              Ortiqcha yuk qo’shish uchun yuk og’irligini kiriting
+            </h3>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex gap-[3px] font-inter mb-7 max-w-xs lg:max-w-md">
+                <div className="flex-grow bg-white bg-opacity-25 px-[25px] py-4 rounded-l-medium flex flex-col">
+                  <label className="text-sm leading-4 font-normal text-white mb-[5px]">
+                    Yuk og'irligi
+                  </label>
+                  <input
+                      className="focus:outline-0 bg-transparent text-[22px] leading-[26px] font-medium text-white w-full"
+                      type="number"
+                      placeholder="34"
+                      {...register("weight")}
+                  />
+                </div>
+                <div className="bg-white bg-opacity-25 flex items-end px-[25px] pt-4 pb-5 rounded-r-medium">
+                  <h4 className=" text-[22px] leading-[26px] font-medium text-white">
+                    KG
+                  </h4>
+                </div>
+              </div>
+              <button
+                  className="text-base md:text-lg  leading-4 md:leading-5 font-medium font-poppins text-white bg-primary-red py-4 md:py-[18px] px-6 rounded-default"
+                  type="submit"
+              >
+                Yuk qo’shish
+              </button>
+            </form>
+          </div>
+          <div className="col-span-12 lg:col-span-6 relative -z-0s">
+            <div className="video-player bg-red-600 absolute -top-24 md:-top-36 right-0 lg:left-0 xl:-left-8 lg:right-auto lg:top-full lg:-translate-y-2/3  rounded-full z-10">
+              <video
+                  autoPlay
+                  loop
+                  muted
+                  className="object-cover  h-40 w-40 md:w-72 md:h-72 xl:h-80 xl:w-80"
+              >
+                <source src="/case-video.mp4"></source>
+              </video>
+            </div>
+            <div className="flex  justify-center lg:justify-end items-end w-full h-full">
+              <Image
+                  src={Cases}
+                  alt="Image"
+                  className="-mr-6 md:-mr-10 lg:-mr-10"
+              />
+            </div>
+            <Image
+                src={BgCasesSm}
+                className="absolute top-0 -right-5 md:-right-11 lg:hidden"
+                alt="Image"
+            />
+            <Image
+                src={BgCasesMd}
+                alt="Image"
+                className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-1/2 -z-0 max-w-[500px]"
+            />
+          </div>
+        </div>
+      </section>
       <section className="font-graphik flex flex-col gap-y-2.5 md:gap-y-6 my-24">
         <div className="p-5 pt-10 lg:p-6 border rounded-large">
           <div className="flex flex-col md:flex-row gap-x-10 gap-y-4 md:items-center">
@@ -48,7 +112,7 @@ const Index = () => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-path="url(#clip0_577_7473)">
+                  <g clipPath="url(#clip0_577_7473)">
                     <path
                       d="M15.97 5.43603C17.2247 5.43603 18.4512 5.8081 19.4945 6.50519C20.5378 7.20227 21.3509 8.19307 21.831 9.35228C22.3112 10.5115 22.4368 11.7871 22.192 13.0177C21.9473 14.2483 21.3431 15.3787 20.4558 16.2659C19.5686 17.1531 18.4382 17.7573 17.2076 18.0021C15.977 18.2469 14.7014 18.1213 13.5422 17.6411C12.383 17.1609 11.3922 16.3478 10.6951 15.3045C9.99804 14.2613 9.62598 13.0347 9.62598 11.78C9.62598 10.0975 10.2944 8.48387 11.4841 7.29414C12.6738 6.10441 14.2874 5.43603 15.97 5.43603ZM15.97 2.89844C14.2134 2.89844 12.4962 3.41933 11.0356 4.39525C9.57505 5.37117 8.43668 6.75829 7.76445 8.38118C7.09223 10.0041 6.91634 11.7899 7.25904 13.5127C7.60174 15.2356 8.44763 16.8181 9.68974 18.0602C10.9318 19.3024 12.5144 20.1482 14.2373 20.4909C15.9601 20.8336 17.7459 20.6577 19.3688 19.9855C20.9917 19.3133 22.3788 18.1749 23.3547 16.7144C24.3306 15.2538 24.8515 13.5366 24.8515 11.78C24.8515 9.42447 23.9158 7.16541 22.2502 5.49979C20.5846 3.83417 18.3255 2.89844 15.97 2.89844Z"
                       fill="white"
@@ -127,70 +191,6 @@ const Index = () => {
                 mumkin.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-      <section className="mb-24 lg:mb-64 font-montserrat md:font-graphik">
-        <div className="px-5 md:px-11  pt-7 md:pt-[52px] bg-[#043785] rounded-large grid grid-cols-12 gap-y-16 md:g">
-          <div className="col-span-12 lg:col-span-6 mb-7 z-10">
-            <h3 className="text-white text-2xl lg:text-[35px] leading-[34px] lg:leading-[45px] max-w-xs lg:max-w-md mb-12">
-              Ortiqcha yuk qo’shish uchun yuk og’irligini kiriting
-            </h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex gap-[3px] font-inter mb-7 max-w-xs lg:max-w-md">
-                <div className="flex-grow bg-white bg-opacity-25 px-[25px] py-4 rounded-l-medium flex flex-col">
-                  <label className="text-sm leading-4 font-normal text-white mb-[5px]">
-                    Yuk og'irligi
-                  </label>
-                  <input
-                    className="focus:outline-0 bg-transparent text-[22px] leading-[26px] font-medium text-white w-full"
-                    type="number"
-                    placeholder="34"
-                    {...register("weight")}
-                  />
-                </div>
-                <div className="bg-white bg-opacity-25 flex items-end px-[25px] pt-4 pb-5 rounded-r-medium">
-                  <h4 className=" text-[22px] leading-[26px] font-medium text-white">
-                    KG
-                  </h4>
-                </div>
-              </div>
-              <button
-                className="text-base md:text-lg  leading-4 md:leading-5 font-medium font-poppins text-white bg-primary-red py-4 md:py-[18px] px-6 rounded-default"
-                type="submit"
-              >
-                Yuk qo’shish
-              </button>
-            </form>
-          </div>
-          <div className="col-span-12 lg:col-span-6 relative -z-0s">
-            <div className="video-player bg-red-600 absolute -top-24 md:-top-36 right-0 lg:left-0 xl:-left-8 lg:right-auto lg:top-full lg:-translate-y-2/3  rounded-full z-10">
-              <video
-                autoPlay
-                loop
-                muted
-                className="object-cover  h-40 w-40 md:w-72 md:h-72 xl:h-80 xl:w-80"
-              >
-                <source src="/case-video.mp4"></source>
-              </video>
-            </div>
-            <div className="flex  justify-center lg:justify-end items-end w-full h-full">
-              <Image
-                src={Cases}
-                alt="Image"
-                className="-mr-6 md:-mr-10 lg:-mr-10"
-              />
-            </div>
-            <Image
-              src={BgCasesSm}
-              className="absolute top-0 -right-5 md:-right-11 lg:hidden"
-              alt="Image"
-            />
-            <Image
-              src={BgCasesMd}
-              alt="Image"
-              className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-1/2 -z-0 max-w-[500px]"
-            />
           </div>
         </div>
       </section>

@@ -19,6 +19,50 @@ const Index = () => {
         subTitle="Engage active clients at the right time and save time chasing unqualified leads. clients at the right time and save time"
         image={seatBannerImage}
       />
+      <section className="font-montserrat mb-40">
+        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40 gap-y-24 md:gap-y-0">
+          <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6 ">
+            <p className="font-graphik font-medium text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
+              Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida{" "}
+              <span className="inline-block relative text-primary-red">
+                24 soat
+                <Image
+                  src={borderBottom}
+                  alt="Image"
+                  className="w-full absolute"
+                />
+              </span>{" "}
+              oldin xizmatga buyurtma bering.
+            </p>
+            <button className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
+              O’rindiq tanlash
+            </button>
+          </div>
+          <div className="col-span-12 md:col-span-5 row-span-2 md:row-span-6">
+            <div className="relative w-full h-full mt-8">
+              <Image
+                src={seatOrderImage}
+                quality={100}
+                alt="image Girl"
+                className="absolute -bottom-1/2 md:-bottom-1/4 lg:-bottom-1/3  left-0 lg:-left-12 xl:left-4  z-10 w-60 h-60  md:w-64 md:h-64 lg:w-[400px] lg:h-[400px]"
+              />
+              <div className="bg-primary-red w-[168px] md:w-60 h-[168px] md:h-60 lg:w-[320px] lg:h-[320px] rounded-full absolute -bottom-12 md:bottom-0 md:right-2 right-8"></div>
+              <Image
+                src={seatOrderRingImage}
+                quality={100}
+                alt="image Girl"
+                className="absolute -bottom-2/3 md:-bottom-1/3 right-11 md:-right-4 lg:right-8 lg:h-[400px] lg:w-[150px] lg:rotate-12"
+              />
+              <Image
+                src={seatOrderRingImage}
+                quality={100}
+                alt="image Girl"
+                className="absolute -bottom-2/3 md:-bottom-1/3 -right-3 md:-right-10  lg:h-[400px] lg:w-[150px] lg:rotate-12"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="relative mt-10 lg:mt-40 lg:mb-24">
         <div className="font-graphik">
           <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">
@@ -81,50 +125,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <section className="font-montserrat mb-40">
-        <div className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40 gap-y-24 md:gap-y-0">
-          <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6 ">
-            <p className="font-graphik font-medium text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
-              Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida{" "}
-              <span className="inline-block relative text-primary-red">
-                24 soat
-                <Image
-                  src={borderBottom}
-                  alt="Image"
-                  className="w-full absolute"
-                />
-              </span>{" "}
-              oldin xizmatga buyurtma bering.
-            </p>
-            <button className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
-              O’rindiq tanlash
-            </button>
-          </div>
-          <div className="col-span-12 md:col-span-5 row-span-2 md:row-span-6">
-            <div className="relative w-full h-full mt-8">
-              <Image
-                src={seatOrderImage}
-                quality={100}
-                alt="image Girl"
-                className="absolute -bottom-1/2 md:-bottom-1/4 lg:-bottom-1/3  left-0 lg:-left-12 xl:left-4  z-10 w-60 h-60  md:w-64 md:h-64 lg:w-[400px] lg:h-[400px]"
-              />
-              <div className="bg-primary-red w-[168px] md:w-60 h-[168px] md:h-60 lg:w-[320px] lg:h-[320px] rounded-full absolute -bottom-12 md:bottom-0 md:right-2 right-8"></div>
-              <Image
-                src={seatOrderRingImage}
-                quality={100}
-                alt="image Girl"
-                className="absolute -bottom-2/3 md:-bottom-1/3 right-11 md:-right-4 lg:right-8 lg:h-[400px] lg:w-[150px] lg:rotate-12"
-              />
-              <Image
-                src={seatOrderRingImage}
-                quality={100}
-                alt="image Girl"
-                className="absolute -bottom-2/3 md:-bottom-1/3 -right-3 md:-right-10  lg:h-[400px] lg:w-[150px] lg:rotate-12"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+
       <div className="fixed md:static bottom-0 inset-x-0 z-50 bg-white bg-opacity-90  md:bg-[#F9F9F9] py-5 px-6 md:rounded-medium flex flex-col gap-y-4 md:flex-row justify-between  md:mb-8 shadow-[0px_-2px_4px_rgba(121,121,121,0.35)] md:shadow-none">
         <div>
           <h2 className="font-graphik text-[32px] leading-[44px] font-medium flex items-center gap-2">
