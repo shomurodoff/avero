@@ -39,7 +39,7 @@ const Index: React.FC<Props> = ({ modal }) => {
                 "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
                 modal ? "placeholder:text-black" : "placeholder:text-white"
               )}
-              placeholder={"Kurbanov"}
+              placeholder={""}
             />
           </div>
         </div>
@@ -59,7 +59,7 @@ const Index: React.FC<Props> = ({ modal }) => {
                 "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
                 modal ? "placeholder:text-black" : "placeholder:text-white"
               )}
-              placeholder={"Kurbanov"}
+              placeholder={""}
             />
           </div>
         </div>
@@ -96,7 +96,7 @@ const Index: React.FC<Props> = ({ modal }) => {
               </span>
             </label>
             <ReactSelect
-              placeholder={"UzAirways"}
+              placeholder={"Tanlang..."}
               openMenuOnFocus
               onChange={(value) => setAirways(toLower(get(value, "label")))}
               isSearchable={false}
