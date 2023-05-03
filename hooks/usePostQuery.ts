@@ -33,7 +33,7 @@ const usePostQuery = ({ hideSuccessToast = false, listKeyId = "" }) => {
         if (isArray(get(data, "response.data"))) {
           forEach(get(data, "response.data"), (val) => {
             toast.error(
-              t(get(val, "message", "ERROR"), { position: "top-right" })
+              get(val, "message", "ERROR"), { position: "top-right" }
             );
           });
         } else {

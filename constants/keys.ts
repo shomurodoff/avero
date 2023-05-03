@@ -1,3 +1,5 @@
 export const KEYS = {
-  page: 'page',
+    page: 'page',
+    getData: 'getData',
+    multiService: 'multiService',
 };

@@ -54,7 +54,21 @@ const Index: React.FC<Props> = ({modal}) => {
                         modal ? "bg-[#ECECEC]" : "bg-[#fff] bg-opacity-[.25]"
                     )}
                 >
-                    <div className="flex flex-col">
+                    {airways == 'CHARTER_FLIGHTS' ? <div className="flex flex-col">
+                        <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
+                            Passport
+                        </label>
+                        <input
+                            value={passportNumber}
+                            onChange={(e) => setPassportNumber(e.target.value)}
+                            type="text"
+                            className={clsx(
+                                "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
+                                modal ? "placeholder:text-black" : "placeholder:text-white"
+                            )}
+                            placeholder={"Kiriting..."}
+                        />
+                    </div> : <div className="flex flex-col">
                         <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
                             Familya
                         </label>
@@ -68,7 +82,7 @@ const Index: React.FC<Props> = ({modal}) => {
                             )}
                             placeholder={"Kiriting..."}
                         />
-                    </div>
+                    </div>}
                 </div>
                 <div
                     className={clsx(
@@ -186,7 +200,7 @@ const Index: React.FC<Props> = ({modal}) => {
                     onClick={() =>
                         router.push({
                             pathname: "/services",
-                            query: {code: airways,ticketNumber,family},
+                            query: {code: airways,ticketNumber,family,passportNumber},
                         })
                     }
                 >
