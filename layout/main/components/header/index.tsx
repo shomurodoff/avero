@@ -1,10 +1,10 @@
-import { MainPageLogo, ServicesPageLogo } from "../../images";
+import { MainPageLogo, ServicesPageLogo } from "../../../images";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import CardButton from "./card-button";
-import { Container } from "../../../UI";
+import { Container } from "../../../../UI";
 import { useRouter } from "next/router";
 import Language from "./language";
 

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useStore } from "../../../store";
+import { useStore } from "../../../../store";
 import { get } from "lodash";
 import { NumericFormat } from "react-number-format";
 

@@ -7,17 +7,17 @@ import storage from "../../../../services/storage";
 import Image from "next/image";
 import { FlagUzb } from "../../../images";
 
-const Language = ({ main }) => {
+const Language = ({ main }:any) => {
   const [isOpenLanguage, setOpenLanguage] = useState(false);
-  const language = useStore((state) => get(state, "lang"));
-  const setLanguage = useStore((state) => get(state, "setLang", () => {}));
+  const language:any = useStore((state) => get(state, "lang"));
+  const setLanguage:any = useStore((state) => get(state, "setLang", () => {}));
   const [activeLanguage, setActiveLanguage] = useState({
     id: 123213,
     title: "O'z",
     code: "uz",
     icon: FlagUzb,
   });
-  const changeLang = (code) => {
+  const changeLang = (code:any) => {
     setLanguage(code);
     storage.set(language, code);
   };

@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import dayjs from "dayjs";
 import clsx from "clsx";
-import { MainPageLogo } from "../../images";
+import { MainPageLogo } from "../../../images";
 import { get, map } from "lodash";
-import { footer, footerLinks } from "../../../mock/footer";
-import { Container } from "../../../UI";
+import { footer, footerLinks } from "../../../../mock/footer";
+import { Container } from "../../../../UI";
 
 const Index: React.FC = () => {
   const currentYear = dayjs().year();
