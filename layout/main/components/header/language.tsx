@@ -7,17 +7,17 @@ import storage from "../../../../services/storage";
 import Image from "next/image";
 import { FlagUzb } from "../../../images";
 
-const Language = ({ main }:any) => {
+const Language = ({ main }: any) => {
   const [isOpenLanguage, setOpenLanguage] = useState(false);
-  const language:any = useStore((state) => get(state, "lang"));
-  const setLanguage:any = useStore((state) => get(state, "setLang", () => {}));
+  const language: any = useStore((state) => get(state, "lang"));
+  const setLanguage: any = useStore((state) => get(state, "setLang", () => {}));
   const [activeLanguage, setActiveLanguage] = useState({
     id: 123213,
     title: "O'z",
     code: "uz",
     icon: FlagUzb,
   });
-  const changeLang = (code:any) => {
+  const changeLang = (code: any) => {
     setLanguage(code);
     storage.set(language, code);
   };
@@ -29,8 +29,7 @@ const Language = ({ main }:any) => {
   return (
     <div
       className={clsx(
-        "flex items-center gap-1.5 px-2 md:px-3  border rounded-3xl cursor-pointer order-3 py-2 relative",
-        main ? "border-gray-200  border-opacity-40 " : "border border-black"
+        "flex items-center gap-1.5 px-2 md:px-3  border rounded-3xl cursor-pointer order-3 py-2 relative border-gray-200  border-opacity-40 "
       )}
       onClick={() => setOpenLanguage((prevState) => !prevState)}
     >
@@ -39,7 +38,7 @@ const Language = ({ main }:any) => {
         alt={"Image Flag"}
         className={"rounded-md w-6 h-6 block"}
       />
-      <span className={clsx("hidden md:block md:w-6", main && "text-white")}>
+      <span className={clsx("hidden md:block md:w-6 text-white")}>
         {get(activeLanguage, "title", "")}
       </span>
       <div

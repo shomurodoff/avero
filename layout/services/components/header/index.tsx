@@ -1,4 +1,4 @@
-import { MainPageLogo } from "../../../images";
+import {MainPageLogo, ServicesPageLogo} from "../../../images";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -14,7 +14,7 @@ const Index: React.FC = () => {
             <div className="z-10">
               <Link href={"/"}>
                 <Image
-                  src={MainPageLogo}
+                  src={ServicesPageLogo}
                   alt="Logo Image"
                   className="z-[9999] w-2/3 md:w-auto"
                   quality={100}

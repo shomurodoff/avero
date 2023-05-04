@@ -1,9 +1,10 @@
 import { isEqual } from "lodash";
 import { useRouter } from "next/router";
 import React, { ReactNode, ReactElement, Fragment } from "react";
-import { Footer, Header } from "./components";
 import { getLayoutName } from "./utils";
-
+import MainLayout from "./main";
+import ServicesLayout from "./services";
+import PaymentLayout from "./payment";
 interface Props {
   children?: ReactNode | ReactElement;
 }
@@ -13,38 +14,17 @@ const Index: React.FC<Props> = ({ children }) => {
 
   console.log(pathname);
   if (isEqual(getLayoutName(pathname), "main")) {
-    return (
-      <Fragment>
-        <Header main />
-        {children}
-        <Footer />
-      </Fragment>
-    );
+    return <MainLayout>{children}</MainLayout>;
   } else if (isEqual(getLayoutName(pathname), "services")) {
-    return (
-      <Fragment>
-        <Header />
-        {children}
-        <Footer />
-      </Fragment>
-    );
+    return <ServicesLayout>{children}</ServicesLayout>;
   } else if (isEqual(getLayoutName(pathname), "payment")) {
     return (
-      <Fragment>
-        <Header payment />
+      <PaymentLayout>
         <div className={"bg-[#F1F3F6]"}>{children}</div>
-      </Fragment>
+      </PaymentLayout>
     );
   } else {
-    return (
-      <div>
-        <Fragment>
-          <Header main />
-          {children}
-          <Footer />
-        </Fragment>
-      </div>
-    );
+    return <MainLayout>{children}</MainLayout>;
   }
 };
 
