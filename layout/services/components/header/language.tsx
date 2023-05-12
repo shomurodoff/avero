@@ -31,16 +31,16 @@ const Language: React.FC<any> = () => {
   return (
     <div
       className={
-        "flex items-center gap-1.5 px-2 md:px-3  border rounded-3xl cursor-pointer order-3 py-2 relative border-gray-200  border-opacity-40 "
+        "flex items-center gap-1.5 px-2 md:px-3  border rounded-3xl cursor-pointer order-3 py-2 relative border border-black"
       }
       onClick={() => setOpenLanguage((prevState) => !prevState)}
     >
       <Image
         src={get(activeLanguage, "icon")}
         alt={"Image Flag"}
-        className={"rounded-md  w-4 h-4  md:w-6 md:h-6 block"}
+        className={"rounded-md w-6 h-6 block"}
       />
-      <span className={clsx("hidden md:block md:w-6 text-white")}>
+      <span className={"hidden md:block md:w-6"}>
         {get(activeLanguage, "title", "")}
       </span>
       <div
@@ -69,7 +69,7 @@ const Language: React.FC<any> = () => {
                 <Image
                   src={get(value, "icon")}
                   alt={"Image Flag"}
-                  className={"rounded-md w-4 h-4  md:w-6 md:h-6"}
+                  className={"rounded-md w-6 h-6"}
                 />
                 <span className={"hidden md:block"}>{get(value, "title")}</span>
               </li>

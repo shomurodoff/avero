@@ -6,7 +6,6 @@ const Index: React.FC<any> = ({ children }) => {
     <Fragment>
       <Header />
       {children}
-      <Footer />
     </Fragment>
   );
 };

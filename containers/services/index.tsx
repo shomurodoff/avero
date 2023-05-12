@@ -89,7 +89,7 @@ const Index: React.FC = () => {
             </div>
             <PassengerFilter items={get(data,'data.data',[])} setOpenForm={setOpenForm}/>
             <Tab data={tabs} activeContent={Number(get(router, "query.services"))}/>
-            <Modal open={openForm} setOpen={setOpenForm}>
+            {/* <Modal open={openForm} setOpen={setOpenForm}>
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px] pb-7 pt-5  p-[15px] md:p-[25px] md:pb-28">
                     <div className="hidden md:flex justify-end mb-10">
@@ -119,7 +119,7 @@ const Index: React.FC = () => {
                     </div>
                     <SearchForm modal/>
                 </div>
-            </Modal>
+            </Modal> */}
 
         </Fragment>
     );
