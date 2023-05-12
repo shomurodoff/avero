@@ -16,7 +16,7 @@ export const options: { id: number; title: string; icon: StaticImageData,code:st
   },
   {
     id: 1,
-    title: "Chapter flights",
+    title: "Charter flights",
     icon: uzAirwayOption,
     code:'CHARTER_FLIGHTS'
   },

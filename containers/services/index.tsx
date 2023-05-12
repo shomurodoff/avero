@@ -24,7 +24,7 @@ const Index: React.FC = () => {
     const [openForm, setOpenForm] = useState<boolean>(false);
     const router = useRouter();
     const {code, family, ticketNumber,passportNumber} = router?.query;
-    const {data, isLoading} = useGetQuery({
+    const {data} = useGetQuery({
         key: KEYS.getData,
         url: URLS.getData,
         method: 'post',
@@ -76,7 +76,6 @@ const Index: React.FC = () => {
         setLoading(false);
     }, 9000);
 
-    console.log('data', data)
     return (
         <Fragment>
             <div
@@ -121,6 +120,7 @@ const Index: React.FC = () => {
                     <SearchForm modal/>
                 </div>
             </Modal>
+
         </Fragment>
     );
 };
