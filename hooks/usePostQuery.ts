@@ -15,7 +15,7 @@ const usePostQuery = ({ hideSuccessToast = false, listKeyId = "" }) => {
     {
       onSuccess: (data) => {
         if (!hideSuccessToast) {
-          toast.success(data?.data?.message || "SUCCESS");
+          toast.success(data?.data?.message || "SUCCESS",{position: 'top-right'});
         }
 
         if (listKeyId) {
@@ -37,7 +37,7 @@ const usePostQuery = ({ hideSuccessToast = false, listKeyId = "" }) => {
             );
           });
         } else {
-          toast.error(data?.response?.data?.message || "ERROR");
+          toast.error(data?.response?.data?.message || "ERROR",{ position: "top-right" });
         }
       },
     }

@@ -98,7 +98,7 @@ html {
 }
 
 .seat_chair {
-    @apply w-[60px] h-[60px] relative cursor-pointer;
+    @apply absolute z-50 ;
 }
 
 .seat_chair_icon {
@@ -106,5 +106,5 @@ html {
 }
 
 .seat_chair_code {
-    @apply absolute z-50 top-[8px] left-1/2 -translate-x-1/2  text-lg text-red-50  font-bold font-inter;
+    @apply absolute z-50  left-1/2 -translate-x-1/2  text-lg text-red-50  font-bold font-inter top-1/2 -translate-y-2/3;
 }

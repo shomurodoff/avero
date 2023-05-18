@@ -1,36 +1,75 @@
 import Image from "next/image";
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import {
     seatBannerImage,
     seatCircleImage,
     seatOrderImage,
     seatOrderRingImage,
 } from "../../../assets/images/services/seat-services";
-import {Banner, Modal} from "../../../components";
+import {Banner, Heading, Modal} from "../../../components";
 import {borderBottom} from "../../../assets/images/hero";
 import {useRouter} from "next/router";
 import airplaneImg from "../../../assets/images/seat/airplane.png"
-import {useGetQuery} from "../../../hooks";
+import {useGetQuery, usePostQuery} from "../../../hooks";
 import {KEYS} from "../../../constants/keys";
 import {URLS} from "../../../constants/urls";
-import emptySeatIcon from "../../../assets/images/seat/seat_img.png"
-import busySeatIcon from "../../../assets/images/seat/busy_seat_img.png"
-import selectedSeatIcon from "../../../assets/images/seat/selected_seat_img.png"
-import {get} from "lodash";
+import {get, isEmpty, isEqual, isNil} from "lodash";
+import {findCabinClassType, filterSeatsByClassId} from "../../../utils"
+import {AIRLINE_TYPES, CABIN_CLASSES, SERVICE_TYPES} from "../../../constants";
+import clsx from "clsx";
+import toast from "react-hot-toast";
 
 interface Props {
-    flightCode?: string;
+    serviceData?: any;
 }
 
-const Index = ({flightCode}: Props) => {
+const Index = ({serviceData={}}: Props) => {
     const router = useRouter();
+    const [temporarySeat, setTemporarySeat] = useState<any>(null)
+    const [selectedSeat, setSelectedSeat] = useState<any>(null)
+    const [open, setOpen] = useState<any>(false)
     const {data: airplane, isLoading: isLoadingAirplane} = useGetQuery(
         {
             key: KEYS.getAirplanes,
-            url: `${URLS.getAirplanes}/HY342`,
-            enabled: !!(flightCode)
+            url: `${URLS.getAirplanes}/${get(serviceData,'flightCode')}`,
+            enabled: !!(get(serviceData,'flightCode'))
         })
+
+    const {mutate: chooseSeatRequest, isLoading: isLoadingChooseSeat} = usePostQuery({listKeyId: KEYS.multiService})
+
+    const handleSelectSeat = (seat: any) => {
+        if (isEqual(get(seat, 'id'), get(selectedSeat, 'id'))) {
+            setSelectedSeat(null)
+        } else {
+            setTemporarySeat(seat);
+        }
+    }
+    const chooseSeat = () => {
+        chooseSeatRequest({
+            url: URLS.multiService,
+            attributes: {
+                airlinesType:get(serviceData,'airlinesType'),
+                serviceType:SERVICE_TYPES.CHOOSE_SEAT,
+                ticketNumber:get(serviceData,'ticketNumber',undefined),
+                family:get(serviceData,'family',undefined),
+                seat:`${get(selectedSeat,'number')}${get(selectedSeat,'code')}`,
+                rtid:get(serviceData,'rtid',undefined)
+            }
+        },{
+            onSuccess:({data})=>{
+               setOpen(false);
+                setSelectedSeat(null);
+                setTemporarySeat(null);
+            },
+            onError:()=>{
+                setOpen(false);
+                setSelectedSeat(null);
+                setTemporarySeat(null);
+            }
+        })
+    }
     console.log('airplane', airplane)
+    console.log('selectedSeat', selectedSeat)
     return (
         <Fragment>
             <Banner
@@ -54,7 +93,9 @@ const Index = ({flightCode}: Props) => {
               </span>{" "}
                             oldin xizmatga buyurtma bering.
                         </p>
-                        <button className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
+                        <button disabled={!get(airplane, 'data.data')}
+                                onClick={() => setOpen(get(airplane, 'data.data'))}
+                                className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
                             O’rindiq tanlash
                         </button>
                     </div>
@@ -178,17 +219,169 @@ const Index = ({flightCode}: Props) => {
                     </button>
                 </div>
             </div>
-            <Modal full open={true} setOpen={() => {
-            }}>
+            <Modal full open={open} setOpen={() => setOpen(false)}>
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
                     <div className="hidden md:flex justify-between mb-6">
                         <h3 className={'text-black font-semibold text-3xl '}>O’rindiq tanlash</h3>
 
+                        <div className="flex md:justify-end items-center gap-2.5 text-white text-sm font-semibold ">
+                            {selectedSeat && <>
+                                <button onClick={chooseSeat} className="bg-primary-blue py-4 flex-none lg:px-8 rounded-[10px]">
+                                    Saqlash
+                                </button>
+                                <button onClick={() => {
+                                    setOpen(false);
+                                    router.push('/payment')
+                                }} className="bg-primary-red flex-none  py-4  lg:px-8 rounded-[10px]">
+                                    Hoziroq to’lash
+                                </button>
+                            </>}
+                            <button
+                                className="p-[17px] bg-white rounded-default"
+                                onClick={() => setOpen(false)}
+                            >
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M7.99992 6.23242L14.1874 0.0449219L15.9549 1.81242L9.76742 7.99992L15.9549 14.1874L14.1874 15.9549L7.99992 9.76742L1.81242 15.9549L0.0449219 14.1874L6.23242 7.99992L0.0449219 1.81242L1.81242 0.0449219L7.99992 6.23242Z"
+                                        fill="black"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        {isLoadingAirplane ? 'Loading...' : <div className="grid grid-cols-12 items-start">
+                            <div className="col-span-12 md:col-span-3 ">
+                                <div className={'border border-[#D4D7DE] rounded-[30px] px-8 py-7'}>
+                                    <h3 className={'text-black font-medium text-2xl mb-10'}>{get(airplane, 'data.data.nameUz')} samolyotidan
+                                        joy tanlang</h3>
+                                    <ul>
+                                        <li className={'flex items-center font-medium text-black mb-6'}>
+                                            <Image width={50} height={50}
+                                                   loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.url')}
+                                                   className={'mr-7'}
+                                                   src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.url')}
+                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.title')}</span>
+                                        </li>
+                                        <li className={'flex items-center font-medium text-black mb-6'}>
+                                            <Image width={50} height={50}
+                                                   loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.url')}
+                                                   className={'mr-7'}
+                                                   src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.url')}
+                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.title')}</span>
+                                        </li>
+                                        <li className={'flex items-center font-medium text-black '}>
+                                            <Image width={50} height={50}
+                                                   loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
+                                                   className={'mr-7'}
+                                                   src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
+                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.title')}</span>
+                                        </li>
+                                    </ul>
+                                    <hr className={'my-8'}/>
+
+                                    <ul>
+                                        <li className={'flex items-center font-medium text-black mb-6'}>
+                                            <Image width={50} height={50}
+                                                   loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.url')}
+                                                   className={'mr-7'}
+                                                   src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.url')}
+                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.title')}</span>
+                                        </li>
+                                        <li className={'flex items-center font-medium text-black mb-6'}>
+                                            <Image width={50} height={50}
+                                                   loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.url')}
+                                                   className={'mr-7'}
+                                                   src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.url')}
+                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.title')}</span>
+                                        </li>
+                                        <li className={'flex items-center font-medium text-black '}>
+                                            <Image width={50} height={50}
+                                                   loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
+                                                   className={'mr-7'}
+                                                   src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
+                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.title')}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {
+                                    selectedSeat && <Heading
+                                        title={`${get(selectedSeat, 'number')}${get(selectedSeat, 'code')} — 200 000 UZS`}
+                                        titleClass="text-[20px] leading-5 md:text-[32px] !font-semibold mt-10"
+                                        subTitle="Siz tanlagan o’rindiq"
+                                        subTitleClass="font-medium leading-[30px] !text-black"
+                                    />
+                                }
+                            </div>
+                            <div
+                                className="col-span-12 md:col-span-9 max-h-[80vh] overflow-y-auto relative text-center">
+                                <div className={'relative w-[789px] h-[2816px] mx-auto'}>
+                                    <ul>
+                                        {filterSeatsByClassId(get(airplane, 'data.data.seats', []), get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS).map((seat, index) =>
+                                            <li
+                                                onClick={() => !get(seat, 'isBusy') ? handleSelectSeat(seat) : {}}
+                                                style={{
+                                                    left: get(seat, 'positionX') + 'px',
+                                                    top: get(seat, 'positionY') + 'px'
+                                                }} key={get(seat, 'id')}
+                                                className={clsx(`seat_chair`, {'cursor-pointer': !get(seat, 'isBusy')})}>
+                                                <Image
+                                                    width={60}
+                                                    height={60}
+                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
+                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
+                                                    alt={'seat'}/>
+                                                {!get(seat, 'isBusy') && !isEqual(get(seat, 'isBusy'), get(selectedSeat, 'id')) &&
+                                                <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
+                                            </li>)}
+                                    </ul>
+
+                                    <ul>
+                                        {filterSeatsByClassId(get(airplane, 'data.data.seats', []), get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS).map((seat, index) =>
+                                            <li
+                                                onClick={() => !get(seat, 'isBusy') ? handleSelectSeat(seat) : {}}
+                                                style={{
+                                                    left: get(seat, 'positionX') + 'px',
+                                                    top: get(seat, 'positionY') + 'px'
+                                                }} key={get(seat, 'id')}
+                                                className={clsx(`seat_chair`, {'cursor-pointer': !get(seat, 'isBusy')})}>
+                                                <Image
+                                                    width={54}
+                                                    height={51}
+                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
+                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
+                                                    alt={'seat'}/>
+                                                {!get(seat, 'isBusy') &&
+                                                <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
+                                            </li>)}
+                                    </ul>
+                                    <Image width={789} height={2816} className={' relative z-10'}
+                                           loader={() => get(airplane, 'data.data.imageUrl')}
+                                           src={get(airplane, 'data.data.imageUrl')} alt={'airplaneImg'}/>
+                                </div>
+                            </div>
+                        </div>}
+                    </div>
+                </div>
+            </Modal>
+            <Modal classNames={'!max-w-[824px]'} hidden={false} open={!isNil(temporarySeat)}
+                   setOpen={() => setTemporarySeat(null)}>
+                <div
+                    className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
+                    <div className="hidden md:flex justify-between mb-10 items-start">
+                        <h3 className={'text-black font-semibold text-3xl '}>Siz {get(temporarySeat, 'number')}{get(temporarySeat, 'code')} o’rindiqni
+                            tanladingiz.
+                            Narxi 200 000 UZS. Davom etishga rozimisiz</h3>
                         <button
                             className="p-[17px] bg-white rounded-default"
-                            onClick={() => {
-                            }}
+                            onClick={() => setTemporarySeat(null)}
                         >
                             <svg
                                 width="16"
@@ -205,67 +398,21 @@ const Index = ({flightCode}: Props) => {
                         </button>
                     </div>
                     <div>
-                        <div className="grid grid-cols-12">
-                            <div className="col-span-4 border border-[#D4D7DE] rounded-[30px] p-8">
-                                <h3 className={'text-black font-medium text-xl mb-8'}>{get(airplane, 'data.data.nameUz')} samolyotidan
-                                    joy tanlang</h3>
-                                <ul>
-                                    <li className={'flex items-center font-medium text-black mb-6'}>
-                                        <Image className={'mr-8'} src={emptySeatIcon} alt={'seat'}/><span>Biznes klas
-bo’sh o’rindiqlari</span>
-                                    </li>
-                                    <li className={'flex items-center font-medium text-black mb-6'}>
-                                        <Image className={'mr-8'} src={busySeatIcon} alt={'seat'}/><span>Biznes klas
-band o’rindiqlari</span>
-                                    </li>
-                                    <li className={'flex items-center font-medium text-black'}>
-                                        <Image className={'mr-8'} src={selectedSeatIcon} alt={'seat'}/><span>Biznes klas
-siz tanlagan o’rindiq</span>
-                                    </li>
-                                </ul>
-                                <hr className={'my-8'}/>
-
-                                <ul>
-                                    <li className={'flex items-center font-medium text-black mb-6'}>
-                                        <Image className={'mr-8'} src={emptySeatIcon} alt={'seat'}/><span>Ekonom klas
-bo’sh o’rindiqlari</span>
-                                    </li>
-                                    <li className={'flex items-center font-medium text-black mb-6'}>
-                                        <Image className={'mr-8'} src={busySeatIcon} alt={'seat'}/><span>Ekonom klas
-band o’rindiqlari</span>
-                                    </li>
-                                    <li className={'flex items-center font-medium text-black'}>
-                                        <Image className={'mr-8'} src={selectedSeatIcon} alt={'seat'}/><span>Ekonom klas
-siz tanlagan o’rindiq</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-span-8 max-h-[80vh] overflow-y-auto relative text-center">
-                                <div className={'relative w-[780px] mx-auto'}>
-                                    <ul>
-                                        <li className={'seat_chair absolute left-[102px] top-[626px] z-50'}>
-                                            <svg width={60} height={60} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect x={6} width="47.3684" height={43} rx={19} fill="#FAC2CD" />
-                                                <path d="M0.662429 19.4832C1.35705 16.8262 4.49988 17.6261 4.49988 20.3637V24.6527C4.49988 36.4578 14.5735 46.0277 26.9999 46.0277H32.9999C45.4263 46.0277 55.4999 36.4578 55.4999 24.6527V20.3632C55.4999 17.6256 58.6427 16.8257 59.3374 19.4826C59.7703 21.1381 60 22.8699 60 24.6526V33.2026C60 44.2152 51.2336 53.2826 39.9686 54.4504C39.9893 54.6309 40 54.8143 40 55C40 57.7614 37.6436 60 34.7368 60H25.2632C22.3564 60 20 57.7614 20 55C20 54.8143 20.0107 54.6309 20.0314 54.4504C8.76643 53.2826 0 44.2151 0 33.2026V24.6526C0 22.8701 0.229669 21.1385 0.662429 19.4832Z" fill="#1F78FF" />
-                                                <rect x={3} y="21.7998" width={6} height="2.85" rx="1.425" fill="black" />
-                                                <rect x={20} y={50} width={20} height={10} rx={5} fill="black" />
-                                                <rect x={51} y="21.7998" width={6} height="2.85" rx="1.425" fill="black" />
-                                            </svg>
-                                            {/*<Image*/}
-                                            {/*    width={60}*/}
-                                            {/*    height={60}*/}
-                                            {/*    className={'seat_chair_icon'}*/}
-                                            {/*    src={emptySeatIcon}*/}
-                                            {/*    alt={'seat'}/>*/}
-                                            <span className={'seat_chair_code'}>A</span>
-                                        </li>
-
-                                    </ul>
-                                    <Image width={780} height={2800} className={' relative z-10'}
-                                           loader={() => get(airplane, 'data.data.imageUrl')}
-                                           src={get(airplane, 'data.data.imageUrl')} alt={'airplaneImg'}/>
-                                </div>
-                            </div>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => setTemporarySeat(null)}
+                                className=" border-2 border-black  rounded-default font-inter text-base leading-4 font-semibold py-4 px-9">
+                                Yo’q
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setSelectedSeat(temporarySeat);
+                                    setTemporarySeat(null);
+                                }}
+                                className=" bg-primary-red rounded-default font-inter text-base text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+                            >
+                                Ha, roziman
+                            </button>
                         </div>
                     </div>
                 </div>

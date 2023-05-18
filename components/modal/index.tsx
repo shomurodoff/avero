@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode, useEffect} from "react";
 import ReactModal from "react-modal";
 import clsx from "clsx";
 
@@ -6,10 +6,21 @@ interface Props {
     open: boolean;
     setOpen: any | null;
     children: ReactNode;
-    full?: Boolean
+    full?: Boolean,
+    hidden?: Boolean,
+    classNames?: String,
 }
 
-const Index = ({open, setOpen, children, full}: Props) => {
+const Index = ({open, setOpen, children, full,hidden=true,classNames=''}: Props) => {
+    useEffect(() => {
+        if(hidden) {
+            if (open) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }, [open,hidden]);
     return (
         <ReactModal
             isOpen={open}
@@ -21,7 +32,7 @@ const Index = ({open, setOpen, children, full}: Props) => {
                     {contentElement}
                 </div>
             )}
-            className={clsx("fixed   bottom-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 translate-x-1/2 right-1/2", {
+            className={clsx("fixed   bottom-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 translate-x-1/2 right-1/2",classNames, {
                 '!max-w-unset !left-8 !right-8 translate-x-0': full,
                 'container': !full
             })}

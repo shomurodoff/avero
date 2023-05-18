@@ -44,7 +44,7 @@ const Index: React.FC = () => {
             id: 1,
             title: "O’rindiq tanlash",
             icon: tabCabin,
-            content: <SeatServices flightCode={get(head(get(data,'data.data',[])),'flightCode')} />,
+            content: <SeatServices serviceData={head(get(data,'data.data',[]))} />,
         },
         {
             id: 2,

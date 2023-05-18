@@ -10,6 +10,7 @@ interface storeState {
   resetWeigt: () => void;
   findTotal: any;
   lang: string;
+
 }
 
 export const useStore = create<storeState>()((set) => ({
