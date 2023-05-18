@@ -10,9 +10,27 @@ import {Banner, Modal} from "../../../components";
 import {borderBottom} from "../../../assets/images/hero";
 import {useRouter} from "next/router";
 import airplaneImg from "../../../assets/images/seat/airplane.png"
+import {useGetQuery} from "../../../hooks";
+import {KEYS} from "../../../constants/keys";
+import {URLS} from "../../../constants/urls";
+import emptySeatIcon from "../../../assets/images/seat/seat_img.png"
+import busySeatIcon from "../../../assets/images/seat/busy_seat_img.png"
+import selectedSeatIcon from "../../../assets/images/seat/selected_seat_img.png"
+import {get} from "lodash";
 
-const Index = () => {
+interface Props {
+    flightCode?: string;
+}
+
+const Index = ({flightCode}: Props) => {
     const router = useRouter();
+    const {data: airplane, isLoading: isLoadingAirplane} = useGetQuery(
+        {
+            key: KEYS.getAirplanes,
+            url: `${URLS.getAirplanes}/HY342`,
+            enabled: !!(flightCode)
+        })
+    console.log('airplane', airplane)
     return (
         <Fragment>
             <Banner
@@ -166,6 +184,7 @@ const Index = () => {
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
                     <div className="hidden md:flex justify-between mb-6">
                         <h3 className={'text-black font-semibold text-3xl '}>O’rindiq tanlash</h3>
+
                         <button
                             className="p-[17px] bg-white rounded-default"
                             onClick={() => {
@@ -187,11 +206,65 @@ const Index = () => {
                     </div>
                     <div>
                         <div className="grid grid-cols-12">
-                            <div className="col-span-4">
-                                d
+                            <div className="col-span-4 border border-[#D4D7DE] rounded-[30px] p-8">
+                                <h3 className={'text-black font-medium text-xl mb-8'}>{get(airplane, 'data.data.nameUz')} samolyotidan
+                                    joy tanlang</h3>
+                                <ul>
+                                    <li className={'flex items-center font-medium text-black mb-6'}>
+                                        <Image className={'mr-8'} src={emptySeatIcon} alt={'seat'}/><span>Biznes klas
+bo’sh o’rindiqlari</span>
+                                    </li>
+                                    <li className={'flex items-center font-medium text-black mb-6'}>
+                                        <Image className={'mr-8'} src={busySeatIcon} alt={'seat'}/><span>Biznes klas
+band o’rindiqlari</span>
+                                    </li>
+                                    <li className={'flex items-center font-medium text-black'}>
+                                        <Image className={'mr-8'} src={selectedSeatIcon} alt={'seat'}/><span>Biznes klas
+siz tanlagan o’rindiq</span>
+                                    </li>
+                                </ul>
+                                <hr className={'my-8'}/>
+
+                                <ul>
+                                    <li className={'flex items-center font-medium text-black mb-6'}>
+                                        <Image className={'mr-8'} src={emptySeatIcon} alt={'seat'}/><span>Ekonom klas
+bo’sh o’rindiqlari</span>
+                                    </li>
+                                    <li className={'flex items-center font-medium text-black mb-6'}>
+                                        <Image className={'mr-8'} src={busySeatIcon} alt={'seat'}/><span>Ekonom klas
+band o’rindiqlari</span>
+                                    </li>
+                                    <li className={'flex items-center font-medium text-black'}>
+                                        <Image className={'mr-8'} src={selectedSeatIcon} alt={'seat'}/><span>Ekonom klas
+siz tanlagan o’rindiq</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <div className="col-span-8 max-h-[80vh] overflow-y-auto relative">
-                                <Image className={'mx-auto'} src={airplaneImg} alt={'airplaneImg'}/>
+                            <div className="col-span-8 max-h-[80vh] overflow-y-auto relative text-center">
+                                <div className={'relative w-[780px] mx-auto'}>
+                                    <ul>
+                                        <li className={'seat_chair absolute left-[102px] top-[626px] z-50'}>
+                                            <svg width={60} height={60} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x={6} width="47.3684" height={43} rx={19} fill="#FAC2CD" />
+                                                <path d="M0.662429 19.4832C1.35705 16.8262 4.49988 17.6261 4.49988 20.3637V24.6527C4.49988 36.4578 14.5735 46.0277 26.9999 46.0277H32.9999C45.4263 46.0277 55.4999 36.4578 55.4999 24.6527V20.3632C55.4999 17.6256 58.6427 16.8257 59.3374 19.4826C59.7703 21.1381 60 22.8699 60 24.6526V33.2026C60 44.2152 51.2336 53.2826 39.9686 54.4504C39.9893 54.6309 40 54.8143 40 55C40 57.7614 37.6436 60 34.7368 60H25.2632C22.3564 60 20 57.7614 20 55C20 54.8143 20.0107 54.6309 20.0314 54.4504C8.76643 53.2826 0 44.2151 0 33.2026V24.6526C0 22.8701 0.229669 21.1385 0.662429 19.4832Z" fill="#1F78FF" />
+                                                <rect x={3} y="21.7998" width={6} height="2.85" rx="1.425" fill="black" />
+                                                <rect x={20} y={50} width={20} height={10} rx={5} fill="black" />
+                                                <rect x={51} y="21.7998" width={6} height="2.85" rx="1.425" fill="black" />
+                                            </svg>
+                                            {/*<Image*/}
+                                            {/*    width={60}*/}
+                                            {/*    height={60}*/}
+                                            {/*    className={'seat_chair_icon'}*/}
+                                            {/*    src={emptySeatIcon}*/}
+                                            {/*    alt={'seat'}/>*/}
+                                            <span className={'seat_chair_code'}>A</span>
+                                        </li>
+
+                                    </ul>
+                                    <Image width={780} height={2800} className={' relative z-10'}
+                                           loader={() => get(airplane, 'data.data.imageUrl')}
+                                           src={get(airplane, 'data.data.imageUrl')} alt={'airplaneImg'}/>
+                                </div>
                             </div>
                         </div>
                     </div>

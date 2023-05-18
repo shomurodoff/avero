@@ -9,72 +9,102 @@
 @tailwind utilities;
 
 @layer base {
-  h1,
-  h3,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    @apply -tracking-[.02em];
-  }
+    h1,
+    h3,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        @apply -tracking-[.02em];
+    }
 }
 .wider-tracking {
-  @apply -tracking-[.04em];
+    @apply -tracking-[.04em];
 }
 
 .css-1xc3v61-indicatorContainer {
-  color: #000 !important;
+    color: #000 !important;
 }
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
 .input-form {
-  @apply bg-transparent text-white font-inter font-medium text-xl;
+    @apply bg-transparent text-white font-inter font-medium text-xl;
 }
+
 .food-serving-bg {
-  background-image: url("../images/services/food-services/food-serving-bg.png");
+    background-image: url("../images/services/food-services/food-serving-bg.png");
 }
+
 .circle {
-  @apply h-96;
+    @apply h-96;
 }
+
 .bg-food-bg-line {
-  @apply bg-[url("../images/services/food-services/food-serving-bg-sm.png")] md:bg-[url("../images/services/food-services/food-serving-bg.png")]   bg-no-repeat  bg-right-top  md:bg-right;
+    @apply bg-[url("../images/services/food-services/food-serving-bg-sm.png")] md:bg-[url("../images/services/food-services/food-serving-bg.png")]   bg-no-repeat  bg-right-top  md:bg-right;
 }
+
 .bg-our-services {
-  background-image: url("../images/services/bg-services.png");
-  background-position: center;
-  background-size: cover;
+    background-image: url("../images/services/bg-services.png");
+    background-position: center;
+    background-size: cover;
 }
+
 .css-t3ipsp-control {
-  border: none !important;
+    border: none !important;
 }
+
 .react-select__menu {
-  @apply !z-[9999];
+    @apply !z-[9999];
 }
+
 .web-cam {
-  width: 250px;
-  height: 250px;
-  border-radius: 125px;
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 
 .video {
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  top: -125px;
-  left: -125px;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: -125px;
+    left: -125px;
 }
 
 .video-player {
-  border-radius: 100%;
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-  -webkit-transform: rotate(0.000001deg);
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+    -webkit-transform: rotate(0.000001deg);
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
 }
+
 .video-circle {
-  border-radius: 50%;
-  object-fit: cover;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.seat_chair_row {
+
+}
+
+.seat_chair_column {
+
+}
+
+.seat_chair {
+    @apply w-[60px] h-[60px] relative cursor-pointer;
+}
+
+.seat_chair_icon {
+    @apply absolute z-10;
+}
+
+.seat_chair_code {
+    @apply absolute z-50 top-[8px] left-1/2 -translate-x-1/2  text-lg text-red-50  font-bold font-inter;
 }

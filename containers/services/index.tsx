@@ -11,12 +11,12 @@ import {
 } from "../../assets/images/service";
 import Loader from "../../components/loader/loader";
 import {useRouter} from "next/router";
-import {get} from "lodash";
-import {updateReturn} from "typescript";
+import {get,head} from "lodash";
 import clsx from "clsx";
 import {useGetQuery} from "../../hooks";
 import {KEYS} from "../../constants/keys";
 import {URLS} from "../../constants/urls";
+
 
 const Index: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
@@ -37,12 +37,14 @@ const Index: React.FC = () => {
         enabled:!!(code && (family || passportNumber) && ticketNumber)
     })
 
+    console.log('data',data)
+
     const tabs = [
         {
             id: 1,
             title: "O’rindiq tanlash",
             icon: tabCabin,
-            content: <SeatServices/>,
+            content: <SeatServices flightCode={get(head(get(data,'data.data',[])),'flightCode')} />,
         },
         {
             id: 2,
