@@ -13,17 +13,17 @@ import airplaneImg from "../../../assets/images/seat/airplane.png"
 import {useGetQuery, usePostQuery} from "../../../hooks";
 import {KEYS} from "../../../constants/keys";
 import {URLS} from "../../../constants/urls";
-import {get, isEmpty, isEqual, isNil} from "lodash";
-import {findCabinClassType, filterSeatsByClassId} from "../../../utils"
+import {get, isEqual, isNil} from "lodash";
+import {findCabinClassType, filterSeatsByClassId, getSelectedServicesByServiceType} from "../../../utils"
 import {AIRLINE_TYPES, CABIN_CLASSES, SERVICE_TYPES} from "../../../constants";
 import clsx from "clsx";
-import toast from "react-hot-toast";
+import {NumericFormat} from "react-number-format";
 
 interface Props {
     serviceData?: any;
 }
 
-const Index = ({serviceData={}}: Props) => {
+const Index = ({serviceData = {}}: Props) => {
     const router = useRouter();
     const [temporarySeat, setTemporarySeat] = useState<any>(null)
     const [selectedSeat, setSelectedSeat] = useState<any>(null)
@@ -31,11 +31,18 @@ const Index = ({serviceData={}}: Props) => {
     const {data: airplane, isLoading: isLoadingAirplane} = useGetQuery(
         {
             key: KEYS.getAirplanes,
-            url: `${URLS.getAirplanes}/${get(serviceData,'flightCode')}`,
-            enabled: !!(get(serviceData,'flightCode'))
+            url: `${URLS.getAirplanes}/${get(serviceData, 'flightCode')}`,
+            enabled: !!(get(serviceData, 'flightCode'))
+        })
+    const {data: selectedServices} = useGetQuery(
+        {
+            key: KEYS.getSelectedServices,
+            url: `${URLS.getSelectedServices}/${get(serviceData, 'ticketNumber')}`,
+            enabled: !!(get(serviceData, 'ticketNumber'))
         })
 
     const {mutate: chooseSeatRequest, isLoading: isLoadingChooseSeat} = usePostQuery({listKeyId: KEYS.multiService})
+    const {mutate: deleteSeatRequest, isLoading: isLoadingDeleteSeat} = usePostQuery({listKeyId: KEYS.multiService})
 
     const handleSelectSeat = (seat: any) => {
         if (isEqual(get(seat, 'id'), get(selectedSeat, 'id'))) {
@@ -47,29 +54,61 @@ const Index = ({serviceData={}}: Props) => {
     const chooseSeat = () => {
         chooseSeatRequest({
             url: URLS.multiService,
-            attributes: {
-                airlinesType:get(serviceData,'airlinesType'),
-                serviceType:SERVICE_TYPES.CHOOSE_SEAT,
-                ticketNumber:get(serviceData,'ticketNumber',undefined),
-                family:get(serviceData,'family',undefined),
-                seat:`${get(selectedSeat,'number')}${get(selectedSeat,'code')}`,
-                rtid:get(serviceData,'rtid',undefined)
+            attributes: get(serviceData, 'airlinesType') == AIRLINE_TYPES.CHARTER_FLIGHTS ? {
+                airlinesType: get(serviceData, 'airlinesType'),
+                serviceType: SERVICE_TYPES.CHOOSE_SEAT,
+                ticketNumber: get(serviceData, 'ticketNumber', undefined),
+                passportNumber: get(serviceData, 'passportNumber', undefined),
+                seat: `${get(selectedSeat, 'number')}${get(selectedSeat, 'code')}`,
+                rtid: get(serviceData, 'rtiId', undefined)
+            } : {
+                airlinesType: get(serviceData, 'airlinesType'),
+                serviceType: SERVICE_TYPES.CHOOSE_SEAT,
+                ticketNumber: get(serviceData, 'ticketNumber', undefined),
+                family: get(serviceData, 'family', undefined),
+                seat: `${get(selectedSeat, 'number')}${get(selectedSeat, 'code')}`,
+                rtid: get(serviceData, 'rtiId', undefined)
             }
-        },{
-            onSuccess:({data})=>{
-               setOpen(false);
+        }, {
+            onSuccess: ({data}) => {
+                setOpen(false);
                 setSelectedSeat(null);
                 setTemporarySeat(null);
             },
-            onError:()=>{
+            onError: () => {
                 setOpen(false);
                 setSelectedSeat(null);
                 setTemporarySeat(null);
             }
         })
     }
-    console.log('airplane', airplane)
-    console.log('selectedSeat', selectedSeat)
+    const deleteSeat = (_seat: any) => {
+        deleteSeatRequest({
+            url: URLS.multiService,
+            attributes: get(_seat, 'airlinesType') == AIRLINE_TYPES.CHARTER_FLIGHTS ? {
+                airlinesType: get(_seat, 'airlinesType'),
+                serviceType: SERVICE_TYPES.DELETE_SEAT,
+                ticketNumber: get(_seat, 'ticketNumber', undefined),
+                passportNumber: get(_seat, 'passportSerialNumber', undefined),
+                seat: get(_seat, 'seat', undefined),
+                rtid: get(_seat, 'rtiId', undefined)
+            } : {
+                airlinesType: get(_seat, 'airlinesType'),
+                serviceType: SERVICE_TYPES.DELETE_SEAT,
+                ticketNumber: get(_seat, 'ticketNumber', undefined),
+                family: get(_seat, 'family', undefined),
+                seat: get(_seat, 'seat', undefined),
+                rtid: get(_seat, 'rtiId', undefined)
+            }
+        }, {
+            onSuccess: () => {
+
+            },
+            onError: () => {
+
+            }
+        })
+    }
     return (
         <Fragment>
             <Banner
@@ -193,32 +232,37 @@ const Index = ({serviceData={}}: Props) => {
                 </div>
             </div>
 
-            <div
-                className="fixed md:static bottom-0 inset-x-0 z-50 bg-white bg-opacity-90  md:bg-[#F9F9F9] py-5 px-6 md:rounded-medium flex flex-col gap-y-4 md:flex-row justify-between  md:mb-8 shadow-[0px_-2px_4px_rgba(121,121,121,0.35)] md:shadow-none">
-                <div>
-                    <h2 className="font-graphik text-[32px] leading-[44px] font-medium flex items-center gap-2">
-                        14D <span className="w-6 inline-block h-0.5 bg-black"/>
-                        75 000
-                        <span className="opacity-40">UZS</span>
-                    </h2>
-                    <p className="font-inter text-xs leading-5">
-                        Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24
-                        soatdan so‘ng bekor qilinadi.
-                    </p>
-                </div>
-                <div className="flex gap-3">
-                    <button
-                        className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
-                        Bekor qilish
-                    </button>
-                    <button
-                        onClick={() => router.push("/payment")}
-                        className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
-                    >
-                        To’lash
-                    </button>
-                </div>
-            </div>
+            {
+                getSelectedServicesByServiceType(get(selectedServices, 'data.data', []), SERVICE_TYPES.CHOOSE_SEAT).map((service: any) =>
+                    <div key={get(service, 'id')}
+                         className="fixed md:static bottom-0 inset-x-0 z-50 bg-white bg-opacity-90  md:bg-[#F9F9F9] py-5 px-6 md:rounded-medium flex flex-col gap-y-4 md:flex-row justify-between  md:mb-8 shadow-[0px_-2px_4px_rgba(121,121,121,0.35)] md:shadow-none">
+                        <div>
+                            <h2 className="font-graphik text-[32px] leading-[44px] font-medium flex items-center gap-2">
+                                {get(service, 'seat')} <span className="w-6 inline-block h-0.5 bg-black"/>
+                                <NumericFormat displayType={'text'} thousandSeparator={' '}
+                                               value={get(service, 'amount', 0) || 0}/>
+                                <span className="opacity-40">UZS</span>
+                            </h2>
+                            <p className="font-inter text-xs leading-5">
+                                Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24
+                                soatdan so‘ng bekor qilinadi.
+                            </p>
+                        </div>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => deleteSeat(service)}
+                                className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
+                                Bekor qilish
+                            </button>
+                            <button
+                                onClick={() => router.push(`/payment?ticketNumber=${get(serviceData, 'ticketNumber')}`)}
+                                className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+                            >
+                                To’lash
+                            </button>
+                        </div>
+                    </div>)
+            }
             <Modal full open={open} setOpen={() => setOpen(false)}>
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
@@ -227,7 +271,8 @@ const Index = ({serviceData={}}: Props) => {
 
                         <div className="flex md:justify-end items-center gap-2.5 text-white text-sm font-semibold ">
                             {selectedSeat && <>
-                                <button onClick={chooseSeat} className="bg-primary-blue py-4 flex-none lg:px-8 rounded-[10px]">
+                                <button onClick={chooseSeat}
+                                        className="bg-primary-blue py-4 flex-none lg:px-8 rounded-[10px]">
                                     Saqlash
                                 </button>
                                 <button onClick={() => {
@@ -339,7 +384,7 @@ const Index = ({serviceData={}}: Props) => {
                                                     src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
                                                     alt={'seat'}/>
                                                 {!get(seat, 'isBusy') && !isEqual(get(seat, 'isBusy'), get(selectedSeat, 'id')) &&
-                                                <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
+                                                    <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
                                             </li>)}
                                     </ul>
 
@@ -359,7 +404,7 @@ const Index = ({serviceData={}}: Props) => {
                                                     src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
                                                     alt={'seat'}/>
                                                 {!get(seat, 'isBusy') &&
-                                                <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
+                                                    <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
                                             </li>)}
                                     </ul>
                                     <Image width={789} height={2816} className={' relative z-10'}

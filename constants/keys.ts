@@ -3,4 +3,6 @@ export const KEYS = {
     getData: 'getData',
     multiService: 'multiService',
     getAirplanes: 'getAirplanes',
+    getSelectedServices: 'getSelectedServices',
+    getFoods: 'getFoods',
 };

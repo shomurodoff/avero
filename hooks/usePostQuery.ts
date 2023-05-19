@@ -1,53 +1,56 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { request } from "../services/api";
-import { toast } from "react-hot-toast";
-import { isArray, get, forEach } from "lodash";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {request} from "../services/api";
+import {toast} from "react-hot-toast";
+import {isArray, get, forEach} from "lodash";
 
 const postRequest = (url: string, attributes: {}, config = {}) =>
-  request.post(url, attributes, config);
+    request.post(url, attributes, config);
 
-const usePostQuery = ({ hideSuccessToast = false, listKeyId = "" }) => {
-  const queryClient = useQueryClient();
+const usePostQuery = ({hideSuccessToast = false, listKeyId = ""}) => {
+    const queryClient = useQueryClient();
 
-  const { mutate, isLoading, isError, error } = useMutation(
-    ({ url, attributes, config = {} }: any) =>
-      postRequest(url, attributes, config),
-    {
-      onSuccess: (data) => {
-        if (!hideSuccessToast) {
-          toast.success(data?.data?.message || "SUCCESS",{position: 'top-right'});
+    const {mutate, isLoading, isError, error} = useMutation(
+        ({url, attributes, config = {}}: any) =>
+            postRequest(url, attributes, config),
+        {
+            onSuccess: (data) => {
+                if (!hideSuccessToast) {
+                    if (get(data, 'data.code')) {
+                        toast.error(data?.data?.message || "SUCCESS", {position: 'top-right'});
+                    }
+                }
+
+                if (listKeyId) {
+                    if (isArray(listKeyId)) {
+                        forEach(listKeyId, (val: any) => {
+                            queryClient.invalidateQueries(val);
+                        });
+                    } else {
+                        // @ts-ignore
+                        queryClient.invalidateQueries(listKeyId);
+                    }
+                }
+            },
+            onError: (data: any) => {
+                if (isArray(get(data, "response.data"))) {
+                    forEach(get(data, "response.data"), (val) => {
+                        toast.error(
+                            get(val, "message", "ERROR"), {position: "top-right"}
+                        );
+                    });
+                } else {
+
+                    toast.error(data?.response?.data?.message || "ERROR", {position: "top-right"});
+                }
+            },
         }
+    );
 
-        if (listKeyId) {
-          if (isArray(listKeyId)) {
-            forEach(listKeyId, (val: any) => {
-              queryClient.invalidateQueries(val);
-            });
-          } else {
-            // @ts-ignore
-            queryClient.invalidateQueries(listKeyId);
-          }
-        }
-      },
-      onError: (data: any) => {
-        if (isArray(get(data, "response.data"))) {
-          forEach(get(data, "response.data"), (val) => {
-            toast.error(
-              get(val, "message", "ERROR"), { position: "top-right" }
-            );
-          });
-        } else {
-          toast.error(data?.response?.data?.message || "ERROR",{ position: "top-right" });
-        }
-      },
-    }
-  );
-
-  return {
-    mutate,
-    isLoading,
-    isError,
-    error,
-  };
+    return {
+        mutate,
+        isLoading,
+        isError,
+        error,
+    };
 };
 export default usePostQuery;

@@ -12,3 +12,7 @@ export const findCabinClassType = (list=[], type) => {
 export const filterSeatsByClassId = (seats=[],classList=[], type) => {
     return filter(seats,(seat)=>isEqual(get(seat,'cabinClassId'),get(findCabinClassType(classList,type),'id'))) || []
 }
+
+export const getSelectedServicesByServiceType = (services=[], type) => {
+    return filter(services,(service)=>isEqual(get(service,'serviceType'),type)) || []
+}

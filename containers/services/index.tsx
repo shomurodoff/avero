@@ -11,11 +11,12 @@ import {
 } from "../../assets/images/service";
 import Loader from "../../components/loader/loader";
 import {useRouter} from "next/router";
-import {get,head} from "lodash";
+import {get, head} from "lodash";
 import clsx from "clsx";
 import {useGetQuery} from "../../hooks";
 import {KEYS} from "../../constants/keys";
 import {URLS} from "../../constants/urls";
+import {AIRLINE_TYPES} from "../../constants";
 
 
 const Index: React.FC = () => {
@@ -23,34 +24,35 @@ const Index: React.FC = () => {
     const [opacity, setOpacity] = useState<boolean>(true);
     const [openForm, setOpenForm] = useState<boolean>(false);
     const router = useRouter();
-    const {code, family, ticketNumber,passportNumber} = router?.query;
+    const {code, family, ticketNumber, passportNumber} = router?.query;
     const {data} = useGetQuery({
         key: KEYS.getData,
         url: URLS.getData,
         method: 'post',
-        params: {
+        params: code == AIRLINE_TYPES.CHARTER_FLIGHTS ?{
             airlinesType: code,
-            family,
             ticketNumber,
             passportNumber
+        }:{
+            airlinesType: code,
+            family,
+            ticketNumber
         },
-        enabled:!!(code && (family || passportNumber) && ticketNumber)
+        enabled: !!(code && (family || passportNumber) && ticketNumber)
     })
-
-    console.log('data',data)
 
     const tabs = [
         {
             id: 1,
             title: "O’rindiq tanlash",
             icon: tabCabin,
-            content: <SeatServices serviceData={head(get(data,'data.data',[]))} />,
+            content: <SeatServices serviceData={head(get(data, 'data.data', []))}/>,
         },
         {
             id: 2,
             title: "Ovqat buyurtma",
             icon: tabMeal,
-            content: <FoodServices/>,
+            content: <FoodServices serviceData={head(get(data, 'data.data', []))}/>,
         },
         {
             id: 3,
@@ -89,9 +91,9 @@ const Index: React.FC = () => {
             >
                 <Loader airway={get(router, "query.airways")}/>
             </div>
-            <PassengerFilter items={get(data,'data.data',[])} setOpenForm={setOpenForm}/>
+            <PassengerFilter items={get(data, 'data.data', [])} setOpenForm={setOpenForm}/>
             <Tab data={tabs} activeContent={Number(get(router, "query.services"))}/>
-            {/* <Modal open={openForm} setOpen={setOpenForm}>
+           <Modal open={openForm} setOpen={setOpenForm}>
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px] pb-7 pt-5  p-[15px] md:p-[25px] md:pb-28">
                     <div className="hidden md:flex justify-end mb-10">
@@ -121,7 +123,7 @@ const Index: React.FC = () => {
                     </div>
                     <SearchForm modal/>
                 </div>
-            </Modal> */}
+            </Modal>
 
         </Fragment>
     );
