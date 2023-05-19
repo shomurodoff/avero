@@ -31,8 +31,8 @@ const Index = ({serviceData}: Props) => {
         method: 'post',
         params: {
             airlinesType: get(serviceData, 'airlinesType'),
-            fromCity: get(serviceData, 'fromCityy', 'DME'),
-            toCity: get(serviceData, 'toCityy', 'TAS')
+            fromCity: get(serviceData, 'fromCity', 'DME'),
+            toCity: get(serviceData, 'toCity', 'TAS')
         },
         enabled: !!(get(serviceData, 'airlinesType') && get(serviceData, 'fromCity') && get(serviceData, 'toCity'))
     })
@@ -90,7 +90,7 @@ const Index = ({serviceData}: Props) => {
                             <Image
                                 width={312}
                                 height={200}
-                                loader={()=>head(get(option, "imageUrls", [])) || ''}
+                                loader={() => head(get(option, "imageUrls", [])) || ''}
                                 src={head(get(option, "imageUrls", [])) || ''}
                                 alt={"new Image"}
                                 layout={"responsive"}
