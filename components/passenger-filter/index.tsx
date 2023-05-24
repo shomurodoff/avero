@@ -8,15 +8,17 @@ import clsx from "clsx";
 interface Props {
     items?: [],
     setOpenForm: (state: boolean) => void;
+    setItem: (state: any) => void;
+    selectedId?:any
 }
 
-const Index: React.FC<Props> = ({setOpenForm, items = []}) => {
+const Index: React.FC<Props> = ({setOpenForm, items = [],setItem=()=>{},selectedId=null}) => {
     return (
         <div className="bg-[#F1F3F6] pt-7 xl:pt-12">
             <Container>
                 {
-                    items?.map((item,index) => <nav key={get(item,'uuid')}
-                        className={clsx("bg-white  flex flex-col lg:flex-row gap-3 lg:gap-10 xl:gap-16 lg:justify-between p-5 rounded-[15px] font-poppins mb-3",{'!mb-0':items?.length == index+1})}>
+                    items?.map((item,index) => <nav onClick={()=>setItem(item)} key={get(item,'uuid')}
+                        className={clsx("bg-white  flex flex-col lg:flex-row gap-3 lg:gap-10 xl:gap-16 lg:justify-between p-5 rounded-[15px] font-poppins mb-3",{'!mb-0':items?.length == index+1,'bg-[#BAD5FE]':selectedId==get(item,'rtiId')})}>
                         <div className="flex justify-between flex-wrap flex-grow lg:gap-4 xl:gap-10">
                             <div className="order-1">
                                 <h5 className="text-lg xl:text-xl font-semibold mb-2">{get(item, 'starTime')}</h5>

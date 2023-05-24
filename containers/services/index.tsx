@@ -23,6 +23,7 @@ const Index: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [opacity, setOpacity] = useState<boolean>(true);
     const [openForm, setOpenForm] = useState<boolean>(false);
+    const [airplane, setAirplane] = useState<any>(null);
     const router = useRouter();
     const {code, family, ticketNumber, passportNumber} = router?.query;
     const {data} = useGetQuery({
@@ -46,7 +47,7 @@ const Index: React.FC = () => {
             id: 1,
             title: "O’rindiq tanlash",
             icon: tabCabin,
-            content: <SeatServices serviceData={head(get(data, 'data.data', []))}/>,
+            content: <SeatServices serviceData={airplane}/>,
         },
         {
             id: 2,
@@ -91,7 +92,7 @@ const Index: React.FC = () => {
             >
                 <Loader airway={get(router, "query.airways")}/>
             </div>
-            <PassengerFilter items={get(data, 'data.data', [])} setOpenForm={setOpenForm}/>
+            <PassengerFilter selectedId={get(airplane,'rtiId')} setItem={setAirplane} items={get(data, 'data.data', [])} setOpenForm={setOpenForm}/>
             <Tab data={tabs} activeContent={Number(get(router, "query.services"))}/>
            <Modal open={openForm} setOpen={setOpenForm}>
                 <div

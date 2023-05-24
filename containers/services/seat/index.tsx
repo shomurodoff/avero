@@ -30,19 +30,19 @@ const Index = ({serviceData = {}}: Props) => {
     const [open, setOpen] = useState<any>(false)
     const {data: airplane, isLoading: isLoadingAirplane} = useGetQuery(
         {
-            key: KEYS.getAirplanes,
+            key: `${KEYS.getAirplanes}-${get(serviceData, 'flightCode')}`,
             url: `${URLS.getAirplanes}/${get(serviceData, 'flightCode')}`,
             enabled: !!(get(serviceData, 'flightCode'))
         })
     const {data: selectedServices} = useGetQuery(
         {
-            key: KEYS.getSelectedServices,
+            key: `${KEYS.getSelectedServices}-${get(serviceData, 'ticketNumber')}`,
             url: `${URLS.getSelectedServices}/${get(serviceData, 'ticketNumber')}`,
             enabled: !!(get(serviceData, 'ticketNumber'))
         })
 
-    const {mutate: chooseSeatRequest, isLoading: isLoadingChooseSeat} = usePostQuery({listKeyId: KEYS.multiService})
-    const {mutate: deleteSeatRequest, isLoading: isLoadingDeleteSeat} = usePostQuery({listKeyId: KEYS.multiService})
+    const {mutate: chooseSeatRequest} = usePostQuery({listKeyId: KEYS.multiService})
+    const {mutate: deleteSeatRequest} = usePostQuery({listKeyId: KEYS.multiService})
 
     const handleSelectSeat = (seat: any) => {
         if (isEqual(get(seat, 'id'), get(selectedSeat, 'id'))) {
@@ -263,7 +263,7 @@ const Index = ({serviceData = {}}: Props) => {
                         </div>
                     </div>)
             }
-            <Modal full open={open} setOpen={() => setOpen(false)}>
+            <Modal classNames={'bg-white'} full open={open} setOpen={() => setOpen(false)}>
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
                     <div className="hidden md:flex justify-between mb-6">
@@ -358,7 +358,7 @@ const Index = ({serviceData = {}}: Props) => {
                                 </div>
                                 {
                                     selectedSeat && <Heading
-                                        title={`${get(selectedSeat, 'number')}${get(selectedSeat, 'code')} — 200 000 UZS`}
+                                        title={<div>{get(selectedSeat, 'number')}{get(selectedSeat, 'code')} - <NumericFormat displayType={'text'} thousandSeparator={' '} value={get(selectedSeat,'amount',0)} suffix={' UZS'}/> </div>}
                                         titleClass="text-[20px] leading-5 md:text-[32px] !font-semibold mt-10"
                                         subTitle="Siz tanlagan o’rindiq"
                                         subTitleClass="font-medium leading-[30px] !text-black"
@@ -383,7 +383,7 @@ const Index = ({serviceData = {}}: Props) => {
                                                     loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
                                                     src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
                                                     alt={'seat'}/>
-                                                {!get(seat, 'isBusy') && !isEqual(get(seat, 'isBusy'), get(selectedSeat, 'id')) &&
+                                                {!get(seat, 'isBusy') && !isEqual(get(seat, 'id'), get(selectedSeat, 'id')) &&
                                                     <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
                                             </li>)}
                                     </ul>
@@ -423,7 +423,7 @@ const Index = ({serviceData = {}}: Props) => {
                     <div className="hidden md:flex justify-between mb-10 items-start">
                         <h3 className={'text-black font-semibold text-3xl '}>Siz {get(temporarySeat, 'number')}{get(temporarySeat, 'code')} o’rindiqni
                             tanladingiz.
-                            Narxi 200 000 UZS. Davom etishga rozimisiz</h3>
+                            Narxi <NumericFormat displayType={'text'} thousandSeparator={' '} value={get(temporarySeat,'amount',0)} suffix={' UZS'}/>. Davom etishga rozimisiz</h3>
                         <button
                             className="p-[17px] bg-white rounded-default"
                             onClick={() => setTemporarySeat(null)}

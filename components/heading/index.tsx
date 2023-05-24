@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import clsx from "clsx";
 
 interface Props {
-  title: string;
+  title?: React.ReactElement | string;
   subTitle: string;
   className?: string;
   titleClass?: string;
