@@ -15,29 +15,9 @@ export const options: { id: number; title: string; icon: StaticImageData,code:st
     code:'UZ_AIRWAYS'
   },
   {
-    id: 1,
+    id: 2,
     title: "Charter flights",
-    icon: uzAirwayOption,
+    icon: astanaAirwayOption,
     code:'CHARTER_FLIGHTS'
-  },
-  // {
-  //   id: 2,
-  //   title: "Qatarairways",
-  //   icon: asiaAirwayOption,
-  // },
-  // {
-  //   id: 3,
-  //   title: "Iran Air",
-  //   icon: iranAirwayOption,
-  // },
-  // {
-  //   id: 4,
-  //   title: "Air Astana",
-  //   icon: astanaAirwayOption,
-  // },
-  // {
-  //   id: 5,
-  //   title: "Air India",
-  //   icon: indiaAirwayOption,
-  // },
+  }
 ];

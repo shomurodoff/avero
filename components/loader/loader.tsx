@@ -61,7 +61,7 @@ const Loader: React.FC<Props> = ({ airway }) => {
                   return isEqual(get(plane, "title"), airway);
                 }),
                 "image",
-                RusPlane
+                  UzbPlane
               )}
               alt="Image Cloud"
               className="absolute bottom-12 md:bottom-0 w-11/12 md:w-1/2"

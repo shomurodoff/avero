@@ -7,8 +7,10 @@ import { MainPageLogo } from "../../../images";
 import { get, map } from "lodash";
 import { footer, footerLinks } from "../../../../mock/footer";
 import { Container } from "../../../../UI";
+import {useTranslation} from "react-i18next";
 
 const Index: React.FC = () => {
+  const {t} = useTranslation()
   const currentYear = dayjs().year();
   const [open, setOpen] = useState<number | null>(null);
 
@@ -20,7 +22,7 @@ const Index: React.FC = () => {
             <Image src={MainPageLogo} alt={"logo"} />
           </Link>
           <p className="mb-3 mt-6 md:mt-14 text-center">
-            Mijozlarga xizmat ko‘rsatish bo‘limi
+            {t("Mijozlarga xizmat ko‘rsatish bo‘limi")}
           </p>
           <a
             className="px-6 py-3 bg-[#31393E] rounded-[10px] font-semibold text-base md:text-lg lg:text-2xl mb-4 md:mb-10 cursor-pointer"
@@ -56,7 +58,7 @@ const Index: React.FC = () => {
                     }
                   }}
                 >
-                  {get(item, "title")}
+                  {t(get(item, "title"))}
                   <span className="lg:hidden">
                     <svg
                       width="24"
@@ -90,7 +92,7 @@ const Index: React.FC = () => {
                       className="mb-2 max-w-[250px] text-[#202020] text-lg cursor-pointer"
                       key={get(child, "title")}
                     >
-                      {get(child, "title")}
+                      {t(get(child, "title"))}
                     </li>
                   ))}
                 </ul>
@@ -99,18 +101,19 @@ const Index: React.FC = () => {
           </div>
           <ul className="flex justify-between md:justify-start md:gap-[30px]  text-[#979797] text-sm leading-4 font-inter font-normal mt-5 lg:mt-0">
             <li>
-              <a href="#">Maxfiylik siyosati</a>
+              <a href="#">{t("Maxfiylik siyosati")}</a>
             </li>
             <li>
-              <a href="#">Shartnoma taklifi </a>
+              <a href="#">{t("Shartnoma taklifi")}</a>
             </li>
             <li>
-              <a href="#">To'lov</a>
+              <a href="#">{t("To'lov")}</a>
             </li>
           </ul>
         </div>
       </footer>
     </Container>
+
   );
 };
 

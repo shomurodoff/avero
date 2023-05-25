@@ -18,12 +18,14 @@ import {findCabinClassType, filterSeatsByClassId, getSelectedServicesByServiceTy
 import {AIRLINE_TYPES, CABIN_CLASSES, SERVICE_TYPES} from "../../../constants";
 import clsx from "clsx";
 import {NumericFormat} from "react-number-format";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     serviceData?: any;
 }
 
 const Index = ({serviceData = {}}: Props) => {
+    const {t} = useTranslation()
     const router = useRouter();
     const [temporarySeat, setTemporarySeat] = useState<any>(null)
     const [selectedSeat, setSelectedSeat] = useState<any>(null)
@@ -121,21 +123,21 @@ const Index = ({serviceData = {}}: Props) => {
                     className="bg-primary-blue rounded-[25px] py-8 md:py-10  px-5 md:px-8 text-white grid grid-cols-12 grid-rows-5 mb-40 gap-y-24 md:gap-y-0">
                     <div className="col-span-12 md:col-span-7 row-span-3 md:row-span-6 ">
                         <p className="font-graphik font-medium text-2xl lg:text-[35px] lg:leading-[45px] mb-7 md:mb-16 max-w-[475px]">
-                            Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida{" "}
+                            {t(" Biron bir o'rindiq tanlamoqchi bo'lsangiz, jo'nashdan kamida")}{" "}
                             <span className="inline-block relative text-primary-red">
-                24 soat
+                {t("24 soat")}
                 <Image
                     src={borderBottom}
                     alt="Image"
                     className="w-full absolute"
                 />
               </span>{" "}
-                            oldin xizmatga buyurtma bering.
+                            {t(" oldin xizmatga buyurtma bering.")}
                         </p>
                         <button disabled={!get(airplane, 'data.data')}
                                 onClick={() => setOpen(get(airplane, 'data.data'))}
                                 className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
-                            O’rindiq tanlash
+                            {t("O’rindiq tanlash")}
                         </button>
                     </div>
                     <div className="col-span-12 md:col-span-5 row-span-2 md:row-span-6">
@@ -167,10 +169,10 @@ const Index = ({serviceData = {}}: Props) => {
             <div className="relative mt-10 lg:mt-40 lg:mb-24">
                 <div className="font-graphik">
                     <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">
-                        Sevimli o'rindiq
+                        {t("Sevimli o'rindiq")}
                     </h2>
                     <p className="text-[32px] md:text-[40px] xl:text-[65px] leading-[42px] md:leading-[50px] xl:leading-[77.5px] font-normal font-inter max-w-5xl">
-                        Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz
+                        {t(" Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz")}
                     </p>
                     <div
                         className="w-[190px]  lg:w-[450px]  h-[100px] lg:h-[300px] bg-[#FF354DBA] blur-[50px] lg:blur-[125px] absolute top-0 right-0 opacity-50 -z-10"></div>
@@ -190,18 +192,18 @@ const Index = ({serviceData = {}}: Props) => {
                         />
                         <div className="p-12 text-center  group-hover:text-white">
                             <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5 z-10">
-                                Qo'shimcha o'rindiq
+                                {t(" Qo'shimcha o'rindiq")}
                             </h3>
-                            <p className="font-montserrat text-xl">1-bosqich</p>
+                            <p className="font-montserrat text-xl">{t("1-bosqich")}</p>
                         </div>
                     </div>
                     <div
                         className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">
                         <div className="p-12 text-center  group-hover:text-white">
                             <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5">
-                                Old o'rindiq qismi
+                                {t("Old o'rindiq qismi")}
                             </h3>
-                            <p className={"font-montserrat text-xl"}>2-bosqich</p>
+                            <p className={"font-montserrat text-xl"}>{t("2-bosqich")}</p>
                         </div>
                         <Image
                             src={seatCircleImage}
@@ -218,9 +220,9 @@ const Index = ({serviceData = {}}: Props) => {
                                     "text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5"
                                 }
                             >
-                                Standart zona o'rindig'i
+                                {t("Standart zona o'rindig'i")}
                             </h3>
-                            <p className={"font-montserrat text-xl"}>3-bosqich</p>
+                            <p className={"font-montserrat text-xl"}>{t("3-bosqich")}</p>
                         </div>
                         <Image
                             src={seatCircleImage}
@@ -241,24 +243,24 @@ const Index = ({serviceData = {}}: Props) => {
                                 {get(service, 'seat')} <span className="w-6 inline-block h-0.5 bg-black"/>
                                 <NumericFormat displayType={'text'} thousandSeparator={' '}
                                                value={get(service, 'amount', 0) || 0}/>
-                                <span className="opacity-40">UZS</span>
+                                <span className="opacity-40">{t("UZS")}</span>
                             </h2>
                             <p className="font-inter text-xs leading-5">
-                                Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24
-                                soatdan so‘ng bekor qilinadi.
+                                {t("Havo kemasida sizning joyingiz. Haq to‘lanmaganda bronlash 24\n" +
+                                    "                                soatdan so‘ng bekor qilinadi.")}
                             </p>
                         </div>
                         <div className="flex gap-3">
                             <button
                                 onClick={() => deleteSeat(service)}
                                 className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
-                                Bekor qilish
+                                {t("Bekor qilish")}
                             </button>
                             <button
                                 onClick={() => router.push(`/payment?ticketNumber=${get(serviceData, 'ticketNumber')}`)}
                                 className=" bg-primary-red rounded-default font-inter text-sm text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
                             >
-                                To’lash
+                                {t("To’lash")}
                             </button>
                         </div>
                     </div>)
@@ -267,19 +269,19 @@ const Index = ({serviceData = {}}: Props) => {
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
                     <div className="hidden md:flex justify-between mb-6">
-                        <h3 className={'text-black font-semibold text-3xl '}>O’rindiq tanlash</h3>
+                        <h3 className={'text-black font-semibold text-3xl '}>{t("O’rindiq tanlash")}</h3>
 
                         <div className="flex md:justify-end items-center gap-2.5 text-white text-sm font-semibold ">
                             {selectedSeat && <>
                                 <button onClick={chooseSeat}
                                         className="bg-primary-blue py-4 flex-none lg:px-8 rounded-[10px]">
-                                    Saqlash
+                                    {t("Saqlash")}
                                 </button>
                                 <button onClick={() => {
                                     setOpen(false);
                                     router.push('/payment')
                                 }} className="bg-primary-red flex-none  py-4  lg:px-8 rounded-[10px]">
-                                    Hoziroq to’lash
+                                    {t(" Hoziroq to’lash")}
                                 </button>
                             </>}
                             <button
@@ -305,29 +307,29 @@ const Index = ({serviceData = {}}: Props) => {
                         {isLoadingAirplane ? 'Loading...' : <div className="grid grid-cols-12 items-start">
                             <div className="col-span-12 md:col-span-3 ">
                                 <div className={'border border-[#D4D7DE] rounded-[30px] px-8 py-7'}>
-                                    <h3 className={'text-black font-medium text-2xl mb-10'}>{get(airplane, 'data.data.nameUz')} samolyotidan
-                                        joy tanlang</h3>
+                                    <h3 className={'text-black font-medium text-2xl mb-10'}>{get(airplane, 'data.data.nameUz')} {t("samolyotidan")}
+                                        {t("joy tanlang")}</h3>
                                     <ul>
                                         <li className={'flex items-center font-medium text-black mb-6'}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.url')}
-                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.title')}</span>
+                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black mb-6'}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.url')}
-                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.title')}</span>
+                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black '}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
-                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.title')}</span>
+                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.title'))}</span>
                                         </li>
                                     </ul>
                                     <hr className={'my-8'}/>
@@ -338,21 +340,21 @@ const Index = ({serviceData = {}}: Props) => {
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.url')}
-                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.title')}</span>
+                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black mb-6'}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.url')}
-                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.title')}</span>
+                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black '}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
-                                                   alt={'seat'}/><span>{get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.title')}</span>
+                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.title'))}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -360,7 +362,7 @@ const Index = ({serviceData = {}}: Props) => {
                                     selectedSeat && <Heading
                                         title={<div>{get(selectedSeat, 'number')}{get(selectedSeat, 'code')} - <NumericFormat displayType={'text'} thousandSeparator={' '} value={get(selectedSeat,'amount',0)} suffix={' UZS'}/> </div>}
                                         titleClass="text-[20px] leading-5 md:text-[32px] !font-semibold mt-10"
-                                        subTitle="Siz tanlagan o’rindiq"
+                                        subTitle={t("Siz tanlagan o’rindiq")}
                                         subTitleClass="font-medium leading-[30px] !text-black"
                                     />
                                 }
@@ -403,7 +405,7 @@ const Index = ({serviceData = {}}: Props) => {
                                                     loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
                                                     src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
                                                     alt={'seat'}/>
-                                                {!get(seat, 'isBusy') &&
+                                                {!get(seat, 'isBusy') &&  !isEqual(get(seat, 'id'), get(selectedSeat, 'id')) &&
                                                     <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
                                             </li>)}
                                     </ul>

@@ -1,22 +1,25 @@
 import clsx from "clsx";
-import {map, get, toLower} from "lodash";
+import {map, get, toLower, find, isNil} from "lodash";
 import Image from "next/image";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
 import ReactSelect, {components} from "react-select";
 import {options} from "../../mock/ioptions";
+import {useTranslation} from "react-i18next";
 
 interface Props {
     modal?: boolean;
+    airplane?: any;
+    onClose?: () => void
 }
 
-const Index: React.FC<Props> = ({modal}) => {
-    const [airways, setAirways] = useState<string>('');
-    const [ticketNumber, setTicketNumber] = useState<string>('');
-    const [passportNumber, setPassportNumber] = useState<string>('');
-    const [family, setFamily] = useState<string>('');
+const Index: React.FC<Props> = ({modal, airplane = null,onClose=()=>{}}) => {
+    const {t} = useTranslation()
+    const [airways, setAirways] = useState<string>(get(airplane, 'airlinesType'));
+    const [ticketNumber, setTicketNumber] = useState<string>(get(airplane, 'ticketNumber', ''));
+    const [passportNumber, setPassportNumber] = useState<string>(get(airplane, 'passportNumber', ''));
+    const [family, setFamily] = useState<string>(get(airplane, 'family', ''));
     const router = useRouter();
-
     return (
         <form className="grid grid-cols-12 gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-4xl mx-auto z-10">
             <div
@@ -34,7 +37,7 @@ const Index: React.FC<Props> = ({modal}) => {
                 >
                     <div className="flex flex-col">
                         <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
-                            Chipta raqami
+                            {t("Chipta raqami")}
                         </label>
                         <input
                             value={ticketNumber}
@@ -44,7 +47,7 @@ const Index: React.FC<Props> = ({modal}) => {
                                 "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
                                 modal ? "placeholder:text-black" : "placeholder:text-white"
                             )}
-                            placeholder={"Kiriting..."}
+                            placeholder={t("Kiriting...") || ''}
                         />
                     </div>
                 </div>
@@ -56,7 +59,7 @@ const Index: React.FC<Props> = ({modal}) => {
                 >
                     {airways == 'CHARTER_FLIGHTS' ? <div className="flex flex-col">
                         <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
-                            Passport
+                            {t("Passport")}
                         </label>
                         <input
                             value={passportNumber}
@@ -66,11 +69,11 @@ const Index: React.FC<Props> = ({modal}) => {
                                 "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
                                 modal ? "placeholder:text-black" : "placeholder:text-white"
                             )}
-                            placeholder={"Kiriting..."}
+                            placeholder={t("Kiriting...") || ''}
                         />
                     </div> : <div className="flex flex-col">
                         <label className="flex items-center gap-2.5 text-sm font-normal leading-4 mb-1 md:mb-[5px]">
-                            Familya
+                            {t("Familya")}
                         </label>
                         <input
                             value={family}
@@ -80,7 +83,7 @@ const Index: React.FC<Props> = ({modal}) => {
                                 "bg-transparent focus:outline-none  text-lg md:text-[22px] md:leading-[27px] font-inter font-normal  z-50",
                                 modal ? "placeholder:text-black" : "placeholder:text-white"
                             )}
-                            placeholder={"Kiriting..."}
+                            placeholder={t("Kiriting...") || ''}
                         />
                     </div>}
                 </div>
@@ -117,9 +120,14 @@ const Index: React.FC<Props> = ({modal}) => {
               </span>
                         </label>
                         <ReactSelect
-                            placeholder={"Tanlang..."}
+                            placeholder={t("Tanlang...")||''}
                             openMenuOnFocus
-                            onChange={(value) => setAirways(get(value,'value',''))}
+                            defaultValue={!isNil(airplane) ? {
+                                value: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'code'),
+                                label: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'title'),
+                                image: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'icon'),
+                            }:null}
+                            onChange={(value: any) => setAirways(get(value, 'value', ''))}
                             isSearchable={false}
                             options={map(options, (item, index) => {
                                 return {
@@ -137,7 +145,7 @@ const Index: React.FC<Props> = ({modal}) => {
                                 </div>
                             )}
                             formatGroupLabel={(item) => <span>{get(item, "label")}</span>}
-                            className="react-select-container !text-white"
+                            className="react-select-container "
                             classNamePrefix="react-select"
                             classNames={{
                                 control: (state) => {
@@ -152,7 +160,7 @@ const Index: React.FC<Props> = ({modal}) => {
                                     return "!text-white tex mx-0 text-lg md:text-[22px] md:leading-[27px] !font-normal font-inter";
                                 },
                                 placeholder: (state) => {
-                                    return "!text-white !mx-0 text-lg md:text-[22px] md:leading-[27px] !font-normal font-inter";
+                                    return `${isNil(airplane) ? '!text-white' :'!text-black'} !mx-0 text-lg md:text-[22px] md:leading-[27px] !font-normal font-inter`;
                                 },
                                 input: (state) => {
                                     return "!m-0 !p-0 !text-white text-[22px]";
@@ -197,14 +205,16 @@ const Index: React.FC<Props> = ({modal}) => {
                 <button
                     type="button"
                     className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50 text-white"
-                    onClick={() =>
+                    onClick={() => {
                         router.push({
                             pathname: "/services",
-                            query: {code: airways,ticketNumber,family,passportNumber},
+                            query: {code: airways, ticketNumber, family, passportNumber},
                         })
+                        onClose();
+                    }
                     }
                 >
-                    Izlash
+                    {t("Izlash")}
                 </button>
             </div>
         </form>

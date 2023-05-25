@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { filter, get, isEqual, map, toLower } from "lodash";
+import React, { useState } from "react";
+import {filter, find, get, isEqual, map} from "lodash";
 import clsx from "clsx";
 import { languages } from "../../../constants";
-import { useStore } from "../../../../store";
-import storage from "../../../../services/storage";
+import {useSettingsStore} from "../../../../store";
 import Image from "next/image";
-import { FlagUzb } from "../../../images";
+import {config} from "../../../../config";
+import {useTranslation} from "react-i18next";
 
 const Language: React.FC<any> = () => {
   const [isOpenLanguage, setOpenLanguage] = useState(false);
-  const language = useStore((state) => get(state, "lang"));
-  const setLanguage = useStore((state) => get(state, "setLang", () => {}));
-
-  const [activeLanguage, setActiveLanguage] = useState({
-    id: 123213,
-    title: "O'z",
-    code: "uz",
-    icon: FlagUzb,
-  });
+  const language:any =useSettingsStore((state:any) => get(state, "lang", config.DEFAULT_APP_LANG));
+  const setLanguage:any = useSettingsStore((state) => get(state, "setLang", () => {}));
+  const { i18n } = useTranslation()
 
   const changeLang = (code: string) => {
-    setLanguage();
-    storage.set(language, code);
+    // @ts-ignore
+    setLanguage(code);
+    i18n.changeLanguage(code)
   };
-
-  useEffect(() => {
-    changeLang(toLower(get(activeLanguage, "title")));
-  }, [activeLanguage]);
+  const getActiveLangData = () =>{
+    return find(languages,(_lang)=>get(_lang,'code') == language)
+  }
 
   return (
     <div
@@ -36,12 +30,12 @@ const Language: React.FC<any> = () => {
       onClick={() => setOpenLanguage((prevState) => !prevState)}
     >
       <Image
-        src={get(activeLanguage, "icon")}
+        src={get(getActiveLangData(), "icon")}
         alt={"Image Flag"}
         className={"rounded-md w-6 h-6 block"}
       />
       <span className={"hidden md:block md:w-6"}>
-        {get(activeLanguage, "title", "")}
+        {get(getActiveLangData(), "title", "")}
       </span>
       <div
         className={clsx(
@@ -54,7 +48,7 @@ const Language: React.FC<any> = () => {
             filter(
               languages,
               (lang) =>
-                !isEqual(get(lang, "title"), get(activeLanguage, "title"))
+                !isEqual(get(lang, "title"), get(getActiveLangData(), "title"))
             ),
             (value) => (
               <li
@@ -63,7 +57,7 @@ const Language: React.FC<any> = () => {
                 }
                 onClick={(e) => {
                   e.preventDefault();
-                  setActiveLanguage(value);
+                  changeLang(get(value,'code'));
                 }}
               >
                 <Image

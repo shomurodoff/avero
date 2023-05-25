@@ -3,25 +3,21 @@ import Backend from 'i18next-http-backend'
 import {initReactI18next} from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import {config} from "../../config";
-import storage from "../storage";
+// @ts-ignore
+import storage, {loadState} from "../storage";
 
+
+// @ts-ignore
 i18n
-
-    // Enables the i18next backend
     .use(Backend)
-
-    // Enable automatic language detection
     .use(LanguageDetector)
-
-    // Enables the hook initialization module
     .use(initReactI18next)
     .init({
-        lng: storage.get('i18nextLng') || config.DEFAULT_APP_LANG,
-        fallbackLng: storage.get('i18nextLng') || config.DEFAULT_APP_LANG,
+        lng: loadState('i18nextLng'),
+        fallbackLng: loadState('i18nextLng'),
         backend: {
-            /* translation file path */
-            loadPath: `${config.API_URL}translations/?lang={{lng}}`,
-            addPath: `${config.API_URL}translations/`,
+            loadPath: `${config.API_URL}api/v1/localization/get-by-lang/{{lng}}`,
+            addPath: `${config.API_URL}api/v1/localization/add`,
         },
         debug: false,
         keySeparator: false,

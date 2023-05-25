@@ -5,4 +5,5 @@ export const KEYS = {
     getAirplanes: 'getAirplanes',
     getSelectedServices: 'getSelectedServices',
     getFoods: 'getFoods',
+    getFoodCategory: 'getFoodCategory',
 };

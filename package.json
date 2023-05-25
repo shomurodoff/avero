@@ -25,6 +25,7 @@
     "eslint-config-next": "13.1.1",
     "framer-motion": "^8.4.3",
     "gsap": "^3.11.4",
+    "i18next": "^22.5.0",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
     "lodash": "^4.17.21",

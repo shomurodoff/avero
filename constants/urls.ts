@@ -6,4 +6,5 @@ export const URLS = {
     getAirplanes: 'api/v1/additionally/getAirplane',
     getSelectedServices: 'api/v1/additionally/getProvidedServices',
     getFoods: 'api/v1/additionally/getFoods',
+    getFoodCategory: 'api/v1/food-category/getAll',
 };

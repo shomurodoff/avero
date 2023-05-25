@@ -17,9 +17,11 @@ import {useGetQuery} from "../../hooks";
 import {KEYS} from "../../constants/keys";
 import {URLS} from "../../constants/urls";
 import {AIRLINE_TYPES} from "../../constants";
+import {useTranslation} from "react-i18next";
 
 
 const Index: React.FC = () => {
+    const {t} = useTranslation()
     const [loading, setLoading] = useState<boolean>(true);
     const [opacity, setOpacity] = useState<boolean>(true);
     const [openForm, setOpenForm] = useState<boolean>(false);
@@ -45,29 +47,29 @@ const Index: React.FC = () => {
     const tabs = [
         {
             id: 1,
-            title: "O’rindiq tanlash",
+            title: t("O’rindiq tanlash"),
             icon: tabCabin,
             content: <SeatServices serviceData={airplane}/>,
         },
         {
             id: 2,
-            title: "Ovqat buyurtma",
+            title: t("Ovqat buyurtma"),
             icon: tabMeal,
-            content: <FoodServices serviceData={head(get(data, 'data.data', []))}/>,
+            content: <FoodServices serviceData={airplane}/>,
         },
         {
             id: 3,
-            title: "Yuklarni joylashtirish",
+            title: t("Yuklarni joylashtirish"),
             icon: tabCase,
             content: <WeightServices/>,
         },
         {
             id: 4,
-            title: "Aeroport xizmatlari",
+            title: t("Aeroport xizmatlari"),
             icon: tabPlane,
             content: (
                 <div className={"h-[80vh] flex justify-center items-center"}>
-                    <h1 className="text-3xl">Coming Soon</h1>
+                    <h1 className="text-3xl">{t("Coming Soon")}</h1>
                 </div>
             ),
         },
@@ -118,11 +120,11 @@ const Index: React.FC = () => {
                     </div>
                     <div>
                         <h2 className="text-center text-xl lg:text-[40px]  leading-[30px] lg:leading-[60px] font-semibold font-montserrat mb-[30px] lg:mb-11 max-w-5xl mx-auto">
-                            Joy band qiling, mos ovqat tanlang va boshqalar xizmatlardan
-                            foydalaning
+                            {t(" Joy band qiling, mos ovqat tanlang va boshqalar xizmatlardan\n" +
+                                "                            foydalaning")}
                         </h2>
                     </div>
-                    <SearchForm modal/>
+                    <SearchForm onClose={()=>setOpenForm(false)} airplane={airplane} modal/>
                 </div>
             </Modal>
 
