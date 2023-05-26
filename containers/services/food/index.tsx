@@ -18,13 +18,14 @@ import {useSettingsStore} from "../../../store";
 import {config} from "../../../config";
 import {AIRLINE_TYPES, SERVICE_TYPES} from "../../../constants";
 import {getSelectedServicesByServiceType} from "../../../utils"
+import {toast} from "react-hot-toast";
 
 
 interface Props {
     serviceData?: any;
 }
 
-const Index = ({serviceData}: Props) => {
+const Index = ({serviceData=null}: Props) => {
     const {t} = useTranslation()
     const router = useRouter();
     const [foodCategoryId, setFoodCategoryId] = useState<any>(null);
@@ -136,7 +137,14 @@ const Index = ({serviceData}: Props) => {
                         </p>
                         <button
                             className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]"
-                            onClick={scrollToMenu}
+                            onClick={()=>{
+                                if(isNil(serviceData)){
+                                        window.scrollTo(0, 0);
+                                        toast.error(t('Please select ticket'),{position:"top-right"})
+                                }else{
+                                    scrollToMenu()
+                                }
+                            }}
                         >
                             {t("Menyu tanlash")}
                         </button>
@@ -166,7 +174,14 @@ const Index = ({serviceData}: Props) => {
                         <div
                             key={get(option, 'id')}
                             className="col-span-12 sm:col-span-6 md:col-span-3"
-                            onClick={() => setFoodCategoryId(get(option, 'id'))}
+                            onClick={() => {
+                                if(isNil(serviceData)){
+                                    window.scrollTo(0, 0);
+                                    toast.error(t('Please select ticket'),{position:"top-right"})
+                                }else{
+                                    setFoodCategoryId(get(option, 'id'))
+                                }
+                            }}
                         >
                             <Image
                                 width={312}

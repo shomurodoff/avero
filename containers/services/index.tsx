@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {Modal, PassengerFilter, SearchForm, Tab} from "../../components";
 import SeatServices from "./seat";
 import FoodServices from "./food";
@@ -82,6 +82,12 @@ const Index: React.FC = () => {
     setTimeout(() => {
         setLoading(false);
     }, 9000);
+
+    useEffect(()=>{
+        if(get(data, 'data.data', [])?.length == 11){
+            setAirplane(head(get(data, 'data.data', [])))
+        }
+    },[get(data, 'data.data', [])])
 
     return (
         <Fragment>

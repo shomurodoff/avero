@@ -14,12 +14,12 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({modal, airplane = null,onClose=()=>{}}) => {
-    const {t} = useTranslation()
-    const [airways, setAirways] = useState<string>(get(airplane, 'airlinesType'));
-    const [ticketNumber, setTicketNumber] = useState<string>(get(airplane, 'ticketNumber', ''));
-    const [passportNumber, setPassportNumber] = useState<string>(get(airplane, 'passportNumber', ''));
-    const [family, setFamily] = useState<string>(get(airplane, 'family', ''));
+    const {t} = useTranslation();
     const router = useRouter();
+    const [airways, setAirways] = useState<string>(get(airplane, 'airlinesType',get(router,'query.code')));
+    const [ticketNumber, setTicketNumber] = useState<string>(get(airplane, 'ticketNumber', get(router,'query.ticketNumber')));
+    const [passportNumber, setPassportNumber] = useState<string>(get(airplane, 'passportNumber', get(router,'query.passportNumber')));
+    const [family, setFamily] = useState<string>(get(airplane, 'family',  get(router,'query.family')));
     return (
         <form className="grid grid-cols-12 gap-6 md:gap-2.5 font-inter  md:max-w-2xl lg:max-w-4xl mx-auto z-10">
             <div
@@ -126,7 +126,11 @@ const Index: React.FC<Props> = ({modal, airplane = null,onClose=()=>{}}) => {
                                 value: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'code'),
                                 label: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'title'),
                                 image: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'icon'),
-                            }:null}
+                            }:{
+                                value: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code','UZ_AIRWAYS')), 'code',''),
+                                label: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code','UZ_AIRWAYS')), 'title'),
+                                image: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code','UZ_AIRWAYS')), 'icon'),
+                            }}
                             onChange={(value: any) => setAirways(get(value, 'value', ''))}
                             isSearchable={false}
                             options={map(options, (item, index) => {

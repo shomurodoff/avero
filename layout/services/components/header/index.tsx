@@ -5,15 +5,21 @@ import React from "react";
 import { Container } from "../../../../UI";
 import Language from "./language";
 import { clsx } from "clsx";
+import {useRouter} from "next/router";
 
 const Index: React.FC = () => {
+  const router = useRouter()
+  const toBack = {
+    pathname: '/',
+    query: router.query
+  }
   return (
     <div className={"bg-[#F1F3F6]"}>
       <Container>
         <div className="w-full relative py-[35px]">
           <nav className={clsx("flex justify-start lg:justify-center")}>
             <div className="z-10">
-              <Link href={"/"}>
+              <Link href={toBack}>
                 <Image
                   src={ServicesPageLogo}
                   alt="Logo Image"

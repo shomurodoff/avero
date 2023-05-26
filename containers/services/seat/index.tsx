@@ -19,6 +19,7 @@ import {AIRLINE_TYPES, CABIN_CLASSES, SERVICE_TYPES} from "../../../constants";
 import clsx from "clsx";
 import {NumericFormat} from "react-number-format";
 import {useTranslation} from "react-i18next";
+import {toast} from "react-hot-toast";
 
 interface Props {
     serviceData?: any;
@@ -134,8 +135,15 @@ const Index = ({serviceData = {}}: Props) => {
               </span>{" "}
                             {t(" oldin xizmatga buyurtma bering.")}
                         </p>
-                        <button disabled={!get(airplane, 'data.data')}
-                                onClick={() => setOpen(get(airplane, 'data.data'))}
+                        <button
+                                onClick={() =>{
+                                    if(!get(airplane, 'data.data')){
+                                        window.scrollTo(0, 0);
+                                        toast.error(t('Please select ticket'),{position:"top-right"})
+                                    }else{
+                                        setOpen(get(airplane, 'data.data'))
+                                    }
+                                }}
                                 className="font-poppins bg-primary-red px-6 py-4 text-base rounded-[10px]">
                             {t("O’rindiq tanlash")}
                         </button>
