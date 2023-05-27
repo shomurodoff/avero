@@ -28,6 +28,7 @@ const Index: React.FC = () => {
     const [airplane, setAirplane] = useState<any>(null);
     const router = useRouter();
     const {code, family, ticketNumber, passportNumber} = router?.query;
+
     const {data} = useGetQuery({
         key: KEYS.getData,
         url: URLS.getData,

@@ -14,7 +14,7 @@ const request = axios.create({
 
 });
 request.interceptors.request.use((config) => {
-    const token = get(JSON.parse(loadState('settings')), 'state.token', null);
+    const token = get(loadState('settings'), 'state.token', null);
     if (token) {
         config.headers['Authorization'] = `Bearer ${token}`
     }

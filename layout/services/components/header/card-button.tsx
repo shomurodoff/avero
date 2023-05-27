@@ -14,7 +14,6 @@ const CardButton: React.FC<Props> = ({ main }) => {
   const totalSum = useStore((state) => get(state, "totalSum", 0));
   const findTotal = useStore((state) => get(state, "findTotal", () => {}));
 
-  console.log(findTotal());
 
   return (
     <Link
