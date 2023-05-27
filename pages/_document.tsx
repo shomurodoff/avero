@@ -6,7 +6,11 @@ export default function Document() {
     <Html lang="en">
         <Head>
             <title>Avero | Home</title>
+            <meta property="title" content="Avero.uz"  />
             <meta name="description" content="Avero.uz"/>
+            <meta property="og:url" content="http://avero.uz/" />
+            <meta property="og:image" content="/logo.png" />
+
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <link rel="icon" href="/favicon.ico"/>
         </Head>
