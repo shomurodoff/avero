@@ -5,15 +5,21 @@ export default function Document() {
     return (
         <Html lang="en">
             <Head>
-                <meta name="keywords" content="website, pdp, university, it"/>
-                <meta name="description" content="PDP University - O'zbekistondagi to'laqonli IT universitet."/>
-                <meta property="title" content="PDP University"/>
-                <meta itemProp="image" content="/logo.png"/>
-                <meta property="og:title" content="PDP University"/>
-                <meta property="og:image" content="/logo.png"/>
-                <meta property="og:description" content="PDP University - O'zbekistondagi to'laqonli IT universitet."/>
-                <meta property="og:url" content="https://university.pdp.uz"/>
-                <meta property="og:site_name" content="PDP University"/>
+                <title>Avero.uz</title>
+                <meta
+                    name="description"
+                    content="Avero.uz"
+                    key="desc"
+                />
+                <meta property="og:title" content="Social Title for Cool Page" />
+                <meta
+                    property="og:description"
+                    content="And a social description for our cool page"
+                />
+                <meta
+                    property="og:image"
+                    content="https://example.com/images/cool-page.jpg"
+                />
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
