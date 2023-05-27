@@ -32,11 +32,11 @@ const Index: React.FC = () => {
         key: KEYS.getData,
         url: URLS.getData,
         method: 'post',
-        params: code == AIRLINE_TYPES.CHARTER_FLIGHTS ?{
+        params: code == AIRLINE_TYPES.CHARTER_FLIGHTS ? {
             airlinesType: code,
             ticketNumber,
             passportNumber
-        }:{
+        } : {
             airlinesType: code,
             family,
             ticketNumber
@@ -83,11 +83,11 @@ const Index: React.FC = () => {
         setLoading(false);
     }, 9000);
 
-    useEffect(()=>{
-        if(get(data, 'data.data', [])?.length == 1){
+    useEffect(() => {
+        if (get(data, 'data.data', [])?.length == 1) {
             setAirplane(head(get(data, 'data.data', [])))
         }
-    },[get(data, 'data.data', [])])
+    }, [get(data, 'data.data', [])])
 
     return (
         <Fragment>
@@ -100,9 +100,10 @@ const Index: React.FC = () => {
             >
                 <Loader airway={get(router, "query.airways")}/>
             </div>
-            <PassengerFilter selectedId={get(airplane,'rtiId')} setItem={setAirplane} items={get(data, 'data.data', [])} setOpenForm={setOpenForm}/>
+            <PassengerFilter selectedId={get(airplane, 'rtiId')} setItem={setAirplane}
+                             items={get(data, 'data.data', [])} setOpenForm={setOpenForm}/>
             <Tab data={tabs} activeContent={Number(get(router, "query.services"))}/>
-           <Modal open={openForm} setOpen={setOpenForm}>
+            <Modal open={openForm} setOpen={setOpenForm}>
                 <div
                     className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px] pb-7 pt-5  p-[15px] md:p-[25px] md:pb-28">
                     <div className="hidden md:flex justify-end mb-10">
@@ -130,7 +131,7 @@ const Index: React.FC = () => {
                                 "                            foydalaning")}
                         </h2>
                     </div>
-                    <SearchForm onClose={()=>setOpenForm(false)} airplane={airplane} modal/>
+                    <SearchForm onClose={() => setOpenForm(false)} airplane={airplane} modal/>
                 </div>
             </Modal>
 
