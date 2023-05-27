@@ -84,7 +84,7 @@ const Index: React.FC = () => {
     }, 9000);
 
     useEffect(()=>{
-        if(get(data, 'data.data', [])?.length == 11){
+        if(get(data, 'data.data', [])?.length == 1){
             setAirplane(head(get(data, 'data.data', [])))
         }
     },[get(data, 'data.data', [])])
