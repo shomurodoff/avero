@@ -94,12 +94,6 @@ const Index = () => {
 
     return (
         <Fragment>
-            <Head>
-                <title>Avero | Home</title>
-                <meta name="description" content="Avero.uz"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <link rel="icon" href="/favicon.ico"/>
-            </Head>
             <section className="font-inter text-2xl font-bold bg-[#043785] relative -z-0 text-white">
                 <Container className="py-28 md:py-[90px]">
                     <div className="text-center  mb-10">
