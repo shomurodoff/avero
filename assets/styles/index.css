@@ -104,7 +104,12 @@ html {
 .seat_chair_icon {
     @apply absolute z-10;
 }
-
+.react-tel-input{
+ @apply !font-inter;
+}
+.react-tel-input .form-control{
+    @apply !w-full !text-base !h-10;
+}
 .seat_chair_code {
     @apply absolute z-50  left-1/2 -translate-x-1/2  text-lg text-red-50  font-bold font-inter top-1/2 -translate-y-2/3;
 }

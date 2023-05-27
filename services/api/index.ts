@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {config} from '../../config';
+import {get} from "lodash"
+import {loadState} from "../storage";
 
 const request = axios.create({
     baseURL: config.API_URL,
@@ -12,6 +14,10 @@ const request = axios.create({
 
 });
 request.interceptors.request.use((config) => {
+    const token = get(JSON.parse(loadState('settings')), 'state.token', null);
+    if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`
+    }
     return config;
 }, (error) => {
     return Promise.reject(error);

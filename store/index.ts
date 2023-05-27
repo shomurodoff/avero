@@ -17,7 +17,7 @@ interface storeState {
 
 interface settingsStoreState {
     lang: string;
-    setLang:(state:string)=>void
+    setLang: (state: string) => void
 }
 
 export const useStore = create<storeState>()((set) => ({
@@ -34,8 +34,12 @@ export const useStore = create<storeState>()((set) => ({
     findTotal: () => set((state) => ({totalSum: state.weight * 13000})),
 }));
 
- let settingsStore = (set:any) => ({
+let settingsStore = (set: any) => ({
     lang: config.DEFAULT_APP_LANG,
-    setLang: (lang: string) => set((state:any) => ({...state, lang: lang})),
+    setLang: (lang: string) => set((state: any) => ({...state, lang: lang})),
+    token: null,
+    setToken: (token: any) => set((state: any) => ({...state, token})),
+    user: null,
+    setUser: (user: any) => set((state: any) => ({...state, user})),
 })
-export const useSettingsStore = create(persist(settingsStore,{name:'settings'}))
+export const useSettingsStore = create(persist(settingsStore, {name: 'settings'}))

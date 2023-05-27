@@ -6,4 +6,5 @@ export const KEYS = {
     getSelectedServices: 'getSelectedServices',
     getFoods: 'getFoods',
     getFoodCategory: 'getFoodCategory',
+    signIn: 'signIn',
 };

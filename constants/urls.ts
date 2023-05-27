@@ -7,4 +7,5 @@ export const URLS = {
     getSelectedServices: 'api/v1/additionally/getProvidedServices',
     getFoods: 'api/v1/additionally/getFoods',
     getFoodCategory: 'api/v1/food-category/getAll',
+    signIn: 'api/v1/secure/agent/signIn',
 };
