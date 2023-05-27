@@ -1,11 +1,12 @@
 import clsx from "clsx";
-import {map, get, toLower, find, isNil} from "lodash";
+import {map, get, isEmpty, find, isNil} from "lodash";
 import Image from "next/image";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
 import ReactSelect, {components} from "react-select";
 import {options} from "../../mock/ioptions";
 import {useTranslation} from "react-i18next";
+import toast from "react-hot-toast";
 
 interface Props {
     modal?: boolean;
@@ -126,11 +127,11 @@ const Index: React.FC<Props> = ({modal, airplane = null,onClose=()=>{}}) => {
                                 value: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'code'),
                                 label: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'title'),
                                 image: get(find(options, (_item: any) => get(_item, 'code') == get(airplane, 'airlinesType')), 'icon'),
-                            }:{
-                                value: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code','UZ_AIRWAYS')), 'code',''),
-                                label: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code','UZ_AIRWAYS')), 'title'),
-                                image: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code','UZ_AIRWAYS')), 'icon'),
-                            }}
+                            }:get(router, 'query.code') ? {
+                                value: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code')), 'code',''),
+                                label: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code')), 'title'),
+                                image: get(find(options, (_item: any) => get(_item, 'code') == get(router, 'query.code')), 'icon'),
+                            }:null}
                             onChange={(value: any) => setAirways(get(value, 'value', ''))}
                             isSearchable={false}
                             options={map(options, (item, index) => {
@@ -210,10 +211,14 @@ const Index: React.FC<Props> = ({modal, airplane = null,onClose=()=>{}}) => {
                     type="button"
                     className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50 text-white"
                     onClick={() => {
-                        router.push({
-                            pathname: "/services",
-                            query: {code: airways, ticketNumber, family, passportNumber},
-                        })
+                        if(airways && ticketNumber && (family || passportNumber)){
+                            router.push({
+                                pathname: "/services",
+                                query: {code: airways, ticketNumber, family, passportNumber},
+                            })
+                        }else {
+                            toast.error(t('Please select all fields'),{position:'top-right'})
+                        }
                         onClose();
                     }
                     }
