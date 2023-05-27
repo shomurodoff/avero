@@ -9,6 +9,7 @@ export default function Document() {
             <meta property="title" content="Avero.uz"  />
             <meta name="description" content="Avero.uz"/>
             <meta property="og:url" content="http://avero.uz/" />
+            <meta property="og:description" content="Avero.uz"/>
             <meta property="og:image" content="/logo.png" />
 
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
