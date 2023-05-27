@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
-import { Footer, Header } from "./components";
+import {  Header } from "./components";
+import {Footer} from "../main/components";
 
 const Index: React.FC<any> = ({ children }) => {
   return (
