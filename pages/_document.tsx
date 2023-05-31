@@ -11,10 +11,10 @@ export default function Document() {
                     content="Avero.uz"
                     key="desc"
                 />
-                <meta property="og:title" content="Social Title for Cool Page" />
+                <meta property="og:title" content="Avero.uz qulay yordamchingiz" />
                 <meta
                     property="og:description"
-                    content="And a social description for our cool page"
+                    content="Avero.uz Joy band qiling, mos ovqat tanlang va boshqalar xizmatlardan foydalaning"
                 />
                 <meta
                     property="og:image"
