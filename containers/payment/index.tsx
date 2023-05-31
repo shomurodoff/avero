@@ -133,7 +133,7 @@ const Index = () => {
                                                         ticketNumber: get(item, 'ticketNumber'),
                                                         passportNumber: get(item, 'passportSerialNumber')
                                                     } : {
-                                                        airlinesType: get(item, 'airlinesType'),
+                                                        code: get(item, 'airlinesType'),
                                                         family: get(item, 'family'),
                                                         ticketNumber: get(item, 'ticketNumber'),
                                                     }
@@ -217,6 +217,7 @@ const Index = () => {
                     {
                         getSelectedServicesByServiceType(get(selectedServices, 'data.data', []), SERVICE_TYPES.CHOOSE_MEAL).map((item: any) =>
                             <Card
+                                key={get(item,'id')}
                                 className={
                                     "!rounded-medium bg-white px-4 md:px-[30px] py-7 mb-2.5"
                                 }
@@ -241,12 +242,12 @@ const Index = () => {
                                                 router.push({
                                                     pathname: "/services",
                                                     query: get(item, 'airlinesType') == AIRLINE_TYPES.CHARTER_FLIGHTS ? {
-                                                        airlinesType: get(item, 'airlinesType'),
+                                                        code: get(item, 'airlinesType'),
                                                         ticketNumber: get(item, 'ticketNumber'),
                                                         passportNumber: get(item, 'passportSerialNumber'),
                                                         services: 1
                                                     } : {
-                                                        airlinesType: get(item, 'airlinesType'),
+                                                        code: get(item, 'airlinesType'),
                                                         family: get(item, 'family'),
                                                         ticketNumber: get(item, 'ticketNumber'),
                                                         services: 1
