@@ -89,7 +89,8 @@ const Index = () => {
     }, [count]);
 
     const handleGo = (param: number) => {
-        router.push({pathname: "/services", query: {services: param}});
+        window.scrollTo(0, 0);
+        // router.push({pathname: "/services", query: {services: param}});
     };
 
     return (

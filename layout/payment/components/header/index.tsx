@@ -6,8 +6,10 @@ import { Container } from "../../../../UI";
 import Language from "./language";
 import clsx from "clsx";
 import { useRouter } from "next/router";
+import {useTranslation} from "react-i18next";
 
 const Index: React.FC = () => {
+  const {t} = useTranslation()
   const router = useRouter();
   return (
     <div className={"bg-white"}>
@@ -51,7 +53,7 @@ const Index: React.FC = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                Orqaga
+                {t("Orqaga")}
               </button>
             </div>
             <h2
@@ -59,19 +61,19 @@ const Index: React.FC = () => {
                 "font-graphik text-[32px] leading-[32px] font-semibold mt-4 md:hidden"
               }
             >
-              To'lash uchun
+              {t("To'lash uchun")}
             </h2>
           </div>
           <nav className={clsx("hidden md:flex justify-center")}>
             <div className="z-10">
-              <Link href={"/"}>
+              <div className={'cursor-pointer'} onClick={()=>router.back()}>
                 <Image
                   src={ServicesPageLogo}
                   alt="Logo Image"
                   className="z-[9999] w-2/3 md:w-auto"
                   quality={100}
                 />
-              </Link>
+              </div>
             </div>
           </nav>
           {/* <div className="h-full items-center flex absolute right-0 bottom-0">

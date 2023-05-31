@@ -174,73 +174,73 @@ const Index = ({serviceData = {}}: Props) => {
                     </div>
                 </div>
             </section>
-            <div className="relative mt-10 lg:mt-40 lg:mb-24">
-                <div className="font-graphik">
-                    <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">
-                        {t("Sevimli o'rindiq")}
-                    </h2>
-                    <p className="text-[32px] md:text-[40px] xl:text-[65px] leading-[42px] md:leading-[50px] xl:leading-[77.5px] font-normal font-inter max-w-5xl">
-                        {t(" Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz")}
-                    </p>
-                    <div
-                        className="w-[190px]  lg:w-[450px]  h-[100px] lg:h-[300px] bg-[#FF354DBA] blur-[50px] lg:blur-[125px] absolute top-0 right-0 opacity-50 -z-10"></div>
-                    <div
-                        className="w-[175px]  lg:w-[450px] h-[92px] lg:h-[300px] bg-[#2C7FFE] blur-[50px] lg:blur-[125px] absolute top-0 translate-x-full opacity-50 -z-10"></div>
-                </div>
-            </div>
-            <div className="flex justify-center mb-24 lg:mb-36">
-                <div className="inline-flex  flex-col lg:flex-row items-center justify-center  font-graphik">
-                    <div
-                        className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px]  rounded-full flex justify-center items-end  relative group cursor-pointer">
-                        <Image
-                            src={seatCircleImage}
-                            alt="image"
-                            fill
-                            className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                        />
-                        <div className="p-12 text-center  group-hover:text-white">
-                            <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5 z-10">
-                                {t(" Qo'shimcha o'rindiq")}
-                            </h3>
-                            <p className="font-montserrat text-xl">{t("1-bosqich")}</p>
-                        </div>
-                    </div>
-                    <div
-                        className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">
-                        <div className="p-12 text-center  group-hover:text-white">
-                            <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5">
-                                {t("Old o'rindiq qismi")}
-                            </h3>
-                            <p className={"font-montserrat text-xl"}>{t("2-bosqich")}</p>
-                        </div>
-                        <Image
-                            src={seatCircleImage}
-                            alt="image"
-                            fill
-                            className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                        />
-                    </div>
-                    <div
-                        className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px]  rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">
-                        <div className="p-12 text-center  group-hover:text-white">
-                            <h3
-                                className={
-                                    "text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5"
-                                }
-                            >
-                                {t("Standart zona o'rindig'i")}
-                            </h3>
-                            <p className={"font-montserrat text-xl"}>{t("3-bosqich")}</p>
-                        </div>
-                        <Image
-                            src={seatCircleImage}
-                            alt="image"
-                            fill
-                            className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                        />
-                    </div>
-                </div>
-            </div>
+            {/*<div className="relative mt-10 lg:mt-40 lg:mb-24">*/}
+            {/*    <div className="font-graphik">*/}
+            {/*        <h2 className="text-2xl text-[#90A18B] font-medium mb-4 font-inter">*/}
+            {/*            {t("Sevimli o'rindiq")}*/}
+            {/*        </h2>*/}
+            {/*        <p className="text-[32px] md:text-[40px] xl:text-[65px] leading-[42px] md:leading-[50px] xl:leading-[77.5px] font-normal font-inter max-w-5xl">*/}
+            {/*            {t(" Siz o'zingiz uchun afzal ko'rgan o'rindiqni tanlash tanloviga egasiz")}*/}
+            {/*        </p>*/}
+            {/*        <div*/}
+            {/*            className="w-[190px]  lg:w-[450px]  h-[100px] lg:h-[300px] bg-[#FF354DBA] blur-[50px] lg:blur-[125px] absolute top-0 right-0 opacity-50 -z-10"></div>*/}
+            {/*        <div*/}
+            {/*            className="w-[175px]  lg:w-[450px] h-[92px] lg:h-[300px] bg-[#2C7FFE] blur-[50px] lg:blur-[125px] absolute top-0 translate-x-full opacity-50 -z-10"></div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div className="flex justify-center mb-24 lg:mb-36">*/}
+            {/*    <div className="inline-flex  flex-col lg:flex-row items-center justify-center  font-graphik">*/}
+            {/*        <div*/}
+            {/*            className="border-2 border-black hover:border-transparent hover:border-2 h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px]  rounded-full flex justify-center items-end  relative group cursor-pointer">*/}
+            {/*            <Image*/}
+            {/*                src={seatCircleImage}*/}
+            {/*                alt="image"*/}
+            {/*                fill*/}
+            {/*                className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"*/}
+            {/*            />*/}
+            {/*            <div className="p-12 text-center  group-hover:text-white">*/}
+            {/*                <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5 z-10">*/}
+            {/*                    {t(" Qo'shimcha o'rindiq")}*/}
+            {/*                </h3>*/}
+            {/*                <p className="font-montserrat text-xl">{t("1-bosqich")}</p>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*        <div*/}
+            {/*            className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px] rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10 relative group cursor-pointer">*/}
+            {/*            <div className="p-12 text-center  group-hover:text-white">*/}
+            {/*                <h3 className="text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5">*/}
+            {/*                    {t("Old o'rindiq qismi")}*/}
+            {/*                </h3>*/}
+            {/*                <p className={"font-montserrat text-xl"}>{t("2-bosqich")}</p>*/}
+            {/*            </div>*/}
+            {/*            <Image*/}
+            {/*                src={seatCircleImage}*/}
+            {/*                alt="image"*/}
+            {/*                fill*/}
+            {/*                className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"*/}
+            {/*            />*/}
+            {/*        </div>*/}
+            {/*        <div*/}
+            {/*            className="border-2 border-black hover:border-transparent hover:border-2  h-[350px] w-[350px]  2xl:h-[460px] 2xl:w-[460px]  rounded-full flex justify-center items-end -mt-10 lg:mt-0 lg:-ml-10  relative group cursor-pointer">*/}
+            {/*            <div className="p-12 text-center  group-hover:text-white">*/}
+            {/*                <h3*/}
+            {/*                    className={*/}
+            {/*                        "text-[24px] leading-[34px] font-medium max-w-[150px] mb-3.5"*/}
+            {/*                    }*/}
+            {/*                >*/}
+            {/*                    {t("Standart zona o'rindig'i")}*/}
+            {/*                </h3>*/}
+            {/*                <p className={"font-montserrat text-xl"}>{t("3-bosqich")}</p>*/}
+            {/*            </div>*/}
+            {/*            <Image*/}
+            {/*                src={seatCircleImage}*/}
+            {/*                alt="image"*/}
+            {/*                fill*/}
+            {/*                className="-z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"*/}
+            {/*            />*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
             {
                 getSelectedServicesByServiceType(get(selectedServices, 'data.data', []), SERVICE_TYPES.CHOOSE_SEAT).map((service: any) =>
