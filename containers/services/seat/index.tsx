@@ -20,12 +20,14 @@ import clsx from "clsx";
 import {NumericFormat} from "react-number-format";
 import {useTranslation} from "react-i18next";
 import {toast} from "react-hot-toast";
+import {useSettingsStore} from "../../../store";
 
 interface Props {
     serviceData?: any;
 }
 
 const Index = ({serviceData = {}}: Props) => {
+    const user: any = useSettingsStore((state: any) => get(state, "user"));
     const {t} = useTranslation()
     const router = useRouter();
     const [temporarySeat, setTemporarySeat] = useState<any>(null)
@@ -63,14 +65,16 @@ const Index = ({serviceData = {}}: Props) => {
                 ticketNumber: get(serviceData, 'ticketNumber', undefined),
                 passportNumber: get(serviceData, 'passportNumber', undefined),
                 seat: `${get(selectedSeat, 'number')}${get(selectedSeat, 'code')}`,
-                rtid: get(serviceData, 'rtiId', undefined)
+                rtid: get(serviceData, 'rtiId', undefined),
+                isAgent:!!(user)
             } : {
                 airlinesType: get(serviceData, 'airlinesType'),
                 serviceType: SERVICE_TYPES.CHOOSE_SEAT,
                 ticketNumber: get(serviceData, 'ticketNumber', undefined),
                 family: get(serviceData, 'family', undefined),
                 seat: `${get(selectedSeat, 'number')}${get(selectedSeat, 'code')}`,
-                rtid: get(serviceData, 'rtiId', undefined)
+                rtid: get(serviceData, 'rtiId', undefined),
+                isAgent:!!(user)
             }
         }, {
             onSuccess: ({data}) => {

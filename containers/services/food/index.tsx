@@ -26,6 +26,7 @@ interface Props {
 }
 
 const Index = ({serviceData=null}: Props) => {
+    const user: any = useSettingsStore((state: any) => get(state, "user"));
     const {t} = useTranslation()
     const router = useRouter();
     const [foodCategoryId, setFoodCategoryId] = useState<any>(null);
@@ -71,13 +72,15 @@ const Index = ({serviceData=null}: Props) => {
                 passportNumber: get(serviceData, 'passportNumber', undefined),
                 rtid: get(serviceData, 'rtiId', undefined),
                 meal: get(temporaryFood, 'id'),
+                isAgent:!!(user)
             } : {
                 airlinesType: get(serviceData, 'airlinesType'),
                 serviceType: SERVICE_TYPES.CHOOSE_SEAT,
                 ticketNumber: get(serviceData, 'ticketNumber', undefined),
                 family: get(serviceData, 'family', undefined),
                 meal: get(temporaryFood, 'id'),
-                rtid: get(serviceData, 'rtiId', undefined)
+                rtid: get(serviceData, 'rtiId', undefined),
+                isAgent:!!(user)
             }
         }, {
             onSuccess: ({data}) => {
