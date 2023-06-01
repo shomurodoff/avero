@@ -34,6 +34,8 @@ import {
 import {ArrowButton, Card, Heading, SearchForm} from "../../components";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
+import {usePostQuery} from "../../hooks";
+import {KEYS} from "../../constants/keys";
 
 const newsData: {
     id: number;
@@ -77,6 +79,7 @@ const Index = () => {
     const {t} = useTranslation()
     const [count, setCount] = useState<number>(0);
     const images = [changeIcon1, changeIcon2, changeIcon3, changeIcon4];
+
     useEffect(() => {
         const timerId = setInterval(() => {
             if (count === images.length - 1) {
@@ -90,8 +93,8 @@ const Index = () => {
 
     const handleGo = (param: number) => {
         window.scrollTo(0, 0);
-        // router.push({pathname: "/services", query: {services: param}});
     };
+
 
     return (
         <Fragment>
