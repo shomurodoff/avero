@@ -37,7 +37,13 @@ const Index = ({serviceData = {}}: Props) => {
     const {data: airplane, isLoading: isLoadingAirplane} = useGetQuery(
         {
             key: `${KEYS.getAirplanes}-${get(serviceData, 'flightCode')}`,
-            url: `${URLS.getAirplanes}/${get(serviceData, 'flightCode')}`,
+            url: URLS.getAirplanes,
+            params:{
+                flightCode:get(serviceData, 'flightCode'),
+                ticketNumber:get(serviceData, 'ticketNumber'),
+                rtid:get(serviceData, 'rtiId')
+            },
+            method:"post",
             enabled: !!(get(serviceData, 'flightCode'))
         })
     const {data: selectedServices} = useGetQuery(
@@ -446,10 +452,10 @@ const Index = ({serviceData = {}}: Props) => {
                                                 <Image
                                                     width={60}
                                                     height={60}
-                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
+                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ||  get(seat, 'isMine') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
                                                     src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
                                                     alt={'seat'}/>
-                                                {!get(seat, 'isBusy') && !isEqual(get(seat, 'id'), get(selectedSeat, 'id')) &&
+                                                {!get(seat, 'isBusy') && !isEqual(get(seat, 'id'), get(selectedSeat, 'id')) &&  !get(seat, 'isMine') &&
                                                     <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
                                             </li>)}
                                     </ul>
@@ -466,10 +472,10 @@ const Index = ({serviceData = {}}: Props) => {
                                                 <Image
                                                     width={54}
                                                     height={51}
-                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
+                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), `${get(seat, 'id') == get(selectedSeat, 'id') || get(seat, 'isMine') ? 'selected' : get(seat, 'isBusy') ? 'busy' : 'free'}.url`)}
                                                     src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
                                                     alt={'seat'}/>
-                                                {!get(seat, 'isBusy') &&  !isEqual(get(seat, 'id'), get(selectedSeat, 'id')) &&
+                                                {!get(seat, 'isBusy') &&  !isEqual(get(seat, 'id'), get(selectedSeat, 'id')) && !get(seat, 'isMine') &&
                                                     <span className={'seat_chair_code'}>{get(seat, 'code')}</span>}
                                             </li>)}
                                     </ul>
