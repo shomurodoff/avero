@@ -23,6 +23,7 @@ import {getSelectedServicesByServiceType} from "../../utils"
 import {NumericFormat} from "react-number-format";
 import {useTranslation} from "react-i18next";
 import {useSettingsStore} from "../../store";
+import {toast} from "react-hot-toast";
 
 const Index = () => {
     const {t} = useTranslation()
@@ -60,7 +61,10 @@ const Index = () => {
                 isAgent: !!(user)
             }
         }, {
-            onSuccess: () => {
+            onSuccess: ({data}) => {
+                if(get(data,'code') == 0){
+                    toast.success(get(data,'message',"SUCCESS"), {position: 'top-right'});
+                }
                 setOpenDeleteConfirmation(false);
             },
             onError: () => {
@@ -89,7 +93,10 @@ const Index = () => {
                 isAgent: !!(user)
             }
         }, {
-            onSuccess: () => {
+            onSuccess: ({data}) => {
+                if(get(data,'code') == 0){
+                    toast.success(get(data,'message',"SUCCESS"), {position: 'top-right'});
+                }
                 setOpenDeleteConfirmation(false);
             },
             onError: () => {

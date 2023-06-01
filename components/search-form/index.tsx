@@ -254,6 +254,7 @@ const Index: React.FC<Props> = ({
             </div>
             <div className="col-span-12 lg:col-span-2 z-10">
                 <button
+                    disabled={isLoading}
                     type="button"
                     className="bg-primary-red rounded-[15px] w-full h-full py-[23px] text-xl leading-6 font-medium font-inter z-50 text-white"
                     onClick={searchTicket}

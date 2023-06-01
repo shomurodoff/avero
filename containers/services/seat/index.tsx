@@ -79,6 +79,9 @@ const Index = ({serviceData = {}}: Props) => {
             }
         }, {
             onSuccess: ({data}) => {
+                if(get(data,'code') == 0){
+                        toast.success(get(data,'message',"SUCCESS"), {position: 'top-right'});
+                }
                 setOpen(false);
                 setSelectedSeat(null);
                 setTemporarySeat(null);
@@ -111,7 +114,10 @@ const Index = ({serviceData = {}}: Props) => {
                 isAgent:!!(user)
             }
         }, {
-            onSuccess: () => {
+            onSuccess: ({data}) => {
+                if(get(data,'code') == 0){
+                    toast.success(get(data,'message',"SUCCESS"), {position: 'top-right'});
+                }
                 setOpenDeleteConfirmation(false);
             },
             onError: () => {

@@ -85,6 +85,9 @@ const Index = ({serviceData=null}: Props) => {
             }
         }, {
             onSuccess: ({data}) => {
+                if(get(data,'code') == 0){
+                    toast.success(get(data,'message',"SUCCESS"), {position: 'top-right'});
+                }
                 setFoodCategoryId(null);
                 setTemporaryFood(null);
             },
@@ -116,7 +119,10 @@ const Index = ({serviceData=null}: Props) => {
                 isAgent:!!(user)
             }
         }, {
-            onSuccess: () => {
+            onSuccess: ({data}) => {
+                if(get(data,'code') == 0){
+                    toast.success(get(data,'message',"SUCCESS"), {position: 'top-right'});
+                }
                 setOpenDeleteConfirmation(false);
             },
             onError: () => {
