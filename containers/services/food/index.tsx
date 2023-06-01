@@ -103,14 +103,16 @@ const Index = ({serviceData=null}: Props) => {
                 ticketNumber: get(_meal, 'ticketNumber', undefined),
                 passportNumber: get(_meal, 'passportSerialNumber', undefined),
                 meal: get(_meal, 'meal', undefined),
-                rtid: get(_meal, 'rtiId', undefined)
+                rtid: get(_meal, 'rtiId', undefined),
+                isAgent:!!(user)
             } : {
                 airlinesType: get(_meal, 'airlinesType'),
                 serviceType: SERVICE_TYPES.DELETE_MEAL,
                 ticketNumber: get(_meal, 'ticketNumber', undefined),
                 family: get(_meal, 'family', undefined),
                 seat: get(_meal, 'meal', undefined),
-                rtid: get(_meal, 'rtiId', undefined)
+                rtid: get(_meal, 'rtiId', undefined),
+                isAgent:!!(user)
             }
         }, {
             onSuccess: () => {

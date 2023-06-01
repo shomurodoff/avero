@@ -22,9 +22,11 @@ import {AIRLINE_TYPES, SERVICE_TYPES} from "../../constants";
 import {getSelectedServicesByServiceType} from "../../utils"
 import {NumericFormat} from "react-number-format";
 import {useTranslation} from "react-i18next";
+import {useSettingsStore} from "../../store";
 
 const Index = () => {
     const {t} = useTranslation()
+    const user: any = useSettingsStore((state: any) => get(state, "user"));
     const [activePayment, setActivePayment] = useState<number | null>(null);
     const router = useRouter();
     const {ticketNumber} = router?.query;
@@ -45,14 +47,16 @@ const Index = () => {
                 ticketNumber: get(_seat, 'ticketNumber', undefined),
                 passportNumber: get(_seat, 'passportSerialNumber', undefined),
                 seat: get(_seat, 'seat', undefined),
-                rtid: get(_seat, 'rtiId', undefined)
+                rtid: get(_seat, 'rtiId', undefined),
+                isAgent: !!(user)
             } : {
                 airlinesType: get(_seat, 'airlinesType'),
                 serviceType: SERVICE_TYPES.DELETE_SEAT,
                 ticketNumber: get(_seat, 'ticketNumber', undefined),
                 family: get(_seat, 'family', undefined),
                 seat: get(_seat, 'seat', undefined),
-                rtid: get(_seat, 'rtiId', undefined)
+                rtid: get(_seat, 'rtiId', undefined),
+                isAgent: !!(user)
             }
         }, {
             onSuccess: () => {
@@ -72,14 +76,16 @@ const Index = () => {
                 ticketNumber: get(_meal, 'ticketNumber', undefined),
                 passportNumber: get(_meal, 'passportSerialNumber', undefined),
                 meal: get(_meal, 'meal', undefined),
-                rtid: get(_meal, 'rtiId', undefined)
+                rtid: get(_meal, 'rtiId', undefined),
+                isAgent: !!(user)
             } : {
                 airlinesType: get(_meal, 'airlinesType'),
                 serviceType: SERVICE_TYPES.DELETE_MEAL,
                 ticketNumber: get(_meal, 'ticketNumber', undefined),
                 family: get(_meal, 'family', undefined),
                 seat: get(_meal, 'meal', undefined),
-                rtid: get(_meal, 'rtiId', undefined)
+                rtid: get(_meal, 'rtiId', undefined),
+                isAgent: !!(user)
             }
         }, {
             onSuccess: () => {
@@ -104,7 +110,7 @@ const Index = () => {
                     {
                         getSelectedServicesByServiceType(get(selectedServices, 'data.data', []), SERVICE_TYPES.CHOOSE_SEAT).map((item: any) =>
                             <Card
-                                key={get(item,'id')}
+                                key={get(item, 'id')}
                                 className={
                                     "!rounded-medium bg-white px-4 md:px-[30px] py-7 mb-2.5"
                                 }
@@ -217,7 +223,7 @@ const Index = () => {
                     {
                         getSelectedServicesByServiceType(get(selectedServices, 'data.data', []), SERVICE_TYPES.CHOOSE_MEAL).map((item: any) =>
                             <Card
-                                key={get(item,'id')}
+                                key={get(item, 'id')}
                                 className={
                                     "!rounded-medium bg-white px-4 md:px-[30px] py-7 mb-2.5"
                                 }
