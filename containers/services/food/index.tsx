@@ -31,6 +31,7 @@ const Index = ({serviceData=null}: Props) => {
     const router = useRouter();
     const [foodCategoryId, setFoodCategoryId] = useState<any>(null);
     const [temporaryFood, setTemporaryFood] = useState<any>(null);
+    const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState<boolean>(false)
     const menuRef = useRef<any>(null);
     const language: any = useSettingsStore((state: any) => get(state, "lang", config.DEFAULT_APP_LANG));
     const scrollToMenu = () => menuRef.current.scrollIntoView();
@@ -116,7 +117,7 @@ const Index = ({serviceData=null}: Props) => {
             }
         }, {
             onSuccess: () => {
-
+                setOpenDeleteConfirmation(false);
             },
             onError: () => {
 
@@ -222,7 +223,7 @@ const Index = ({serviceData=null}: Props) => {
                     </div>
                     <div className="flex gap-3">
                         <button
-                            onClick={()=>deleteMeal(_meal)}
+                            onClick={()=>setOpenDeleteConfirmation(true)}
                             className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
                             {t("Bekor qilish")}
                         </button>
@@ -233,6 +234,49 @@ const Index = ({serviceData=null}: Props) => {
                             {t("To’lash")}
                         </button>
                     </div>
+                    <Modal classNames={'!max-w-[500px]'}  hidden={false} open={openDeleteConfirmation}
+                           setOpen={() => setOpenDeleteConfirmation(false)}>
+                        <div
+                            className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
+                            <div className="hidden md:flex justify-between mb-10 items-start">
+                                <h3 className={'text-black font-semibold text-3xl '}>{t("Are you sure?")}</h3>
+                                <button
+                                    className="p-[17px] bg-white rounded-default"
+                                    onClick={() => setOpenDeleteConfirmation(false)}
+                                >
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M7.99992 6.23242L14.1874 0.0449219L15.9549 1.81242L9.76742 7.99992L15.9549 14.1874L14.1874 15.9549L7.99992 9.76742L1.81242 15.9549L0.0449219 14.1874L6.23242 7.99992L0.0449219 1.81242L1.81242 0.0449219L7.99992 6.23242Z"
+                                            fill="black"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div>
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={() => setOpenDeleteConfirmation(false)}
+                                        className=" border-2 border-black  rounded-default font-inter text-base leading-4 font-semibold py-4 px-9">
+                                        {t("Yo’q")}
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            deleteMeal(_meal)
+                                        }}
+                                        className=" bg-primary-red rounded-default font-inter text-base text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+                                    >
+                                        {t("Ha, roziman")}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal>
                 </div>)
             }
 

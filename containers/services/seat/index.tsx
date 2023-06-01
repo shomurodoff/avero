@@ -32,6 +32,7 @@ const Index = ({serviceData = {}}: Props) => {
     const router = useRouter();
     const [temporarySeat, setTemporarySeat] = useState<any>(null)
     const [selectedSeat, setSelectedSeat] = useState<any>(null)
+    const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState<boolean>(false)
     const [open, setOpen] = useState<any>(false)
     const {data: airplane, isLoading: isLoadingAirplane} = useGetQuery(
         {
@@ -111,7 +112,7 @@ const Index = ({serviceData = {}}: Props) => {
             }
         }, {
             onSuccess: () => {
-
+                setOpenDeleteConfirmation(false);
             },
             onError: () => {
 
@@ -266,7 +267,7 @@ const Index = ({serviceData = {}}: Props) => {
                         </div>
                         <div className="flex gap-3">
                             <button
-                                onClick={() => deleteSeat(service)}
+                                onClick={() => setOpenDeleteConfirmation(true)}
                                 className=" border-2 border-black  rounded-default font-inter text-sm leading-4 font-semibold py-4 px-9">
                                 {t("Bekor qilish")}
                             </button>
@@ -277,6 +278,49 @@ const Index = ({serviceData = {}}: Props) => {
                                 {t("To’lash")}
                             </button>
                         </div>
+                        <Modal classNames={'!max-w-[500px]'}  hidden={false} open={openDeleteConfirmation}
+                                setOpen={() => setOpenDeleteConfirmation(false)}>
+                            <div
+                                className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
+                                <div className="hidden md:flex justify-between mb-10 items-start">
+                                    <h3 className={'text-black font-semibold text-3xl '}>{t("Are you sure?")}</h3>
+                                    <button
+                                        className="p-[17px] bg-white rounded-default"
+                                        onClick={() => setOpenDeleteConfirmation(false)}
+                                    >
+                                        <svg
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 16 16"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M7.99992 6.23242L14.1874 0.0449219L15.9549 1.81242L9.76742 7.99992L15.9549 14.1874L14.1874 15.9549L7.99992 9.76742L1.81242 15.9549L0.0449219 14.1874L6.23242 7.99992L0.0449219 1.81242L1.81242 0.0449219L7.99992 6.23242Z"
+                                                fill="black"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>
+                                    <div className="flex gap-3">
+                                        <button
+                                            onClick={() => setOpenDeleteConfirmation(false)}
+                                            className=" border-2 border-black  rounded-default font-inter text-base leading-4 font-semibold py-4 px-9">
+                                            {t("Yo’q")}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                deleteSeat(service)
+                                            }}
+                                            className=" bg-primary-red rounded-default font-inter text-base text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+                                        >
+                                            {t("Ha, roziman")}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Modal>
                     </div>)
             }
             <Modal classNames={'bg-white'} full open={open} setOpen={() => setOpen(false)}>
@@ -329,21 +373,21 @@ const Index = ({serviceData = {}}: Props) => {
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.url')}
-                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.title'))}</span>
+                                                   alt={'seat'}/><span>{t("Biznes klas")} <br/>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'free.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black mb-6'}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.url')}
-                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.title'))}</span>
+                                                   alt={'seat'}/><span>{t("Biznes klas")} <br/>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'busy.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black '}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.url')}
-                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.title'))}</span>
+                                                   alt={'seat'}/><span>{t("Biznes klas")} <br/>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.BUSINESS_CLASS), 'selected.title'))}</span>
                                         </li>
                                     </ul>
                                     <hr className={'my-8'}/>
@@ -354,21 +398,21 @@ const Index = ({serviceData = {}}: Props) => {
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.url')}
-                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.title'))}</span>
+                                                   alt={'seat'}/><span>{t("Ekonom klas")} <br/> {t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'free.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black mb-6'}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.url')}
-                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.title'))}</span>
+                                                   alt={'seat'}/><span>{t("Ekonom klas")} <br/>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'busy.title'))}</span>
                                         </li>
                                         <li className={'flex items-center font-medium text-black '}>
                                             <Image width={50} height={50}
                                                    loader={() => get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
                                                    className={'mr-7'}
                                                    src={get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.url')}
-                                                   alt={'seat'}/><span>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.title'))}</span>
+                                                   alt={'seat'}/><span>{t("Ekonom klas")} <br/>{t(get(findCabinClassType(get(airplane, 'data.data.cabinClass', []), CABIN_CLASSES.ECONOMY_CLASS), 'selected.title'))}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -463,7 +507,7 @@ const Index = ({serviceData = {}}: Props) => {
                             <button
                                 onClick={() => setTemporarySeat(null)}
                                 className=" border-2 border-black  rounded-default font-inter text-base leading-4 font-semibold py-4 px-9">
-                                Yo’q
+                                {t("Yo’q")}
                             </button>
                             <button
                                 onClick={() => {
@@ -472,12 +516,13 @@ const Index = ({serviceData = {}}: Props) => {
                                 }}
                                 className=" bg-primary-red rounded-default font-inter text-base text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
                             >
-                                Ha, roziman
+                                {t("Ha, roziman")}
                             </button>
                         </div>
                     </div>
                 </div>
             </Modal>
+
         </Fragment>
     );
 };

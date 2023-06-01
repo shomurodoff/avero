@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Container} from "../../UI";
-import {Card} from "../../components";
+import {Card, Modal} from "../../components";
 import {get, isEqual, sumBy} from "lodash";
 import {
     CabinIcon,
@@ -28,6 +28,7 @@ const Index = () => {
     const {t} = useTranslation()
     const user: any = useSettingsStore((state: any) => get(state, "user"));
     const [activePayment, setActivePayment] = useState<number | null>(null);
+    const [openDeleteConfirmation,setOpenDeleteConfirmation] = useState<boolean>(false)
     const router = useRouter();
     const {ticketNumber} = router?.query;
     const {data: selectedServices} = useGetQuery(
@@ -60,7 +61,7 @@ const Index = () => {
             }
         }, {
             onSuccess: () => {
-
+                setOpenDeleteConfirmation(false);
             },
             onError: () => {
 
@@ -89,7 +90,7 @@ const Index = () => {
             }
         }, {
             onSuccess: () => {
-
+                setOpenDeleteConfirmation(false);
             },
             onError: () => {
 
@@ -150,7 +151,7 @@ const Index = () => {
                                         </button>
                                         <button
                                             className="md:hidden"
-                                            onClick={() => deleteSeat(item)}
+                                            onClick={() => setOpenDeleteConfirmation(true)}
                                         >
                                             <svg
                                                 width="24"
@@ -173,7 +174,7 @@ const Index = () => {
                                             </svg>
                                         </button>
                                         <svg
-                                            onClick={() => deleteSeat(item)}
+                                            onClick={() => setOpenDeleteConfirmation(true)}
                                             className={"cursor-pointer"}
                                             width="24"
                                             height="24"
@@ -218,6 +219,49 @@ const Index = () => {
                                         </p>
                                     </li>
                                 </ul>
+                                <Modal classNames={'!max-w-[500px]'}  hidden={false} open={openDeleteConfirmation}
+                                       setOpen={() => setOpenDeleteConfirmation(false)}>
+                                    <div
+                                        className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
+                                        <div className="hidden md:flex justify-between mb-10 items-start">
+                                            <h3 className={'text-black font-semibold text-3xl '}>{t("Are you sure?")}</h3>
+                                            <button
+                                                className="p-[17px] bg-white rounded-default"
+                                                onClick={() => setOpenDeleteConfirmation(false)}
+                                            >
+                                                <svg
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 16 16"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M7.99992 6.23242L14.1874 0.0449219L15.9549 1.81242L9.76742 7.99992L15.9549 14.1874L14.1874 15.9549L7.99992 9.76742L1.81242 15.9549L0.0449219 14.1874L6.23242 7.99992L0.0449219 1.81242L1.81242 0.0449219L7.99992 6.23242Z"
+                                                        fill="black"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <div className="flex gap-3">
+                                                <button
+                                                    onClick={() => setOpenDeleteConfirmation(false)}
+                                                    className=" border-2 border-black  rounded-default font-inter text-base leading-4 font-semibold py-4 px-9">
+                                                    {t("Yo’q")}
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        deleteSeat(item)
+                                                    }}
+                                                    className=" bg-primary-red rounded-default font-inter text-base text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+                                                >
+                                                    {t("Ha, roziman")}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Modal>
                             </Card>)
                     }
                     {
@@ -288,7 +332,7 @@ const Index = () => {
                                             </svg>
                                         </button>
                                         <svg
-                                            onClick={() => deleteMeal(item)}
+                                            onClick={() => setOpenDeleteConfirmation(item)}
                                             className={"cursor-pointer"}
                                             width="24"
                                             height="24"
@@ -333,6 +377,49 @@ const Index = () => {
                                         </p>
                                     </li>
                                 </ul>
+                                <Modal classNames={'!max-w-[500px]'}  hidden={false} open={openDeleteConfirmation}
+                                       setOpen={() => setOpenDeleteConfirmation(false)}>
+                                    <div
+                                        className="bg-[#FFFFFF] md:bg-opacity-90 backdrop-blur-[20px] shadow-[0px_-20px_30px_rgba(0, 0, 0, 0.19)] rounded-t-[20px] md:rounded-[20px]  pt-5  p-[15px] md:p-[25px]">
+                                        <div className="hidden md:flex justify-between mb-10 items-start">
+                                            <h3 className={'text-black font-semibold text-3xl '}>{t("Are you sure?")}</h3>
+                                            <button
+                                                className="p-[17px] bg-white rounded-default"
+                                                onClick={() => setOpenDeleteConfirmation(false)}
+                                            >
+                                                <svg
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 16 16"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M7.99992 6.23242L14.1874 0.0449219L15.9549 1.81242L9.76742 7.99992L15.9549 14.1874L14.1874 15.9549L7.99992 9.76742L1.81242 15.9549L0.0449219 14.1874L6.23242 7.99992L0.0449219 1.81242L1.81242 0.0449219L7.99992 6.23242Z"
+                                                        fill="black"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <div className="flex gap-3">
+                                                <button
+                                                    onClick={() => setOpenDeleteConfirmation(false)}
+                                                    className=" border-2 border-black  rounded-default font-inter text-base leading-4 font-semibold py-4 px-9">
+                                                    {t("Yo’q")}
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        deleteMeal(item)
+                                                    }}
+                                                    className=" bg-primary-red rounded-default font-inter text-base text-white leading-4 font-semibold py-4 px-9 border-2 border-transparent"
+                                                >
+                                                    {t("Ha, roziman")}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Modal>
                             </Card>)
                     }
                 </div>
